@@ -87,7 +87,10 @@ node tools/check.mjs
 ## Deploying
 
 One Render static site, `hark-site`, deployed from `main` on every push:
-build command `node tools/build.mjs`, publish directory `dist`. Its redirect
+build command `node tools/build.mjs`, publish directory `dist`. A second,
+`hark-site-staging`, deploys the `staging` branch the same way at
+https://hark-site-staging.onrender.com/, to look at a change before it goes
+to `main`. Its redirect
 rules send the old paths `/academic/`, `/birds/` and `/resume/` to the new
 sites. See [wiki/Deploying.md](wiki/Deploying.md).
 

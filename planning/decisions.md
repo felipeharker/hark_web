@@ -4,6 +4,18 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-26 — A staging copy of felipeharker.org
+
+**A second Render static site, `hark-site-staging`, deploys `hark_web`'s
+`staging` branch** to https://hark-site-staging.onrender.com/, built like
+`hark-site` with `STAGING=1`, which marks every page `noindex` and writes a
+`robots.txt` that turns crawlers away. A change is merged into `staging`
+first, looked at there, then merged into `main`. *Why:* the owner's call —
+to see a change live before it is on felipeharker.org. *The cost:* the
+other sites load the standard from felipeharker.org, so staging shows a
+change to the standard on the portfolio and the standards page only.
+*Replaces:* nothing; `main` still deploys felipeharker.org.
+
 ## 2026-10-26 — Two designs, chosen on the front page
 
 **The standard has two designs, sans and serif, and the reader chooses.**

@@ -35,6 +35,34 @@ Nothing in the build needs the network: no packages, fonts or data are
 downloaded, so a push to `main` that passes `node tools/build.mjs` locally
 deploys.
 
+## Staging
+
+A second static site, `hark-site-staging`, builds the `staging` branch the
+same way, at its own address, https://hark-site-staging.onrender.com/, so a
+change can be looked at, live, before it goes to `main`:
+
+1. Work on a branch, as always.
+2. Merge it into `staging` and push; `hark-site-staging` deploys.
+3. Look at it there. When it is right, merge the same branch into `main`.
+
+| Setting | Value |
+|---|---|
+| Service | `hark-site-staging`, workspace Harker-Hub |
+| Repository / branch | `felipeharker/hark_web`, `staging`, auto-deploy on |
+| Build command | `node tools/build.mjs` |
+| Publish directory | `dist` |
+| Environment | `NODE_VERSION=22`, `STAGING=1` |
+
+With `STAGING=1` the build marks every page `noindex` and writes a
+`robots.txt` that turns crawlers away; nothing else differs. Staging has no
+custom domain and no redirects.
+
+What staging cannot show: the other sites load the shared stylesheet and
+script from felipeharker.org, not from staging, so a change to the standard
+reaches them only from `main`. On staging, the portfolio and the standards
+page show it; a link from staging to another site lands on that site as it
+is live.
+
 ## The other sites
 
 | Service | Repository | Build command | Publish directory | Address |

@@ -1,5 +1,6 @@
 # Render Blueprint for felipeharker.org: the portfolio and the standards, one
-# static service, built from this repository's main branch. The academic
+# static service, built from this repository's main branch, and a staging
+# copy of it built from the staging branch. The academic
 # projects, the birding report and the resume are their own services, each
 # recorded in its own repository's render.yaml.
 #
@@ -41,3 +42,20 @@ services:
       - type: redirect
         source: /resume/*
         destination: https://hark-resume.onrender.com/*
+
+  # Staging: the same site from the staging branch, at its own onrender.com
+  # address, to look at a change before it goes to main. STAGING=1 marks every
+  # page noindex and writes a robots.txt that turns crawlers away. No custom
+  # domain and no redirects.
+  - type: web
+    name: hark-site-staging
+    runtime: static
+    repo: https://github.com/felipeharker/hark_web
+    branch: staging
+    buildCommand: node tools/build.mjs
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: STAGING
+        value: "1"

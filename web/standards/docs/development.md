@@ -282,6 +282,7 @@ push, each described in its own `render.yaml`:
 | Service | Repository | Build command | Publish directory |
 |---|---|---|---|
 | `hark-site` | `hark_web` | `node tools/build.mjs` | `dist` |
+| `hark-site-staging` | `hark_web`, branch `staging` | `node tools/build.mjs` (`STAGING=1`) | `dist` |
 | `hark-academic` | `hark_academic` | none | `site` |
 | `hark-birding` | `hark_birding` | `cd web && npm ci && npm run build` | `web/out` |
 | `hark-resume` | `hark_resume` | none | `site` |

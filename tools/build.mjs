@@ -18,6 +18,9 @@
  * addresses, unfingerprinted; the birding app's own stylesheets are
  * fingerprinted by Next.)
  *
+ * With STAGING=1 — the staging service, hark-site-staging — every page is
+ * also marked noindex, and robots.txt turns crawlers away.
+ *
  * Plain Node, no dependencies, so Render needs nothing but Node to run it.
  */
 
@@ -66,5 +69,23 @@ for (const site of SITES.filter((s) => s.kind === 'static')) {
   }
 }
 console.log(`\nFingerprinted ${stamped} stylesheet and script links.`);
+
+// -- A staging build -----------------------------------------------------------
+// STAGING=1 is set on the staging service, hark-site-staging, which deploys
+// the staging branch. Every page is marked noindex and robots.txt turns
+// crawlers away, so the staging copy never competes with felipeharker.org in
+// search. Nothing else differs: staging is what main will be.
+
+if (process.env.STAGING === '1') {
+  let marked = 0;
+  for (const page of walk(DIST).filter((f) => f.endsWith('.html'))) {
+    const html = readFileSync(page, 'utf8');
+    if (html.includes('name="robots"')) continue;
+    writeFileSync(page, html.replace('</head>', '<meta name="robots" content="noindex">\n</head>'));
+    marked++;
+  }
+  writeFileSync(join(DIST, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
+  console.log(`\nStaging: ${marked} pages marked noindex; robots.txt turns crawlers away.`);
+}
 
 console.log('\nBuilt dist/.');
