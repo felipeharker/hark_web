@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <!-- Living Outside the Box: the graphic on its title card. A hillside in Rio, in
+       section, and four houses up it, each two pre-fabricated boxes
+       cantilevered out over the slope; one box, solid.
+       Drawn to the rules in web/standards/docs/components.md, "Title card":
+       a 160-unit square, ink hairlines 1.25 wide, one solid shape, and
+       nothing in the lower left, where the title sits. -->
+  <g fill="none" stroke="#111111" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M8 98 L152 30"/>
+    <path d="M22 69.1 L46 69.1 L46 80.1 L22 80.1 Z"/>
+    <path d="M14 58.1 L38 58.1 L38 69.1 L14 69.1 Z"/>
+    <path d="M48 42 L72 42 L72 53 L48 53 Z"/>
+    <path d="M90 36.9 L114 36.9 L114 47.9 L90 47.9 Z"/>
+    <path d="M82 25.9 L106 25.9 L106 36.9 L82 36.9 Z"/>
+    <path d="M124 20.9 L148 20.9 L148 31.9 L124 31.9 Z"/>
+    <path d="M116 9.9 L140 9.9 L140 20.9 L116 20.9 Z"/>
+  </g>
+  <path fill="#111111" d="M56 53 L80 53 L80 64 L56 64 Z"/>
+</svg>

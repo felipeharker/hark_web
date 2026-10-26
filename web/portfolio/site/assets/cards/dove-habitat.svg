@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <!-- Dove Habitat: the graphic on its title card. The stack, exploded, in
+       section, from the cage wire out: backer, wires, mount, the dovetail key
+       adapter (solid), head and dowel perch.
+       Drawn to the rules in web/standards/docs/components.md, "Title card":
+       a 160-unit square, ink hairlines 1.25 wide, one solid shape, and
+       nothing in the lower left, where the title sits. -->
+  <g fill="none" stroke="#111111" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14.4 29.5 L18 29.5 L18 74.5 L14.4 74.5 Z"/>
+    <path d="M40.8 40.8 L40.8 25 L30 25 L30 79 L40.8 79 L40.8 63.3 L35.4 65.7 L35.4 38.3 Z"/>
+    <path d="M62.9 14.2 L66.5 14.2 L66.5 89.8 L62.9 89.8 Z"/>
+    <path d="M66.5 40.3 L78.5 40.3 L78.5 63.7 L66.5 63.7"/>
+    <path d="M78.5 43.4 L152 43.4 L152 60.6 L78.5 60.6"/>
+    <circle cx="24" cy="16.3" r="2.2"/>
+    <circle cx="24" cy="30.6" r="2.2"/>
+    <circle cx="24" cy="44.9" r="2.2"/>
+    <circle cx="24" cy="59.1" r="2.2"/>
+    <circle cx="24" cy="73.4" r="2.2"/>
+    <circle cx="24" cy="87.7" r="2.2"/>
+  </g>
+  <path fill="#111111" d="M46.8 38.7 L52.4 41.4 L52.4 25.9 L56.9 25.9 L56.9 78.1 L52.4 78.1 L52.4 62.6 L46.8 65.3 Z"/>
+</svg>

@@ -35,17 +35,28 @@ Each academic project has its own tile in the first row, linking its page,
 `https://hark-academic.onrender.com/projects/<slug>.html`; a new project gets
 one as part of adding it (`hark_academic`'s README, "Adding a project").
 
-## Adding or replacing a cover
+## Adding or changing a title card
 
-Every tile has a cover taken from its project (`planning/decisions.md`); a
-new tile without one starts with a `.work-cover-placeholder`.
-Inside the tile's `<a class="work-cover">`, replace the whole
-`<span class="work-cover-placeholder">` with
-`<img src="assets/covers/<name>.jpg" alt="">`, using a 3:2 JPEG at 1500 x
-1000 or smaller. An academic project's row uses that project's own cover,
-`<img src="https://hark-academic.onrender.com/assets/covers/<slug>.jpg" alt="">`,
-not a copy. Never
-stand in a stock or invented image.
+Every tile's cover is a title card (`planning/decisions.md`): what kind of
+work and the title, over a graphic that is the project's own. Inside the
+tile's `<a class="work-cover">`:
+
+```html
+<span class="title-card">
+  <img class="title-card-graphic" src="assets/cards/<slug>.svg" alt="">
+  <span class="title-card-kind">Academic</span>
+  <span class="title-card-title">Living Outside the Box</span>
+</span>
+```
+
+The kind and the title are the tile's own. The graphic is a line drawing of
+the project's idea, `site/assets/cards/<slug>.svg`, drawn to the rules in
+[components.md](../web/standards/docs/components.md), "Title card": a
+160-unit square, ink hairlines 1.25 wide, one solid shape — the part the
+project is about — and nothing in the lower left, where the title sits.
+Draw it from the project's own drawings; never stand in a stock or invented
+image. A new tile without a graphic yet starts with a
+`.work-cover-placeholder`.
 
 ## Checking
 
