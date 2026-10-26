@@ -70,13 +70,11 @@ a copied line should come across clean.
 | Kind | Shape | Size | Format | Alt text |
 |---|---|---|---|---|
 | Work-list cover | 3:2, cropped to fill | 1500 × 1000 or smaller | JPEG, in colour (the page shows it in grey until hovered) | `alt=""` — the title under it names it |
-| Title-card graphic | Square, 160 × 160 units | — | SVG, ink only, drawn to the rules in [components.md](components.md), "Title card" | `alt=""` — the title on the card names it |
 | Plate | Any; full column width | 2000px on the long edge or smaller | JPEG | What the drawing shows, in a few words |
 | Lead plate | Any | as a plate | JPEG | as a plate |
 
 - Name files `<project-abbreviation>-<two digits>.jpg`: `lotb-03.jpg`,
-  `cmp-07.jpg`. A cover, or a title card's graphic, is named after its
-  project: `dead-mall-fall.jpg`, `dead-mall-fall.svg`.
+  `cmp-07.jpg`. A cover is named after its project: `dead-mall-fall.jpg`.
 - Every image below the first screen gets `loading="lazy"`.
 - A cover that does not exist yet is a `.work-cover-placeholder`, not a
   stock image.

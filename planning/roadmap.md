@@ -95,10 +95,9 @@ Decided (the reasons are in [decisions.md](decisions.md)):
 
 ## Next
 
-- **Covers for every tile**: the portfolio's tiles each have a title card
-  (2026-10-26); the academic site's index still shows placeholders, and
-  could take the same title cards, linking the graphics from
-  felipeharker.org or keeping its own.
+- **Covers for every tile**: the portfolio's tiles each have one, from the
+  project, for now (2026-10-20); the academic site's index still shows
+  placeholders.
 - **A check on every push.** A GitHub Actions workflow in each repository
   running its `node tools/check.mjs` (and, in `hark_birding`, the build),
   so a broken link never reaches `main`.

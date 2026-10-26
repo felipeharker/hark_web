@@ -48,9 +48,7 @@ log and the roadmap for all of them live here.
    on the long edge or smaller, named with the project's abbreviation and two
    digits (`lotb-03.jpg`). Every `<img>` has `alt`, and `loading="lazy"` below
    the first screen. **Never invent an image**: a missing cover is a
-   `.work-cover-placeholder`. A title card's graphic (the portfolio's covers)
-   is an SVG drawn from the project's own idea, to the rules in
-   `web/standards/docs/components.md`, "Title card".
+   `.work-cover-placeholder`.
 10. **Links.** Within this site: relative, or root-relative (`/`,
     `/standards/`). To another site in the family: absolute (`FAMILY` in
     `tools/sites.mjs`) and same tab — except a portfolio tile, which opens

@@ -254,8 +254,8 @@ same order; a tile without one of them omits the element.
 |---|---|
 | `.work-list` | The `<ul>`. Spans both columns of a section. |
 | `.work` | One tile. Hovering anywhere on it brings the cover into colour and underlines the title together. |
-| `.work-cover` | The cover frame: fixed ratio, no border. Its image is shown in greys until the tile is hovered. It duplicates the title link, so it is `aria-hidden="true" tabindex="-1"` and its image has `alt=""`. It holds an image, a `.title-card` (below) or a placeholder. |
-| `.work-cover-placeholder` | Inside `.work-cover` until there is an image or a title card: names the project and says the cover is pending. |
+| `.work-cover` | The cover frame: fixed ratio, no border. Its image is shown in greys until the tile is hovered. It duplicates the title link, so it is `aria-hidden="true" tabindex="-1"` and its image has `alt=""`. |
+| `.work-cover-placeholder` | Inside `.work-cover` until there is an image: names the project and says the cover is pending. |
 | `.work-cover-placeholder .name` | The project's name in the placeholder. |
 | `.work-cover-placeholder .note` | "Cover pending". |
 | `.work-title` | The tile's `<h3>` and its link. |
@@ -266,57 +266,6 @@ same order; a tile without one of them omits the element.
 
 `.work-facts` holds everything under the cover; it carries no style of its
 own. The `<hr class="rule-soft">` in it is drawn as a short ink dash.
-
-### Title card
-
-A cover made to one pattern, so that a row of projects reads as a set: some
-text over a background graphic, and nothing else. The text is the same on
-every card: what kind of work, top left, and the title in capitals, bottom
-left. The graphic makes each card recognizable: a line drawing of the
-project's own idea, set against the card's right edge at its full height.
-Every tile on the portfolio has one.
-
-```html
-<a class="work-cover" href="…" aria-hidden="true" tabindex="-1">
-  <span class="title-card">
-    <img class="title-card-graphic" src="assets/cards/living-outside-the-box.svg" alt="">
-    <span class="title-card-kind">Academic</span>
-    <span class="title-card-title">Living Outside the Box</span>
-  </span>
-</a>
-```
-
-| Class | What it is |
-|---|---|
-| `.title-card` | Inside `.work-cover`, in place of an image: the card. The ground is `--color-surface`, the text ink. |
-| `.title-card-graphic` | The project's drawing, `alt=""`: whole, never cropped, against the right edge. Grey (`--card-graphic-rest`) until the tile is hovered, then ink. |
-| `.title-card-kind` | Top left: Academic, Professional, Personal — the tile's `.work-kind`. |
-| `.title-card-title` | Bottom left: the title, set like the page title at the card's scale (`--size-card-title`), never wider than 11em. |
-
-The title is sized to the card, not the window, so a card is the same
-composition at every width, like an image. The text sits over the graphic,
-so the graphic is drawn to keep clear of it.
-
-**Drawing a graphic.** One SVG per project,
-`assets/cards/<slug>.svg`, named after the project like a cover. Every one
-is drawn to the same rules, which are what make the cards a set:
-
-- A 160 × 160 square (`viewBox="0 0 160 160"`), drawn inside an 8-unit
-  margin.
-- Ink (`#111111`) hairlines, 1.25 wide, square caps; a dashed line, where
-  one is needed, is `4 3`. No grey, no colour, no text.
-- **One solid shape**: the part the project is about — Parametric Living's
-  first cell, the box in Living Outside the Box, Greenspoint Mall,
-  Collingsworth's warehouse shell, the quill's nib, Dove Habitat's dovetail
-  key. Everything else is hairline.
-- **Nothing in the lower left** — left of x 104 and below y 100 — which is
-  where the title sits. A drawing may use the whole top of the square, and
-  come down the right side.
-- Shapes do not overlap or touch, except where the things they draw do (a
-  box standing on another).
-- A drawing of the project itself — a section, a plan, an axonometric — in
-  the project's terms, never an image of work it does not have. A comment
-  at the top of the file says what it draws.
 
 To give each kind of work a row of its own, put one `.work-list` after
 another in the section: each starts a new row, as far below the last as two

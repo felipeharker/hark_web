@@ -40,26 +40,27 @@
      project in a new tab, with target="_blank" rel="noopener noreferrer";
      the running head and the site links stay in the same tab.
 
-     THE TITLE CARD
-     Every tile's cover is a title card (planning/decisions.md): some text
-     over a background graphic, the same on every tile but for the graphic.
-     Inside a tile's <a class="work-cover">:
+     ADDING A COVER IMAGE
+     Inside a tile's <a class="work-cover">, replace the whole
+     <span class="work-cover-placeholder"> with:
 
-         <span class="title-card">
-           <img class="title-card-graphic" src="assets/cards/<slug>.svg" alt="">
-           <span class="title-card-kind">Academic</span>
-           <span class="title-card-title">Living Outside the Box</span>
-         </span>
+         <img src="assets/covers/<name>.jpg" alt="">
 
-     The kind and the title are the tile's own, as they are under the card.
-     The graphic is a line drawing of the project, one SVG in assets/cards/
-     drawn to the rules in web/standards/docs/components.md ("Title card"):
-     a 160-unit square, ink hairlines, one solid shape, and nothing in the
-     lower left, where the title sits. The alt attribute stays empty on
-     purpose: the card's title, and the tile's under it, say the same thing.
+     and nothing else. The frame holds the aspect ratio and the hover state
+     (the cover is grey until the tile is hovered), so a cover cannot change
+     the page's rhythm by being the wrong shape — it is cropped to the frame.
+     The alt attribute stays empty on purpose: the tile's title sits
+     immediately under the image and says the same thing, so describing it
+     again is noise to a screen reader.
 
-     An academic project's tile keeps its summary and stack in step with its
-     tile on the academic site.
+     Every tile shows a cover taken from its project (planning/decisions.md).
+     An academic project's tile shows that project's own cover, from the
+     academic site (https://hark-academic.onrender.com/assets/covers/<slug>.jpg),
+     so there is one file per cover and the two pages cannot drift apart. Its
+     summary and stack match its tile on the academic site. The birding
+     report's is one of its own photographs, from the Macaulay Library, as the
+     report itself shows them. Parametric Living's and Dove Habitat's are
+     drawings from their sites, made 3:2 and kept here in assets/covers/.
      ====================================================================== -->
 
 <!-- Running head ------------------------------------------------------- -->
@@ -100,11 +101,7 @@
   <!-- Parametric Living ------------------------------------------------- -->
   <li class="work">
     <a class="work-cover" href="https://parametric-living.onrender.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
-      <span class="title-card">
-        <img class="title-card-graphic" src="assets/cards/parametric-living.svg" alt="">
-        <span class="title-card-kind">Personal</span>
-        <span class="title-card-title">Parametric Living</span>
-      </span>
+      <img src="assets/covers/parametric-living.jpg" alt="">
     </a>
     <div class="work-facts">
       <h3 class="work-title">
@@ -130,11 +127,7 @@
   <!-- Living Outside the Box -------------------------------------------- -->
   <li class="work">
     <a class="work-cover" href="https://hark-academic.onrender.com/projects/living-outside-the-box.html" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
-      <span class="title-card">
-        <img class="title-card-graphic" src="assets/cards/living-outside-the-box.svg" alt="" loading="lazy">
-        <span class="title-card-kind">Academic</span>
-        <span class="title-card-title">Living Outside the Box</span>
-      </span>
+      <img src="https://hark-academic.onrender.com/assets/covers/living-outside-the-box.jpg" alt="" loading="lazy">
     </a>
     <div class="work-facts">
       <h3 class="work-title">
@@ -157,11 +150,7 @@
   <!-- Dead Mall Fall ---------------------------------------------------- -->
   <li class="work">
     <a class="work-cover" href="https://hark-academic.onrender.com/projects/dead-mall-fall.html" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
-      <span class="title-card">
-        <img class="title-card-graphic" src="assets/cards/dead-mall-fall.svg" alt="" loading="lazy">
-        <span class="title-card-kind">Academic</span>
-        <span class="title-card-title">Dead Mall Fall</span>
-      </span>
+      <img src="https://hark-academic.onrender.com/assets/covers/dead-mall-fall.jpg" alt="" loading="lazy">
     </a>
     <div class="work-facts">
       <h3 class="work-title">
@@ -182,11 +171,7 @@
   <!-- Collingsworth Marketplace ----------------------------------------- -->
   <li class="work">
     <a class="work-cover" href="https://hark-academic.onrender.com/projects/collingsworth-marketplace.html" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
-      <span class="title-card">
-        <img class="title-card-graphic" src="assets/cards/collingsworth-marketplace.svg" alt="" loading="lazy">
-        <span class="title-card-kind">Academic</span>
-        <span class="title-card-title">Collingsworth Marketplace</span>
-      </span>
+      <img src="https://hark-academic.onrender.com/assets/covers/collingsworth-marketplace.jpg" alt="" loading="lazy">
     </a>
     <div class="work-facts">
       <h3 class="work-title">
@@ -214,11 +199,7 @@
   <!-- Harker Ornithology Report ------------------------------------------ -->
   <li class="work">
     <a class="work-cover" href="https://hark-birding.onrender.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
-      <span class="title-card">
-        <img class="title-card-graphic" src="assets/cards/harker-ornithology-report.svg" alt="" loading="lazy">
-        <span class="title-card-kind">Personal</span>
-        <span class="title-card-title">Harker Ornithology Report</span>
-      </span>
+      <img src="https://cdn.download.ams.birds.cornell.edu/api/v1/asset/656802002/1200" alt="" loading="lazy">
     </a>
     <div class="work-facts">
       <h3 class="work-title">
@@ -241,11 +222,7 @@
   <!-- Dove Habitat ------------------------------------------------------ -->
   <li class="work">
     <a class="work-cover" href="https://hark-dove-habitat.onrender.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
-      <span class="title-card">
-        <img class="title-card-graphic" src="assets/cards/dove-habitat.svg" alt="" loading="lazy">
-        <span class="title-card-kind">Personal</span>
-        <span class="title-card-title">Dove Habitat</span>
-      </span>
+      <img src="assets/covers/dove-habitat.jpg" alt="" loading="lazy">
     </a>
     <div class="work-facts">
       <h3 class="work-title">

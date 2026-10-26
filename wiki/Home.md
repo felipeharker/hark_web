@@ -10,7 +10,7 @@ These pages say how.
 | Guide | When you need it |
 |---|---|
 | [Running Locally](Running-Locally.md) | Seeing the site on your machine before anything is pushed. |
-| [Editing the Portfolio](Editing-the-Portfolio.md) | Changing the front page: its rows, a title card, the About text. |
+| [Editing the Portfolio](Editing-the-Portfolio.md) | Changing the front page: its rows, a cover, the About text. |
 | [Changing the Standard](Changing-the-Standard.md) | A token, a component, or a rule every page follows. |
 | [Deploying](Deploying.md) | How a push becomes the live site, and the Render settings. |
 

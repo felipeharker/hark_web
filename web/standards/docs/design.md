@@ -49,9 +49,8 @@ looks.
   page; a grey one separates rows inside it. No tinted panel, no border box,
   no shadow, no radius.
 - **Images in grey until asked.** A work-list cover is shown in greys, like
-  the page around it, and comes into colour when its tile is hovered; a title
-  card's graphic is grey and comes up to ink. Plates — the work itself — are
-  always shown as they are.
+  the page around it, and comes into colour when its tile is hovered. Plates —
+  the work itself — are always shown as they are.
 - **Nothing the reader sees is numbered.** No numbered sections, figures,
   captions or references. Order on the page is the order; a heading's name is
   the way to refer to it. (Stylesheet sections are numbered so a rule can be
@@ -177,8 +176,6 @@ map) uses `full`.
 | `--doc-pad-x` | 40px (20px phone) | The gutter to the window edge. |
 | `--work-cover-ratio` | 3 / 2 | A work-list cover. |
 | `--work-gap` | `--space-6` | Between two tiles of a work list. |
-| `--size-card-title` | 7cqi | A title card's title: 7% of the card's width, so the card is the same composition at every size. |
-| `--card-graphic-rest` | 0.4 | How strongly a title card's graphic shows until its tile is hovered: grey, under the ink of the text. |
 | `--transition` | 140ms ease | Every transition. |
 
 ## Breakpoints

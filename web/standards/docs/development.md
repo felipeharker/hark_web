@@ -50,7 +50,6 @@ Every static site has the same shape — a part of `hark_web` under
     assets/
       site.css          this site's own rules, if it has any
       covers/           work-list covers, 3:2
-      cards/            title-card graphics, one SVG per project
       projects/<slug>/  images for one page
   source/               working files: models, board PDFs (git-ignored)
   README.md

@@ -4,28 +4,6 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
-## 2026-10-26 — Title cards for the portfolio's tiles
-
-**Every tile on the front page has a title card for its cover**: what kind
-of work, top left, and the title in capitals, bottom left, over a
-background graphic. The text and its setting are the same on every card;
-the graphic is what makes each one recognizable — a line drawing of the
-project's own idea, drawn to one set of rules (a 160-unit square, ink
-hairlines, one solid shape, nothing in the corner where the title sits) and
-kept in `web/portfolio/site/assets/cards/`. Each draws its project in its
-own terms: Parametric Living's tower and its first cell; Living Outside the
-Box's houses of boxes on the hillside; Greenspoint Mall in its street grid,
-between I-45, Beltway 8 and Greens Bayou; Collingsworth's warehouse shell in
-section; a quill for the ornithology report; and Dove Habitat's mount
-stack, exploded, with its dovetail key. A graphic is grey until its tile is
-hovered, then ink. The title card is a component of the standard
-(`.title-card`), so the academic site can use it too. *Why:* the owner's
-call — standard title cards, each unique and recognizable: some text and a
-background graphic, very simple. *Replaces:* "A cover on every portfolio
-tile" (below), on the front page; Parametric Living's and Dove Habitat's
-cover files are removed (they are in the history), and the academic covers
-stay on the academic site.
-
 ## 2026-10-20 — A cover on every portfolio tile
 
 **Every tile on the front page shows a cover taken from its project.** The

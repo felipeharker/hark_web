@@ -196,14 +196,6 @@
   --work-cover-ratio: 3 / 2;
   --work-gap: var(--space-6);
 
-  /* -- Title card ----------------------------------------------------------
-     Section 13. The card's title is sized to the card, not the window
-     (1cqi is a hundredth of the card's width), so a card is the same
-     composition at every size, like an image. Its graphic sits back, at
-     this strength, until the tile is hovered. */
-  --size-card-title: 7cqi;
-  --card-graphic-rest: 0.4;
-
   /* -- Motion --------------------------------------------------------------
      One duration, one easing, everywhere. */
   --transition: 140ms ease;
@@ -1005,11 +997,10 @@ code {
    element rather than leaving it empty.
 
    The cover is a frame: it holds the ratio and the hover state. Its child is
-   an <img alt=""> (the title under it already names it); a .title-card,
-   the project's title over a drawing of its own, as on the portfolio; or,
-   until there is either, a .work-cover-placeholder naming the project.
-   Covers are shown in greys, like the rest of the page, and come into
-   colour when the tile is hovered.
+   an <img alt=""> (the title under it already names it) or, until there is
+   an image, a .work-cover-placeholder naming the project. Covers are shown
+   in greys, like the rest of the page, and come into colour when the tile
+   is hovered.
    ========================================================================= */
 
 /* Every tile is the same size, whatever the number in its row: a third of
@@ -1082,72 +1073,6 @@ code {
   font-size: var(--size-label);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
-}
-
-/* -- Title card ----------------------------------------------------------------
-   A cover made to one pattern, so a row of projects reads as a set: some
-   text over a background graphic, and nothing else. The text is the same on
-   every card — what kind of work, top left; the title in capitals, bottom
-   left. The graphic is what makes each card its own: a line drawing of the
-   project's idea, square, set against the card's right edge at its full
-   height. Every graphic is drawn to the same rules (docs/components.md,
-   "Title card"), one of which keeps it out of the corner where the title
-   sits. It is grey until the tile is hovered, then ink, as a cover comes
-   into colour.
-
-     <span class="title-card">
-       <img class="title-card-graphic" src="…" alt="">
-       <span class="title-card-kind">Academic</span>
-       <span class="title-card-title">Living Outside the Box</span>
-     </span> */
-.title-card {
-  position: relative;
-  container-type: inline-size;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  padding: var(--space-4);
-  color: var(--color-text);
-}
-
-/* Contained, never cropped: the whole drawing, as tall as the card, against
-   its right edge. The selectors outrank `.work-cover img`, which would
-   stretch it to fill the frame. */
-.work-cover .title-card-graphic {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: right center;
-  filter: opacity(var(--card-graphic-rest));
-}
-
-/* Over the graphic, which is drawn to keep clear of them. */
-.title-card-kind,
-.title-card-title { position: relative; }
-
-.title-card-kind {
-  font-size: var(--size-label);
-  font-weight: var(--weight-medium);
-  line-height: 1.4;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-}
-
-/* The page title's setting, at the card's scale. Never wider than 11em,
-   so it stays in the corner the graphic leaves for it. */
-.title-card-title {
-  max-width: 11em;
-  font-size: var(--size-card-title);
-  font-weight: var(--weight-medium);
-  line-height: 0.92;
-  letter-spacing: var(--track-display);
-  text-transform: uppercase;
-  text-wrap: balance;
 }
 
 .work-title {
