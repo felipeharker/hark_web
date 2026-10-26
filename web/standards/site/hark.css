@@ -93,15 +93,21 @@
   --color-text-mute: #6e6e6e;       /* captions, recorded values, eyebrows */
 
   /* -- Colour: accent ------------------------------------------------------
-     What can be clicked and what is selected. It is ink: the design has no
-     colour, so a link is told apart by its underline or its place, not its
-     hue. The hover step and the faint wash behind a focused control are
-     derived from it, so setting --color-accent alone (to a red, say)
-     re-accents every site. */
-  --color-accent: #111111;
+     What can be clicked and what is selected, and the brackets. It is ink:
+     the design has no colour, so a link is told apart by its underline or
+     its place, not its hue. The hover step, the faint wash behind a focused
+     control and the ground of selected text are derived from it, so setting
+     --color-accent alone re-accents every site — which is what a reader's
+     choice of red or blue on the front page does (the end of this
+     section). Both are dark enough to set text in: red 6.6:1 on white, blue
+     7.5:1. */
+  --accent-ink: #111111;
+  --accent-red: #b42318;
+  --accent-blue: #1f47c9;
+  --color-accent: var(--accent-ink);
   --color-accent-hover: color-mix(in srgb, var(--color-accent) 62%, var(--color-bg));
   --color-accent-wash: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
-  --color-selection: #111111;       /* ::selection — selected text inverts */
+  --color-selection: var(--color-accent);   /* ::selection — selected text inverts */
 
   /* -- Colour: rules -------------------------------------------------------
      Both are 1px. The strong one is ink and opens a section, so the top of
@@ -130,6 +136,7 @@
   --weight-medium: 500;
   --weight-strong: 600;
   --weight-title: var(--weight-medium);
+  --weight-title-hover: var(--weight-title);   /* the serif's thickens */
 
   /* -- Type: the page title ------------------------------------------------
      Capitals, the lines nearly touching: with no descenders, 0.92 closes
@@ -217,8 +224,16 @@
   --work-gap: var(--space-6);
 
   /* -- Motion --------------------------------------------------------------
-     One duration, one easing, everywhere. */
+     One duration, one easing, for every change of colour. The longer one is
+     for the two things that are drawn as the reader points: the dash under
+     a tile's title running across it, and the serif title thickening. */
   --transition: 140ms ease;
+  --transition-draw: 320ms ease-out;
+
+  /* -- Cursor ---------------------------------------------------------------
+     Over a drawing or a cover, a drafting cursor: thin crosshairs and a
+     pick box, in ink with a white edge so it shows on a dark image too. */
+  --cursor-drawing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23fff' stroke-width='3'%3E%3Cpath d='M15.5 1v10M15.5 20v10M1 15.5h10M20 15.5h10'/%3E%3Crect x='12.5' y='12.5' width='6' height='6'/%3E%3C/g%3E%3Cg fill='none' stroke='%23111' stroke-width='1'%3E%3Cpath d='M15.5 1v10M15.5 20v10M1 15.5h10M20 15.5h10'/%3E%3Crect x='12.5' y='12.5' width='6' height='6'/%3E%3C/g%3E%3C/svg%3E") 15 15, crosshair;
 }
 
 /* -- The serif design -------------------------------------------------------
@@ -243,6 +258,7 @@
   --font-body: var(--font-serif);
 
   --weight-title: var(--weight-regular);
+  --weight-title-hover: var(--weight-strong);
   --case-title: none;
   --leading-title: 1;
 
@@ -260,6 +276,15 @@
   --track-body: 0;
   --track-label: 0.08em;
 }
+
+/* -- The accent ---------------------------------------------------------------
+   Ink, unless the reader chooses red or blue on the front page; hark.js marks
+   <html data-accent>. The accent colours links, controls, selected text, the
+   brackets and the dash under a hovered tile's title, and nothing else:
+   text and rules stay ink. Weighing the same as :root, like the serif
+   design, so a site's own stylesheet can still redefine it. */
+:root:where([data-accent='red']) { --color-accent: var(--accent-red); }
+:root:where([data-accent='blue']) { --color-accent: var(--accent-blue); }
 
 
 /* ============================================================================
@@ -397,6 +422,7 @@ code {
 .section-heading::before {
   content: '[\00a0';
   content: '[\00a0' / '';
+  color: var(--color-accent);
 }
 
 .kicker::after,
@@ -405,6 +431,7 @@ code {
 .section-heading::after {
   content: '\00a0]';
   content: '\00a0]' / '';
+  color: var(--color-accent);
 }
 
 /* Anchored sections stop short of the top edge, so a heading the contents
@@ -470,6 +497,14 @@ code {
   text-wrap: balance;
   overflow-wrap: break-word;
   margin: 0;
+  transition: font-weight var(--transition-draw);
+}
+
+/* The serif title thickens a little under the pointer, drawn rather than
+   switched (--weight-title-hover; the sans title stays as it is). Only
+   where there is a pointer to hover with. */
+@media (hover: hover) {
+  .title:hover { font-weight: var(--weight-title-hover); }
 }
 
 .masthead > .kicker,
@@ -1047,26 +1082,34 @@ code {
 
 .toolbar .caption { margin-top: 0; }
 
-/* The design switch: the one place a reader picks the design every site in
-   the family is set in (section 1), on felipeharker.org's front page, at
-   the foot of its masthead.
+/* The design switch: the one place a reader picks how every site in the
+   family looks, on felipeharker.org's front page, at the foot of its
+   masthead. Two rows: the type, sans or serif (section 1), and the colour of
+   the accent, ink, red or blue (the end of section 1).
 
-     <div class="design-switch" role="group" aria-labelledby="design-switch-label" data-design-switch hidden>
-       <span class="design-switch-label" id="design-switch-label">Type</span>
+     <div class="design-switch" role="group" aria-labelledby="switch-type" data-switch="design" hidden>
+       <span class="design-switch-label" id="switch-type">Type</span>
        <button type="button" value="sans" aria-pressed="true">Sans</button>
        <button type="button" value="serif" aria-pressed="false">Serif</button>
      </div>
+     <div class="design-switch" role="group" aria-labelledby="switch-colour" data-switch="accent" hidden>
+       <span class="design-switch-label" id="switch-colour">Colour</span>
+       <button type="button" value="ink" aria-pressed="true">Ink</button>
+       <button type="button" value="red" aria-pressed="false">Red</button>
+       <button type="button" value="blue" aria-pressed="false">Blue</button>
+     </div>
 
-   A line of small capitals like the running head, and like it, the one in
-   force is bracketed. Each choice is set in the face it chooses, so the
-   reader sees the difference before making it. It ships hidden: hark.js
-   shows it and makes it work, so without the script there is no control
-   that does nothing. */
+   A line of small capitals like the running head, and like it, the choice
+   in force is bracketed, and the brackets go to the choice under the
+   pointer. Each choice shows itself: Sans and Serif are set in their faces,
+   Ink, Red and Blue in their colours. They ship hidden: hark.js shows them
+   and makes them work, so without the script there is no control that does
+   nothing. */
 .design-switch {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--space-1) var(--space-4);
+  gap: var(--space-1) var(--space-5);
   margin: var(--space-5) 0 0;
   font-size: var(--size-label);
   font-weight: var(--weight-medium);
@@ -1075,11 +1118,18 @@ code {
   text-transform: uppercase;
 }
 
+.design-switch + .design-switch { margin-top: var(--space-2); }
+
 .design-switch[hidden] { display: none; }
 
-.design-switch-label { color: var(--color-text-mute); }
+/* As wide as the longer label, so the two rows' choices line up. */
+.design-switch-label {
+  min-width: 6em;
+  color: var(--color-text-mute);
+}
 
 .design-switch button {
+  position: relative;
   padding: 0;
   font: inherit;
   letter-spacing: inherit;
@@ -1095,17 +1145,52 @@ code {
 .design-switch button[value='sans'] { font-family: var(--font-sans); }
 .design-switch button[value='serif'] { font-family: var(--font-serif); }
 
-.design-switch button:hover,
 .design-switch button[aria-pressed='true'] { color: var(--color-text); }
 
-.design-switch button[aria-pressed='true']::before {
+.design-switch button[value='ink'] { color: var(--accent-ink); }
+.design-switch button[value='red'] { color: var(--accent-red); }
+.design-switch button[value='blue'] { color: var(--accent-blue); }
+
+/* The brackets hang outside the choice, as in the running head. */
+.design-switch button::before {
   content: '[\00a0';
   content: '[\00a0' / '';
+  position: absolute;
+  right: 100%;
+  color: transparent;
+  transition: color var(--transition);
 }
 
-.design-switch button[aria-pressed='true']::after {
+.design-switch button::after {
   content: '\00a0]';
   content: '\00a0]' / '';
+  position: absolute;
+  left: 100%;
+  color: transparent;
+  transition: color var(--transition);
+}
+
+.design-switch button[aria-pressed='true']::before,
+.design-switch button[aria-pressed='true']::after { color: var(--color-accent); }
+
+/* A colour's brackets are its own colour, so pointing at one previews it. */
+.design-switch button:is([value='ink'], [value='red'], [value='blue'])[aria-pressed='true']::before,
+.design-switch button:is([value='ink'], [value='red'], [value='blue'])[aria-pressed='true']::after { color: currentColor; }
+
+@media (hover: hover) {
+  .design-switch button:hover { color: var(--color-text); }
+  .design-switch button[value='ink']:hover { color: var(--accent-ink); }
+  .design-switch button[value='red']:hover { color: var(--accent-red); }
+  .design-switch button[value='blue']:hover { color: var(--accent-blue); }
+
+  .design-switch button:hover::before,
+  .design-switch button:hover::after { color: var(--color-accent); }
+
+  .design-switch button:is([value='ink'], [value='red'], [value='blue']):hover::before,
+  .design-switch button:is([value='ink'], [value='red'], [value='blue']):hover::after { color: currentColor; }
+
+  .design-switch:has(button:hover) button[aria-pressed='true']:not(:hover)::before,
+  .design-switch:has(button:hover) button[aria-pressed='true']:not(:hover)::after { color: transparent; }
 }
 
 .design-switch button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
@@ -1157,6 +1242,7 @@ code {
   border-radius: var(--radius-sm);
   text-decoration: none;
   margin-bottom: var(--space-4);
+  cursor: var(--cursor-drawing);
 }
 
 /* Cropped to the frame, never letterboxed: the frame's ratio is the design. */
@@ -1217,11 +1303,20 @@ code {
 .work-title a:hover { text-decoration: underline; }
 
 /* The tile's rule is a short ink dash under the title, not a line across
-   the tile: it marks where the name ends and the description begins. */
+   the tile: it marks where the name ends and the description begins. When
+   the tile is pointed at, it draws across the tile in the accent, as the
+   cover comes into colour. */
 .work .rule-soft {
   width: var(--space-5);
   border-top-color: var(--color-rule-strong);
   margin: var(--space-3) 0;
+  transition: width var(--transition-draw), border-color var(--transition-draw);
+}
+
+.work:hover .rule-soft,
+.work:focus-within .rule-soft {
+  width: 100%;
+  border-top-color: var(--color-accent);
 }
 
 /* One sentence on what the project is. */
@@ -1339,8 +1434,11 @@ code {
 .plate:last-child { margin-bottom: 0; }
 
 /* No border and no rounding: a drawing on a white sheet sits straight on the
-   white page. */
-.plate img { width: 100%; }
+   white page. Over it, the drafting cursor (--cursor-drawing). */
+.plate img {
+  width: 100%;
+  cursor: var(--cursor-drawing);
+}
 
 .plate figcaption { margin-top: var(--space-4); }
 
@@ -1488,21 +1586,64 @@ code {
   gap: var(--space-1) var(--space-5);
 }
 
-.runhead-links a[aria-current]::before {
+/* The brackets. Every entry in the row — a site, or a menu's heading —
+   carries a pair, hung outside it so they take no room, and drawn, in the
+   accent, only where they mean something: around the site the reader is in,
+   the entry under the pointer, and the menu that is open. While the pointer
+   is on another entry, or a menu is open, the current site's pair steps
+   aside, so the one pair seems to move to wherever the reader is. An entry
+   under the pointer keeps its ink; its brackets say so. */
+.runhead-links > a,
+.runhead-menu > summary { position: relative; }
+
+.runhead-links > a::before,
+.runhead-menu > summary::before {
   content: '[\00a0';
   content: '[\00a0' / '';
+  position: absolute;
+  right: 100%;
+  color: transparent;
+  transition: color var(--transition);
 }
 
-.runhead-links a[aria-current]::after {
+.runhead-links > a::after,
+.runhead-menu > summary::after {
   content: '\00a0]';
   content: '\00a0]' / '';
+  position: absolute;
+  left: 100%;
+  color: transparent;
+  transition: color var(--transition);
+}
+
+.runhead-links > a[aria-current]::before,
+.runhead-links > a[aria-current]::after,
+.runhead-menu[open] > summary::before,
+.runhead-menu[open] > summary::after { color: var(--color-accent); }
+
+.runhead-links:has(> .runhead-menu[open]) > a[aria-current]::before,
+.runhead-links:has(> .runhead-menu[open]) > a[aria-current]::after { color: transparent; }
+
+/* Only where there is a pointer: on a touch screen a tap is a click, and a
+   hover left behind would bracket the wrong entry. */
+@media (hover: hover) {
+  .runhead-links > a:hover,
+  .runhead-menu > summary:hover { color: var(--color-text); }
+
+  .runhead-links > a:hover::before,
+  .runhead-links > a:hover::after,
+  .runhead-menu > summary:hover::before,
+  .runhead-menu > summary:hover::after { color: var(--color-accent); }
+
+  .runhead-links:has(> a:hover, > .runhead-menu > summary:hover) > a[aria-current]:not(:hover)::before,
+  .runhead-links:has(> a:hover, > .runhead-menu > summary:hover) > a[aria-current]:not(:hover)::after { color: transparent; }
 }
 
 /* A menu in the running head: on the portfolio's front page, a heading of
    the work — Academic, Professional, Birding — names the projects under it.
 
      <details class="runhead-menu" name="runhead-menu">
-       <summary>Academic</summary>
+       <summary>Academic<span class="runhead-menu-caret" aria-hidden="true"></span></summary>
        <ul class="runhead-menu-list">
          <li><a href="https://hark-academic.onrender.com/">Academic Projects</a></li>
          <li><a href="…">Living Outside the Box</a></li>
@@ -1511,11 +1652,12 @@ code {
 
    A <details>, so it opens and closes with no script, and opening one closes
    the others (name). hark.js also closes it when the reader clicks
-   elsewhere or presses Escape. The list drops over the white above the
-   masthead on a ground of white, between an ink rule, like a section's, and
-   a grey one, like a row's, so where it lies over the title it reads as a
-   band laid on the page rather than a hole cut in it. Its entries are
-   project names, so they are set as names, not as capitals. */
+   elsewhere or presses Escape. Its heading takes the brackets like any
+   entry (above). The list drops over the white above the masthead on a
+   ground of white, between an ink rule, like a section's, and a grey one,
+   like a row's, so where it lies over the title it reads as a band laid on
+   the page rather than a hole cut in it. Its entries are project names, so
+   they are set as names, not as capitals. */
 .runhead-menu { position: relative; }
 
 .runhead-menu > summary {
@@ -1525,25 +1667,20 @@ code {
 }
 .runhead-menu > summary::-webkit-details-marker { display: none; }  /* … in Safari */
 
-.runhead-menu > summary:hover { color: var(--color-accent-hover); }
-
 .runhead-menu > summary:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
-/* A drawn caret says it opens, and turns when it has. */
-.runhead-menu > summary::after {
+/* A drawn caret says it opens, and turns when it has. A span of its own,
+   so the heading's ::before and ::after are free for the brackets. */
+.runhead-menu-caret::before {
   content: '\00a0\25BE';
-  content: '\00a0\25BE' / '';
   color: var(--color-text-mute);
 }
 
-.runhead-menu[open] > summary::after {
-  content: '\00a0\25B4';
-  content: '\00a0\25B4' / '';
-}
+.runhead-menu[open] .runhead-menu-caret::before { content: '\00a0\25B4'; }
 
 .runhead-menu-list {
   position: absolute;

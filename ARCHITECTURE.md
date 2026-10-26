@@ -120,7 +120,9 @@ as soon as `hark-site` deploys, and the birding report on its next build.
 
 ## One script, two designs
 
-The standard has two designs, sans (the default) and serif, and one shared
+The standard has two designs, sans (the default) and serif — and three
+accents, ink (the default), red and blue, chosen and carried the same way
+(`?accent=…`, `data-accent`) — and one shared
 script, `web/standards/site/hark.js`, served beside the stylesheet at
 `https://felipeharker.org/standards/hark.js`. Every page links it in its
 `<head>`; it sets `<html data-design>` before the page is drawn. The

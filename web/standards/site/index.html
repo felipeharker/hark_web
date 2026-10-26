@@ -10,6 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<link rel="icon" href="/standards/favicon.png" sizes="32x32">
+<link rel="icon" href="/standards/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/standards/apple-touch-icon.png">
+
 <link rel="stylesheet" href="/standards/hark.css">
 <link rel="stylesheet" href="specimen/specimen.css">
 <script src="/standards/hark.js"></script>
@@ -34,8 +38,8 @@
      the grid — a masthead, a work list, a plate — is .specimen--wide, so it
      has the whole width of the page to lay its columns on.
 
-     The page is set in the design the reader chose on the front page, sans
-     or serif, like every other page; hark.js sets it. The design switch
+     The page is set in the design and the accent the reader chose on the
+     front page, like every other page; hark.js sets them. The design switch
      shown here is a specimen and does nothing: the front page's is the one
      that chooses.
      ====================================================================== -->
@@ -97,7 +101,7 @@
 <section class="section" id="sec-colour">
 <h2 class="section-heading">Colour</h2>
 
-<p class="body-text">White, ink, two greys of text and two of surface, and one grey hairline. There is no hue: the accent is ink, so a link is known by its underline or its place on the page. Change <code>--color-accent</code> and its hover and wash follow.</p>
+<p class="body-text">White, ink, two greys of text and two of surface, and one grey hairline. There is no hue: the accent is ink, so a link is known by its underline or its place on the page — unless the reader chooses red or blue on the <a href="/">front page</a>. Change <code>--color-accent</code> and its hover, wash and selection follow; the swatches below show the accent this page is in.</p>
 
 <div class="swatches">
   <div><div class="swatch swatch--bg"></div><p class="swatch-name">bg</p><p class="caption">The page.</p></div>
@@ -112,6 +116,9 @@
   <div><div class="swatch swatch--selection"></div><p class="swatch-name">selection</p><p class="caption">Selected text, inverted.</p></div>
   <div><div class="swatch swatch--rule"></div><p class="swatch-name">rule</p><p class="caption">Between rows.</p></div>
   <div><div class="swatch swatch--rule-strong"></div><p class="swatch-name">rule-strong</p><p class="caption">Above sections.</p></div>
+  <div><div class="swatch swatch--accent-ink"></div><p class="swatch-name">accent-ink</p><p class="caption">The default accent.</p></div>
+  <div><div class="swatch swatch--accent-red"></div><p class="swatch-name">accent-red</p><p class="caption">A reader&rsquo;s choice. 6.6:1</p></div>
+  <div><div class="swatch swatch--accent-blue"></div><p class="swatch-name">accent-blue</p><p class="caption">A reader&rsquo;s choice. 7.5:1</p></div>
 </div>
 </section>
 
@@ -376,10 +383,16 @@
 
 <p class="label">.design-switch, .design-switch-label</p>
 <div class="specimen">
-  <div class="design-switch" role="group" aria-labelledby="spec-design-switch-label">
-    <span class="design-switch-label" id="spec-design-switch-label">Type</span>
+  <div class="design-switch" role="group" aria-labelledby="spec-switch-type">
+    <span class="design-switch-label" id="spec-switch-type">Type</span>
     <button type="button" value="sans" aria-pressed="true">Sans</button>
     <button type="button" value="serif" aria-pressed="false">Serif</button>
+  </div>
+  <div class="design-switch" role="group" aria-labelledby="spec-switch-colour">
+    <span class="design-switch-label" id="spec-switch-colour">Colour</span>
+    <button type="button" value="ink" aria-pressed="true">Ink</button>
+    <button type="button" value="red" aria-pressed="false">Red</button>
+    <button type="button" value="blue" aria-pressed="false">Blue</button>
   </div>
 </div>
 </section>
@@ -493,7 +506,7 @@
 <section class="section" id="sec-navigation">
 <h2 class="section-heading">Navigation</h2>
 
-<p class="body-text">Every page opens with the running head — the owner&rsquo;s name, then every site in the family, the current one bracketed — and ends with a colophon holding the same links. The top of this page is one, and the foot another. An interior page also opens with a back link to the page that lists it. The front page&rsquo;s running head alone has menus: a heading of the work, opening onto the projects under it.</p>
+<p class="body-text">Every page opens with the running head — the owner&rsquo;s name, then every site in the family, the current one bracketed, the brackets going to whichever entry is pointed at — and ends with a colophon holding the same links. The top of this page is one, and the foot another. An interior page also opens with a back link to the page that lists it. The front page&rsquo;s running head alone has menus: a heading of the work, opening onto the projects under it.</p>
 
 <p class="label">.runhead</p>
 <div class="specimen specimen--wide">
@@ -515,7 +528,7 @@
     <div class="runhead-links">
       <a href="#sec-navigation" aria-current="page">Portfolio</a>
       <details class="runhead-menu" name="runhead-menu">
-        <summary>Birding</summary>
+        <summary>Birding<span class="runhead-menu-caret" aria-hidden="true"></span></summary>
         <ul class="runhead-menu-list">
           <li><a href="#sec-navigation">Ornithology Report</a></li>
           <li><a href="#sec-navigation">Dove Habitat</a></li>

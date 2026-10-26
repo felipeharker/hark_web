@@ -42,6 +42,9 @@ export const STYLESHEET = '/standards/hark.css';
 /** The one shared script, as every page here links it. */
 export const SCRIPT = '/standards/hark.js';
 
+/** The favicon, the standard's, as every page here links it (with its PNG and apple-touch-icon). */
+export const FAVICON = '/standards/favicon.svg';
+
 /** Where each path is served from, longest path first so /standards/ wins over /. */
 export function mounts(root) {
   return [...SITES]

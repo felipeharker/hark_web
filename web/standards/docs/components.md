@@ -221,28 +221,35 @@ the accent).
 
 ## Design switch
 
-The one place a reader picks the design every site in the family is set
-in, sans or serif ([design](design.md#the-serif-design)). It is on
-felipeharker.org's front page alone, the last line of its masthead; no
-other page has one.
+The one place a reader picks how every site in the family looks: the type,
+sans or serif ([design](design.md#the-serif-design)), and the accent, ink,
+red or blue ([design](design.md#the-accent)). It is on felipeharker.org's
+front page alone, the last lines of its masthead; no other page has one.
 
 ```html
-<div class="design-switch" role="group" aria-labelledby="design-switch-label" data-design-switch hidden>
-  <span class="design-switch-label" id="design-switch-label">Type</span>
+<div class="design-switch" role="group" aria-labelledby="switch-type" data-switch="design" hidden>
+  <span class="design-switch-label" id="switch-type">Type</span>
   <button type="button" value="sans" aria-pressed="true">Sans</button>
   <button type="button" value="serif" aria-pressed="false">Serif</button>
+</div>
+<div class="design-switch" role="group" aria-labelledby="switch-colour" data-switch="accent" hidden>
+  <span class="design-switch-label" id="switch-colour">Colour</span>
+  <button type="button" value="ink" aria-pressed="true">Ink</button>
+  <button type="button" value="red" aria-pressed="false">Red</button>
+  <button type="button" value="blue" aria-pressed="false">Blue</button>
 </div>
 ```
 
 | Class | What it is |
 |---|---|
-| `.design-switch` | A line of small capitals, like the running head: a label, then a button for each design. The one in force is bracketed, as the running head brackets the current site; each button is set in the face it chooses. |
-| `.design-switch-label` | "Type", in grey. |
+| `.design-switch` | One row: a line of small capitals, like the running head — a label, then a button for each choice. The one in force is bracketed, and the brackets go to the choice under the pointer, as in the running head. Each choice shows itself: Sans and Serif in their faces, Ink, Red and Blue in their colours, and a colour's brackets in that colour. |
+| `.design-switch-label` | "Type" or "Colour", in grey, as wide as the longer of them so the rows' choices line up. |
 
-It ships `hidden`, and `hark.js` shows it, so without the script there is
-no control that does nothing. The script finds it by `data-design-switch`
-and only on felipeharker.org, keeps each button's `aria-pressed` true to the
-design in force, and remembers the choice.
+Each row ships `hidden`, and `hark.js` shows it, so without the script there
+is no control that does nothing. The script finds each row by
+`data-switch`, whose value names the choice (`design`, `accent`), only on
+felipeharker.org; keeps each button's `aria-pressed` true to the choice in
+force; and remembers it.
 
 ## Work list
 
@@ -387,6 +394,13 @@ tab.
 | `.runhead-owner` | The owner's name, linking to the front page, in the left column. |
 | `.runhead-links` | The `<nav>` of every site in the family, in the right column. The link to the site the reader is in carries `aria-current="page"` and is bracketed. |
 
+The brackets hang outside each entry, so they take no room, and are drawn
+in the accent where they mean something: around the current site, the
+entry under the pointer, and an open menu. While the pointer is on another
+entry, or a menu is open, the current site's pair steps aside, so the one
+pair seems to move to where the reader is. On a touch screen, with no
+pointer to follow, they stay on the current site and an open menu.
+
 `tools/check.mjs`, in every repository, fails if a page's running head misses
 a site.
 
@@ -400,7 +414,7 @@ other page has the plain running head above.
 
 ```html
 <details class="runhead-menu" name="runhead-menu">
-  <summary>Academic</summary>
+  <summary>Academic<span class="runhead-menu-caret" aria-hidden="true"></span></summary>
   <ul class="runhead-menu-list">
     <li><a href="https://hark-academic.onrender.com/">Academic Projects</a></li>
     <li><a href="https://hark-academic.onrender.com/projects/living-outside-the-box.html">Living Outside the Box</a></li>
@@ -411,7 +425,8 @@ other page has the plain running head above.
 
 | Class | What it is |
 |---|---|
-| `.runhead-menu` | A `<details>` in `.runhead-links`: its `<summary>` is the heading, in the running head's capitals, with a drawn caret that turns when it opens. Every menu shares one `name`, so opening one closes the others. |
+| `.runhead-menu` | A `<details>` in `.runhead-links`: its `<summary>` is the heading, in the running head's capitals, bracketed like a site when it is pointed at or open. Every menu shares one `name`, so opening one closes the others. |
+| `.runhead-menu-caret` | An empty span at the end of the heading, `aria-hidden`: the stylesheet draws a caret in it that turns when the menu opens. A span of its own, so the heading's `::before` and `::after` are free for the brackets. |
 | `.runhead-menu-list` | The entries, dropped below the heading over the white above the masthead, between an ink rule and a grey one, on a ground of white. Project names in the body face, not capitals. Below 640px it spans the running head. |
 
 It opens and closes with no script. `hark.js` also closes an open menu when

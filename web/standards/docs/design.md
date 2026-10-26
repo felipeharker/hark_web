@@ -20,9 +20,9 @@ a shadow, and nothing is rounded.
 
 That is the **sans** design, the default. The standard has a second, the
 **serif** design: the same page set in Source Serif 4 instead of Inter
-([below](#the-serif-design)). A reader chooses between them on
-felipeharker.org's front page, and the choice carries to every site in the
-family.
+([below](#the-serif-design)). And the accent, ink by default, can be red or
+blue ([below](#the-accent)). A reader chooses both on felipeharker.org's
+front page, and the choices carry to every site in the family.
 
 ## The rules
 
@@ -38,26 +38,33 @@ looks.
 - **Two sizes, far apart.** One very large size for the page title, and small
   ones for everything else. A heading does not need size to be found when it
   is alone in its column; a section is named by a 12px label.
-- **Brackets mark the left column.** The kicker, the abstract and contents
-  labels and every section heading are drawn in brackets — "[ About ]" — and
-  so is the current site in the running head. Nothing else is
-  bracketed. The brackets are drawn by the stylesheet, never typed.
+- **Brackets mark the left column, and where the reader is.** The kicker,
+  the abstract and contents labels and every section heading are drawn in
+  brackets — "[ About ]" — and so is the current site in the running head;
+  there, the brackets go to whichever entry the pointer is on, and to an
+  open menu, and the current site's step aside meanwhile. The choice in
+  force in the design switch is bracketed the same way. Nothing else is
+  bracketed. The brackets are drawn by the stylesheet, never typed, and in
+  the accent.
 - **Two faces, two jobs.** The body face — Inter, or Source Serif 4 in the
   serif design — for anything a person wrote; IBM Plex Mono for anything
   read off a record. A stack line, a dateline, a URL and a table
   of counts are mono. A heading, a summary and a back link are not.
 - **No bold.** 400 for reading, 500 for noticing — labels, titles, the page
   title itself. 600 is available and rarely wanted. Never 700.
-- **No colour.** Ink, two greys and white. The accent is ink: what can be
-  clicked is told apart by an underline, a hover, or its place on the page,
-  never by a hue. It is still a token, so a part with a reason to re-accent
-  sets one value.
+- **No colour, unless the reader asks.** Ink, two greys and white. The
+  accent is ink: what can be clicked is told apart by an underline, a hover,
+  or its place on the page, never by a hue alone. A reader may choose a red
+  or a blue accent on the front page; it colours links, controls, selected
+  text, the brackets and a hovered tile's dash, and nothing else — text,
+  rules and the page stay as they are.
 - **Hairlines, not boxes.** An ink rule opens each section, across the whole
   page; a grey one separates rows inside it. No tinted panel, no border box,
   no shadow, no radius.
 - **Images in grey until asked.** A work-list cover is shown in greys, like
   the page around it, and comes into colour when its tile is hovered. Plates —
-  the work itself — are always shown as they are.
+  the work itself — are always shown as they are. Over either, the pointer
+  is a drafting cursor (`--cursor-drawing`).
 - **Nothing the reader sees is numbered.** No numbered sections, figures,
   captions or references. Order on the page is the order; a heading's name is
   the way to refer to it. (Stylesheet sections are numbered so a rule can be
@@ -65,8 +72,11 @@ looks.
 - **Tokens first.** A rule never contains a hex colour or a pixel size that a
   token already names. A value that is needed and has no token gets a token.
 - **Quiet motion.** One transition, 140ms ease, on colour, border and the
-  grey of a cover only. Nothing slides, fades in on scroll or bounces, and all
-  of it switches off for a reader who asks for reduced motion.
+  grey of a cover; and one longer one, `--transition-draw`, for the two
+  things drawn as the reader points: the dash under a tile's title running
+  across the tile, and the serif title thickening. Nothing else moves —
+  nothing slides in, fades in on scroll or bounces — and all of it switches
+  off for a reader who asks for reduced motion.
 
 ## Colour
 
@@ -78,15 +88,28 @@ looks.
 | `--color-text` | `#111111` | Headings, titles, the labels in the left column. 18.9:1 on white. |
 | `--color-text-soft` | `#3a3a3a` | Prose: paragraphs, summaries, lists. 11.4:1. |
 | `--color-text-mute` | `#6e6e6e` | Captions, recorded values, eyebrows inside a block. 5.1:1 — the lightest text allowed; nothing lighter is ever set as text. |
-| `--color-accent` | `#111111` | Links, controls, selected state. Ink. |
-| `--color-accent-hover` | accent mixed 62% with the page | A hovered link: it greys. 5.3:1. Derived — change the accent, not this. |
+| `--color-accent` | `--accent-ink`; red or blue by the reader's choice | Links, controls, selected state, the brackets, a hovered tile's dash. |
+| `--color-accent-hover` | accent mixed 62% with the page | A hovered link: it pales. 5.3:1 in ink, 3.2:1 in red or blue. Derived — change the accent, not this. |
 | `--color-accent-wash` | accent mixed 5% with the page | The ground behind a focused input. Derived. |
-| `--color-selection` | `#111111` | Selected text, which inverts: ink ground, white letters. |
+| `--color-selection` | `--color-accent` | Selected text, which inverts: accent ground, white letters. Derived. |
+| `--accent-ink` | `#111111` | The default accent. |
+| `--accent-red` | `#b42318` | The red a reader may choose. 6.6:1 on white. |
+| `--accent-blue` | `#1f47c9` | The blue a reader may choose. 7.5:1 on white. |
 | `--color-rule` | `#e5e5e5` | Hairlines between rows inside a section. |
 | `--color-rule-strong` | `#111111` | The ink rule above a section, under a masthead, under a table's header, above the colophon. |
 
-To re-accent the whole site, change `--color-accent` alone; both derived
+To re-accent the whole site, change `--color-accent` alone; the derived
 tokens follow.
+
+### The accent
+
+A reader chooses the accent — ink, red or blue — on felipeharker.org's
+front page, in the design switch's second row, and `hark.js` marks
+`<html data-accent>` on every site the choice reaches. Red and blue are set
+on `:root:where([data-accent='red'])` and `…='blue'`, as `--color-accent`
+alone, so everything derived from it follows; like the serif design, the
+selector weighs the same as `:root`. In the switch, each colour's name is
+set in that colour.
 
 ## Type
 
@@ -115,6 +138,7 @@ build downloads them, so a deploy cannot fail on a font.
 | `--weight-medium` | 500 | Noticed: labels, table headers, a button, row titles — and the page title, which at its size needs no more. |
 | `--weight-strong` | 600 | Available, rarely wanted. The heaviest weight anywhere. |
 | `--weight-title` | `--weight-medium`; `--weight-regular` in the serif design | The page title. |
+| `--weight-title-hover` | `--weight-title`; `--weight-strong` in the serif design | The page title under the pointer: the serif title thickens, drawn over `--transition-draw`; the sans title stays as it is. |
 
 **The page title.**
 
@@ -169,6 +193,7 @@ upper and lower case, at the regular weight.
 |---|---|---|---|
 | `--font-body` | Inter | Source Serif 4 | The design. Source Serif has optical sizes, so the title is drawn from its display cut and a label from its caption cut, by itself. |
 | `--weight-title` | 500 | 400 | A serif's contrast carries a large title at the regular weight. |
+| `--weight-title-hover` | 500 | 600 | Under the pointer, the serif title thickens; Source Serif's weights are one variable font, so it is drawn rather than switched. |
 | `--case-title` | `uppercase` | `none` | Upper and lower case: the serif's capitals and lower case are drawn to be read together. |
 | `--leading-title` | 0.92 | 1 | Room for the descenders. |
 | `--size-subtitle` | 21px (18) | 23px (20) | Source Serif's lower case is smaller than Inter's at one size, so each reading size goes up a step. Phone sizes in brackets. |
@@ -239,7 +264,9 @@ map) uses `full`.
 | `--doc-pad-x` | 40px (20px phone) | The gutter to the window edge. |
 | `--work-cover-ratio` | 3 / 2 | A work-list cover. |
 | `--work-gap` | `--space-6` | Between two tiles of a work list. |
-| `--transition` | 140ms ease | Every transition. |
+| `--transition` | 140ms ease | Every change of colour, border, or a cover's grey. |
+| `--transition-draw` | 320ms ease-out | The two things drawn as the reader points: a hovered tile's dash running across it, and the serif title thickening. |
+| `--cursor-drawing` | an SVG crosshair with a pick box, in ink with a white edge | The pointer over a cover or a plate: a drafting cursor. |
 
 ## Breakpoints
 

@@ -4,6 +4,40 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-26 — A choice of accent; brackets that follow; a favicon
+
+**The reader may choose the accent: ink, red or blue.** A second row of the
+front page's switch, "Colour", sets `--color-accent` to `--accent-ink`
+(`#111111`, the default), `--accent-red` (`#b42318`, 6.6:1 on white) or
+`--accent-blue` (`#1f47c9`, 7.5:1), and `hark.js` carries it to every site
+as it carries the design (`?accent=…`). The accent colours links,
+controls, selected text, the brackets and a hovered tile's dash; text,
+rules and the page stay ink and white. `--color-selection` now follows the
+accent. *Why:* the owner's call. *Replaces:* "No colour" as an absolute;
+with ink chosen, or none, the site is as it was.
+
+**The running head's brackets follow the pointer.** Every entry carries a
+pair, hung outside it so it takes no room, shown only around the current
+site, the entry under the pointer and an open menu; while another is
+pointed at, the current site's step aside. The switch's choices are
+bracketed the same way. Every bracket is drawn in the accent. *Why:* the
+owner's call. *Replaces:* in-line brackets around the current site, which
+pushed the entries after it along.
+
+**A little drawn motion.** A hovered tile's dash runs across the tile in the
+accent, and the serif title thickens under the pointer
+(`--weight-title-hover`), both over `--transition-draw` (320ms); a drafting cursor
+(`--cursor-drawing`) is the pointer over covers and plates. All of it
+switches off for a reader who asks for reduced motion. *Why:* the owner's
+call. *Replaces:* "one transition, on colour, border and a cover's grey
+only".
+
+**A favicon, the standard's:** a bracketed H, in ink on white, in
+`web/standards/site/` — `favicon.svg`, `favicon-serif.svg` (shown to a
+reader who chose the serif), and PNGs for browsers without SVG icons.
+Every page on every site links it. *Why:* the owner's call; the tabs showed
+a blank page. *Replaces:* no favicon.
+
 ## 2026-10-26 — A staging copy of felipeharker.org
 
 **A second Render static site, `hark-site-staging`, deploys `hark_web`'s

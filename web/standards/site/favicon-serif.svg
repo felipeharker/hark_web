@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- [H] for the serif design: favicon.svg's letter with a slab serif at
+       the head and foot of each stem. hark.js shows this one to a reader
+       who has chosen the serif. -->
+  <rect width="32" height="32" fill="#fff"/>
+  <path fill="#111" d="M2 5h4v2H4v18h2v2H2zM30 5h-4v2h2v18h-2v2h4zM8 7h6v2h-2v14h2v2H8v-2h2V9H8zM18 7h6v2h-2v14h2v2h-6v-2h2V9h-2zM12 15h8v2h-8z"/>
+</svg>

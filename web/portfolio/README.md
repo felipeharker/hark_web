@@ -4,8 +4,8 @@ The front of felipeharker.org, served at `/`: one page. It introduces the
 work, links the other sites in the family — the academic projects, the
 birding report, the resume, each built in its own repository — and the
 project sites Dove Habitat, Parametric Living and Parametric Reference, and
-says how to get in touch. It is also the one place a reader chooses the
-design every site in the family is set in, sans or serif.
+says how to get in touch. It is also the one place a reader chooses how
+every site in the family looks: sans or serif, and ink, red or blue.
 
 ## Layout
 
@@ -29,7 +29,7 @@ sites, made 3:2, in `site/assets/covers/`.
 | Section | What it holds |
 |---|---|
 | Running head | Portfolio; Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
-| Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" — the one place the design is chosen |
+| Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" and "Colour: Ink, Red, Blue" — the one place the type and the colour of every site are chosen |
 | Work | three rows of tiles, each opening its project in a new tab: Parametric Living (https://parametric-living.onrender.com/) and Parametric Reference (https://parametric-reference.onrender.com/); the academic projects, one tile each linking its page on https://hark-academic.onrender.com/; then the bird projects, the birding report (https://hark-birding.onrender.com/) and Dove Habitat (https://hark-dove-habitat.onrender.com/). Each with a cover from its project |
 | About | the biography |
 | Elsewhere | the resume (https://hark-resume.onrender.com/), GitHub, LinkedIn, email |

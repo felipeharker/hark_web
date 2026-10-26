@@ -93,51 +93,6 @@ the link is root-relative; on the other sites it is the full address:
 - **When a second site needs a site-only component**, move it into
   `hark.css` and document it in [`components.md`](components.md).
 
-## The shared script
-
-There is one shared script, `web/standards/site/hark.js` in `hark_web`,
-published at `https://felipeharker.org/standards/hark.js`. Every page links
-it in its `<head>`, straight after its stylesheets, and not deferred or
-async — it has to run before the page is drawn:
-
-```html
-<script src="/standards/hark.js"></script>                          <!-- felipeharker.org -->
-<script src="https://felipeharker.org/standards/hark.js"></script>  <!-- every other site -->
-```
-
-The birding app renders the same tag in its `layout.tsx`. Nothing on a page
-depends on the script: without it a page is the sans design, a running head
-menu still opens and closes, and the design switch stays hidden. It does
-four things:
-
-1. **The design.** It sets `<html data-design="sans|serif">` to the
-   reader's choice before the page is drawn, so a page never flashes the
-   other design, and loads Source Serif 4 from Google Fonts when the serif
-   is wanted ([design](design.md#the-serif-design)).
-2. **Carrying the choice.** The choice is made in one place, the switch on
-   felipeharker.org's front page, and kept in that site's `localStorage`
-   (`hark-design`). Each site is its own origin, and a browser keeps each
-   origin's storage to itself, so the choice travels in the address: as a
-   reader follows a link to another site in the family, the link gains
-   `?design=serif` (or `sans`); the site it lands on keeps the value in its
-   own storage and takes it out of the address, so every page there follows
-   it, and passes it on to the next site the same way. felipeharker.org
-   never takes a value in, and links to it never carry one, so the front page
-   alone decides. A reader who has never chosen carries nothing. The other
-   sites are listed in `SITES` in the script; `tools/check.mjs` fails if
-   one in `FAMILY` is missing. Dove Habitat, a project site that links the
-   script, is listed too.
-3. **The switch.** On felipeharker.org it finds the
-   `[data-design-switch]` ([components](components.md#design-switch)), shows
-   it and makes it work.
-4. **The running head's menus.** An open
-   [menu](components.md#menus-in-the-running-head) closes when the reader
-   clicks elsewhere or presses Escape.
-
-A site that follows the choice must link the script; Parametric Living and
-Parametric Reference, sites outside the family with their own copy of the
-standard, do not, and stay as they are.
-
 Every stylesheet opens the same way, so any of them can be read cold:
 
 ```css
@@ -154,6 +109,75 @@ Every stylesheet opens the same way, so any of them can be read cold:
 
 …then numbered sections, each opened by the same banner, tokens first. A
 comment says why a rule exists, not what CSS it contains.
+
+## The shared script
+
+There is one shared script, `web/standards/site/hark.js` in `hark_web`,
+published at `https://felipeharker.org/standards/hark.js`. Every page links
+it in its `<head>`, straight after its stylesheets, and not deferred or
+async — it has to run before the page is drawn:
+
+```html
+<script src="/standards/hark.js"></script>                          <!-- felipeharker.org -->
+<script src="https://felipeharker.org/standards/hark.js"></script>  <!-- every other site -->
+```
+
+The birding app renders the same tag in its `layout.tsx`. Nothing on a page
+depends on the script: without it a page is the sans design in ink, a
+running head menu still opens and closes, and the design switch stays
+hidden. It does four things:
+
+1. **The reader's choices.** It sets `<html data-design="sans|serif">` and
+   `<html data-accent="ink|red|blue">` to the reader's choices before the
+   page is drawn, so a page never flashes another, loads Source Serif 4
+   from Google Fonts when the serif is wanted
+   ([design](design.md#the-serif-design), [the accent](design.md#the-accent)),
+   and points the favicon at the design's letter ([below](#the-favicon)).
+2. **Carrying them.** The choices are made in one place, the switch on
+   felipeharker.org's front page, and kept in that site's `localStorage`
+   (`hark-design`, `hark-accent`). Each site is its own origin, and a
+   browser keeps each origin's storage to itself, so the choices travel in
+   the address: as a reader follows a link to another site in the family,
+   the link gains `?design=serif&accent=red` (whichever were chosen); the
+   site it lands on keeps the values in its own storage and takes them out
+   of the address, so every page there follows them, and passes them on to
+   the next site the same way. felipeharker.org never takes a value in, and
+   links to it never carry one, so the front page alone decides. A reader
+   who has never chosen carries nothing. The other sites are listed in
+   `SITES` in the script; `tools/check.mjs` fails if one in `FAMILY` is
+   missing. Dove Habitat, a project site that links the script, is listed
+   too.
+3. **The switch.** On felipeharker.org it finds each `[data-switch]` row
+   ([components](components.md#design-switch)), shows it and makes it work.
+4. **The running head's menus.** An open
+   [menu](components.md#menus-in-the-running-head) closes when the reader
+   clicks elsewhere or presses Escape.
+
+A site that follows the choices must link the script; Parametric Living and
+Parametric Reference, sites outside the family with their own copy of the
+standard, do not, and stay as they are.
+
+## The favicon
+
+The favicon is the standard's too: a bracketed H, in ink on white, drawn on
+a 32-unit grid so every stroke is one sharp pixel at 16 px. It lives beside
+the stylesheet, in `web/standards/site/`: `favicon.svg`, `favicon-serif.svg`
+(the serif design's, with slab serifs), and two PNGs made from
+`favicon.svg` for browsers that take no SVG icon — `favicon.png` (32 px) and
+`apple-touch-icon.png` (180 px, a phone's home screen). Every page links
+them before its stylesheets:
+
+```html
+<link rel="icon" href="/standards/favicon.png" sizes="32x32">
+<link rel="icon" href="/standards/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/standards/apple-touch-icon.png">
+```
+
+On a site other than felipeharker.org, by their full addresses,
+`https://felipeharker.org/standards/…`; the birding app, through `icons` in
+its `layout.tsx` metadata. `hark.js` swaps `favicon.svg` for
+`favicon-serif.svg` for a reader who chose the serif. `tools/check.mjs`, in
+every repository, fails on a page that does not link `favicon.svg`.
 
 ## Page structure
 

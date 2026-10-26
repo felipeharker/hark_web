@@ -8,8 +8,8 @@ its tiles open, such as Dove Habitat:
 
 | Site | Address | Repository | What it holds |
 |---|---|---|---|
-| Portfolio | https://felipeharker.org/ | `hark_web`, this one ([`web/portfolio/`](web/portfolio/)) | The front page: rows of tiles — Parametric Living and Parametric Reference, the academic projects, the bird projects (the birding report and Dove Habitat) — About, contact; menus of the projects in its running head; and the switch between the two designs. |
-| Standards | https://felipeharker.org/standards/ | `hark_web`, this one ([`web/standards/`](web/standards/)) | The web design and development standards, the one shared stylesheet and script, and a page that renders them. |
+| Portfolio | https://felipeharker.org/ | `hark_web`, this one ([`web/portfolio/`](web/portfolio/)) | The front page: rows of tiles — Parametric Living and Parametric Reference, the academic projects, the bird projects (the birding report and Dove Habitat) — About, contact; menus of the projects in its running head; and the switch for the type (sans or serif) and the colour (ink, red or blue) of every site. |
+| Standards | https://felipeharker.org/standards/ | `hark_web`, this one ([`web/standards/`](web/standards/)) | The web design and development standards, the one shared stylesheet and script, the favicon, and a page that renders them. |
 | Academic | https://hark-academic.onrender.com/ | [`hark_academic`](https://github.com/felipeharker/hark_academic) | Architecture and urban design projects from the University of Houston, a page each. |
 | Birding | https://hark-birding.onrender.com/ | [`hark_birding`](https://github.com/felipeharker/hark_birding) | The Harker Ornithology Report: eBird observations, checklists, media and field notes. Next.js. |
 | Resume | https://hark-resume.onrender.com/ | [`hark_resume`](https://github.com/felipeharker/hark_resume) | The resume, as one printable page. |
@@ -17,9 +17,9 @@ its tiles open, such as Dove Habitat:
 
 Every page on every site links the one stylesheet and the one script served
 from here, `https://felipeharker.org/standards/hark.css` and `hark.js`
-beside it. The standard has two designs, sans and serif; a reader picks one
-on the portfolio's front page, and the script carries the choice to every
-site. Every page ends with the same site
+beside it. The standard has two designs, sans and serif, and three accents, ink, red
+and blue; a reader picks on the portfolio's front page, and the script
+carries the choice to every site. Every page ends with the same site
 links. The decision log and the roadmap for all four live here, in
 [`planning/`](planning/).
 

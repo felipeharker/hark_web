@@ -37,8 +37,9 @@ log and the roadmap for all of them live here.
    step for static pages, no JavaScript where HTML will do. The one script
    is the standard's, `web/standards/site/hark.js` at `/standards/hark.js`:
    every page links it, straight after its stylesheets, and it sets the
-   design (sans or serif) the reader chose on the portfolio's front page —
-   the only place that choice is made.
+   design (sans or serif) and the accent (ink, red or blue) the reader chose
+   on the portfolio's front page — the only place those choices are made.
+   So is the favicon, `/standards/favicon.svg`, which every page links.
 6. **Tokens first, and document what you add.** A new token goes in
    `web/standards/docs/design.md`; a new class in
    `web/standards/docs/components.md`, with a specimen on

@@ -5,9 +5,10 @@
  *
  *   node tools/check.mjs
  *
- * 1. Pages      every page links the one shared stylesheet and the one
- *               shared script, carries links to every site in the family in
- *               its running head and its colophon, and links the standards.
+ * 1. Pages      every page links the one shared stylesheet, the one shared
+ *               script and the favicon, carries links to every site in the
+ *               family in its running head and its colophon, and links the
+ *               standards.
  * 2. Links      every internal link, image and stylesheet resolves to a file,
  *               and every same-page #anchor to an id.
  * 3. Published  a static site/ folder holds only web files — no PDFs, notes,
@@ -26,7 +27,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, extname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DOMAIN, FAMILY, SCRIPT, SITES, STYLESHEET, mounts, resolveUrl, siteLinkHref } from './sites.mjs';
+import { DOMAIN, FAMILY, FAVICON, SCRIPT, SITES, STYLESHEET, mounts, resolveUrl, siteLinkHref } from './sites.mjs';
 import { wikiPages } from './wiki.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -74,6 +75,7 @@ for (const site of SITES) {
 
     if (site.kind === 'static' && !html.includes(`href="${STYLESHEET}"`)) problem(where, `does not link ${STYLESHEET}`);
     if (site.kind === 'static' && !html.includes(`<script src="${SCRIPT}"></script>`)) problem(where, `does not link ${SCRIPT}`);
+    if (site.kind === 'static' && !html.includes(`href="${FAVICON}"`)) problem(where, `does not link the favicon, ${FAVICON}`);
     const nav = html.match(/<nav class="site-links"[\s\S]*?<\/nav>/);
     const head = html.match(/<nav class="runhead-links"[\s\S]*?<\/nav>/);
     if (!clientRendered) {

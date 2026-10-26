@@ -8,23 +8,25 @@
      <script src="/standards/hark.js"></script>                          felipeharker.org
      <script src="https://felipeharker.org/standards/hark.js"></script>  every other site
 
-   Nothing on a page depends on it. Without it a page is the sans design,
-   its running head menus still open and close, and the design switch on the
+   Nothing on a page depends on it. Without it a page is the sans design in
+   ink, its running head menus still open and close, and the switch on the
    front page stays hidden.
 
    WHAT IT DOES
-   1. The design. The standard has two designs, sans (the default) and serif
-      (hark.css, section 1). This marks <html data-design="…"> with the
-      reader's choice before the page is drawn, so it never flashes the other
-      one, and loads Source Serif 4 when the serif is wanted.
-   2. Carrying the choice. The choice is made in one place, the switch on
+   1. The reader's choices. The standard lets a reader choose two things:
+      the design, sans (the default) or serif, and the accent, ink (the
+      default), red or blue (hark.css, section 1). This marks
+      <html data-design="…" data-accent="…"> with them before the page is
+      drawn, so a page never flashes another, loads Source Serif 4 when the
+      serif is wanted, and sets the favicon to the design's letter.
+   2. Carrying them. The choices are made in one place, the switch on
       felipeharker.org's front page. Every site is its own origin, and a
-      browser keeps each origin's storage to itself, so the choice travels in
-      the address: a link to another site in the family gains ?design=serif
-      (or sans) as it is followed, and the site it lands on keeps the value
-      and takes it out of the address. felipeharker.org never takes a value
-      in, and links to it never carry one, so no other site can change the
-      choice.
+      browser keeps each origin's storage to itself, so the choices travel in
+      the address: a link to another site in the family gains
+      ?design=serif&accent=red (whichever were chosen) as it is followed, and
+      the site it lands on keeps the values and takes them out of the
+      address. felipeharker.org never takes a value in, and links to it never
+      carry one, so no other site can change a choice.
    3. The switch, on the front page: it shows it and makes it work.
    4. The running head's menus: an open one closes when the reader clicks
       elsewhere or presses Escape.
@@ -37,7 +39,7 @@
 (() => {
   'use strict';
 
-  // The site that serves this script is the one where the choice is made:
+  // The site that serves this script is the one where the choices are made:
   // felipeharker.org, or the local server when it is served from source.
   const HOME = document.currentScript
     ? new URL(document.currentScript.src).origin
@@ -50,70 +52,98 @@
     'https://hark-dove-habitat.onrender.com',
   ];
 
-  const DESIGNS = ['sans', 'serif'];
-  const KEY = 'hark-design';
-  const PARAM = 'design';
+  // Each choice: its values, the first the default. Its name is the
+  // attribute on <html> (data-…), the address's parameter, and, after
+  // `hark-`, its key in storage.
+  const CHOICES = {
+    design: ['sans', 'serif'],
+    accent: ['ink', 'red', 'blue'],
+  };
+
   const SERIF_FONT =
     'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap';
 
   const root = document.documentElement;
   const atHome = location.origin === HOME;
 
-  // Storage can be refused (a locked-down browser); then the choice holds
-  // for this page only.
-  const read = () => {
-    try { return localStorage.getItem(KEY); } catch { return null; }
+  // Storage can be refused (a locked-down browser); then a choice holds for
+  // this page only.
+  const read = (name) => {
+    try { return localStorage.getItem(`hark-${name}`); } catch { return null; }
   };
-  const keep = (design) => {
-    try { localStorage.setItem(KEY, design); } catch { /* this page only */ }
+  const keep = (name, value) => {
+    try { localStorage.setItem(`hark-${name}`, value); } catch { /* this page only */ }
   };
 
-  let design = read();
-
-  // -- 2a. Take in a choice carried from another site ------------------------
-  if (!atHome) {
-    const url = new URL(location.href);
-    if (url.searchParams.has(PARAM)) {
-      const carried = url.searchParams.get(PARAM);
-      if (DESIGNS.includes(carried)) {
-        design = carried;
-        keep(carried);
-      }
-      url.searchParams.delete(PARAM);
-      history.replaceState(history.state, '', url);
-    }
+  // What the reader has chosen; a choice never made is null.
+  const chosen = {};
+  for (const name in CHOICES) {
+    const value = read(name);
+    chosen[name] = CHOICES[name].includes(value) ? value : null;
   }
 
-  if (!DESIGNS.includes(design)) design = null;
+  // -- 2a. Take in choices carried from another site --------------------------
+  if (!atHome) {
+    const url = new URL(location.href);
+    let carried = false;
+    for (const name in CHOICES) {
+      if (!url.searchParams.has(name)) continue;
+      const value = url.searchParams.get(name);
+      if (CHOICES[name].includes(value)) {
+        chosen[name] = value;
+        keep(name, value);
+      }
+      url.searchParams.delete(name);
+      carried = true;
+    }
+    if (carried) history.replaceState(history.state, '', url);
+  }
 
-  // -- 1. Set the design, before the page is drawn ----------------------------
+  // -- 1. Set the choices, before the page is drawn ---------------------------
   let serifLoaded = false;
 
+  // The favicon is the design's letter: favicon.svg or favicon-serif.svg,
+  // beside this script. A page whose icon link comes after the script gets
+  // it set again once the page is read (wire, below).
+  function setIcon() {
+    const icon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (!icon) return;
+    const name = chosen.design === 'serif' ? 'favicon-serif.svg' : 'favicon.svg';
+    const href = icon.href.replace(/favicon(-serif)?\.svg/, name);
+    if (href !== icon.href) icon.href = href;
+  }
+
   function apply() {
-    root.dataset.design = design || 'sans';
-    if (design === 'serif' && !serifLoaded) {
+    for (const name in CHOICES) root.dataset[name] = chosen[name] || CHOICES[name][0];
+    if (chosen.design === 'serif' && !serifLoaded) {
       serifLoaded = true;
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = SERIF_FONT;
       document.head.appendChild(link);
     }
+    setIcon();
   }
 
   apply();
 
-  // -- 2b. Carry the choice on a link to another site in the family -----------
+  // -- 2b. Carry the choices on a link to another site in the family ----------
   // At the moment the link is followed, not when the page loads, so a link a
-  // page draws later (the birding app's) carries it too. A reader who has
+  // page draws later (the birding app's) carries them too. A reader who has
   // never chosen carries nothing.
   function carry(event) {
     const link = event.target instanceof Element && event.target.closest('a[href]');
-    if (!link || !design) return;
+    if (!link) return;
     let url;
     try { url = new URL(link.href); } catch { return; }
     if (url.origin === location.origin || !SITES.includes(url.origin)) return;
-    url.searchParams.set(PARAM, design);
-    link.href = url.href;
+    let changed = false;
+    for (const name in CHOICES) {
+      if (!chosen[name]) continue;
+      url.searchParams.set(name, chosen[name]);
+      changed = true;
+    }
+    if (changed) link.href = url.href;
   }
 
   for (const type of ['click', 'auxclick', 'contextmenu']) {
@@ -121,23 +151,29 @@
   }
 
   // -- 3. The switch -----------------------------------------------------------
+  // One row per choice: <div class="design-switch" data-switch="design">,
+  // its buttons' values the choice's values.
   function wireSwitch() {
-    const box = document.querySelector('[data-design-switch]');
-    if (!box || !atHome) return;
-    const buttons = [...box.querySelectorAll('button[value]')];
-    const show = () => {
-      for (const b of buttons) b.setAttribute('aria-pressed', String(b.value === (design || 'sans')));
-    };
-    for (const b of buttons) {
-      b.addEventListener('click', () => {
-        design = b.value;
-        keep(design);
-        apply();
-        show();
-      });
+    if (!atHome) return;
+    for (const row of document.querySelectorAll('[data-switch]')) {
+      const name = row.dataset.switch;
+      if (!CHOICES[name]) continue;
+      const buttons = [...row.querySelectorAll('button[value]')];
+      const show = () => {
+        const value = chosen[name] || CHOICES[name][0];
+        for (const b of buttons) b.setAttribute('aria-pressed', String(b.value === value));
+      };
+      for (const b of buttons) {
+        b.addEventListener('click', () => {
+          chosen[name] = b.value;
+          keep(name, b.value);
+          apply();
+          show();
+        });
+      }
+      show();
+      row.hidden = false;
     }
-    show();
-    box.hidden = false;
   }
 
   // -- 4. The running head's menus ---------------------------------------------
@@ -165,6 +201,7 @@
   }
 
   function wire() {
+    setIcon();
     wireSwitch();
     wireMenus();
   }

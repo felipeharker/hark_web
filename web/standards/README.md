@@ -10,7 +10,8 @@ the rules behind them, and a page that renders all of it.
 | Path | What it is |
 |---|---|
 | [`site/hark.css`](site/hark.css) | **The shared stylesheet**, published at `/standards/hark.css`. Tokens first, then every shared component, in numbered sections. Every page links it; nothing copies it. |
-| [`site/hark.js`](site/hark.js) | **The shared script**, published at `/standards/hark.js`. Sets every page in the design the reader chose on the front page, sans or serif, and carries the choice between the sites. Every page links it. |
+| [`site/hark.js`](site/hark.js) | **The shared script**, published at `/standards/hark.js`. Sets every page in the design and accent the reader chose on the front page, and carries the choices between the sites. Every page links it. |
+| [`site/favicon.svg`](site/favicon.svg) | **The favicon**, a bracketed H, with `favicon-serif.svg` and PNGs for browsers without SVG icons. Every page links it. |
 | [`site/index.html`](site/index.html) | **The specimen page**, `/standards/`: every token and component, rendered by `hark.css` itself. |
 | [`docs/design.md`](docs/design.md) | The design rules, and every token: colour, type, space, shape, breakpoints. |
 | [`docs/components.md`](docs/components.md) | Every shared class: what it is for and the markup it expects. |
@@ -29,8 +30,8 @@ else is small. Inter carries the words; IBM Plex Mono is reserved for
 recorded values. No colour — the accent is ink — no bold, no boxes, no
 shadows and nothing rounded: structure is whitespace and hairlines. Nothing
 the reader sees is numbered. That is the sans design; the serif design is
-the same page set in Source Serif 4, and the reader picks between them on
-the portfolio's front page.
+the same page set in Source Serif 4, and the accent may be red or blue as
+well as ink; the reader picks on the portfolio's front page.
 
 ## Changing the standard
 

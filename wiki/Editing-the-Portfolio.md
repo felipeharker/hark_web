@@ -58,14 +58,16 @@ The portfolio's running head, alone of every page's, has menus: Academic,
 Professional and Birding each open onto the projects under them
 (`<details class="runhead-menu">`, in `web/standards/docs/components.md`).
 A new tile gets an entry in its menu too; a new heading of work is another
-`<details>`, with the same `name`. Academic's and Birding's first entries
+`<details>`, with the same `name`, and a `.runhead-menu-caret` span at the
+end of its `<summary>`. Academic's and Birding's first entries
 are their sites' front pages, which `tools/check.mjs` needs: the running
 head must still link every site in the family.
 
 ## The design switch
 
-The last line of the masthead, "Type: Sans, Serif", is where a reader picks
-the design every site in the family is set in. It is the only one: no other
-page, here or on another site, has a switch. `hark.js` shows it and carries
-the choice (`web/standards/docs/development.md`, "The shared script");
-leave its `hidden` and `data-design-switch` as they are.
+The last two lines of the masthead, "Type: Sans, Serif" and "Colour: Ink,
+Red, Blue", are where a reader picks how every site in the family looks.
+They are the only ones: no other page, here or on another site, has a
+switch. `hark.js` shows them and carries the choices
+(`web/standards/docs/development.md`, "The shared script"); leave each
+row's `hidden` and `data-switch` as they are.

@@ -51,8 +51,13 @@ tokens and never asks which design it is in. To see a page in the serif
 design, pick it on the local front page (http://localhost:8000/): the
 standards page follows.
 
-The shared script, `web/standards/site/hark.js`, sets the design on every
-page and carries it between the sites. A site added to `FAMILY` is added
+The accent works the same way: `--accent-ink`, `--accent-red` and
+`--accent-blue`, and `:root:where([data-accent='…'])` setting
+`--color-accent` to one of them. A new accent is a token, a rule, a value in
+`CHOICES` in `hark.js`, and a button in the switch.
+
+The shared script, `web/standards/site/hark.js`, sets the design and the
+accent on every page and carries them between the sites. A site added to `FAMILY` is added
 to `SITES` there too; `tools/check.mjs` fails until it is.
 
 ## One commit

@@ -87,6 +87,9 @@
 .swatch--selection { background: var(--color-selection); }
 .swatch--rule { background: var(--color-rule); }
 .swatch--rule-strong { background: var(--color-rule-strong); }
+.swatch--accent-ink { background: var(--accent-ink); }
+.swatch--accent-red { background: var(--accent-red); }
+.swatch--accent-blue { background: var(--accent-blue); }
 
 .swatch-name {
   margin: var(--space-2) 0 0;
