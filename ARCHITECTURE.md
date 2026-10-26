@@ -8,6 +8,7 @@ GitHub; every box names a real repository, folder, file or service.
 - [The whole system](#the-whole-system)
 - [This repository](#this-repository)
 - [One stylesheet](#one-stylesheet)
+- [One script, two designs](#one-script-two-designs)
 - [From a commit to a live site](#from-a-commit-to-a-live-site)
 - [The birding report's data](#the-birding-reports-data)
 - [How a reader moves around](#how-a-reader-moves-around)
@@ -23,7 +24,7 @@ service. `hark_web` serves felipeharker.org — the portfolio and the standard
 flowchart LR
   subgraph web["hark_web (github.com/felipeharker/hark_web)"]
     direction TB
-    standards["web/standards<br/>the shared stylesheet, its docs, the specimen page"]
+    standards["web/standards<br/>the shared stylesheet and script, their docs, the specimen page"]
     portfolio["web/portfolio<br/>the front page"]
     planning["planning/<br/>roadmap and decisions, for every site"]
   end
@@ -71,7 +72,7 @@ flowchart LR
   web --> s["standards/"]
   web --> p["portfolio/"]
 
-  s --> s1["site/hark.css · site/index.html · site/specimen/"]
+  s --> s1["site/hark.css · site/hark.js · site/index.html · site/specimen/"]
   s --> s2["docs/ design · components · writing · development"]
   s --> s3["templates/page.html"]
 
@@ -116,6 +117,37 @@ A site's own stylesheet loads after `hark.css`, may read and redefine its
 tokens, and holds only what no other site needs. A component a second site
 needs moves into `hark.css`. A change to `hark.css` reaches the static sites
 as soon as `hark-site` deploys, and the birding report on its next build.
+
+## One script, two designs
+
+The standard has two designs, sans (the default) and serif, and one shared
+script, `web/standards/site/hark.js`, served beside the stylesheet at
+`https://felipeharker.org/standards/hark.js`. Every page links it in its
+`<head>`; it sets `<html data-design>` before the page is drawn. The
+choice is made only on felipeharker.org's front page. Each site is its own
+origin with its own storage, so the choice crosses to another site in the
+address of the link the reader follows, and that site keeps it.
+
+```mermaid
+flowchart LR
+  switch["felipeharker.org front page<br/>the design switch"]
+  store["felipeharker.org<br/>localStorage hark-design"]
+  switch -- "click" --> store
+  store -- "link followed: ?design=serif" --> acad["hark-academic.onrender.com<br/>keeps it in its own storage,<br/>takes it out of the address"]
+  store -- "?design=serif" --> birds["hark-birding.onrender.com"]
+  store -- "?design=serif" --> resume["hark-resume.onrender.com"]
+  store -- "?design=serif" --> dove["hark-dove-habitat.onrender.com"]
+  acad -- "passes on what it holds" --> birds
+  acad -. "never carried back" .-> store
+  css["hark.css<br/>:root — sans<br/>:root:where([data-design='serif']) — serif"]
+  script["hark.js<br/>sets data-design, loads Source Serif 4"]
+  script -. "on every page" .-> css
+```
+
+The front page alone decides: felipeharker.org never takes a value from
+an address, and links to it never carry one. Parametric Living and
+Parametric Reference are outside the family, on their own copy of the
+standard, and keep their one design.
 
 ## From a commit to a live site
 
@@ -173,7 +205,9 @@ each carrying the same site links, so any site is one click from any other. Link
 same tab, except the portfolio's tiles, which open each project in a new
 tab; links to anyone else open a new one. Dove Habitat, a project site, is
 reached from its tile, and its running head and colophon lead home to the
-portfolio alone.
+portfolio alone. The portfolio's own running head is the one with menus:
+Academic, Professional and Birding open onto every project under them, in
+the same tab.
 
 ```mermaid
 flowchart TB
@@ -190,6 +224,7 @@ flowchart TB
   home -- "Dove Habitat tile" --> dove["hark-dove-habitat.onrender.com"]
   dove -- "running head and colophon" --> home
   home -- "Elsewhere" --> resume
+  home -- "running head menus" --> proj & birds & dove
   acad --> proj
   proj -- "← Academic Projects" --> acad
   birds --> check
@@ -212,9 +247,10 @@ flowchart TB
 | `hark_portfolio_archive`, `hark_resume_archive`, `hark_birding_archive` | GitHub, archived | The three repositories the 2026-10-19 monorepo replaced; read-only, with their histories. None of the current repositories was made from them |
 | `hark_system_archive`, `hark_references_archive`, `hark_parametric_*_archive` | GitHub, archived | The old CODEBASE standards, an unused references repository, and the old parametric repositories |
 | `CODEBASE\parametric` | the private `parametric_*` repositories | The Rhino and Grasshopper work and its own standards; nothing here depends on it |
-| parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living` | Its own site, outside the family and its standard. The portfolio's top row links it from a tile, in a new tab; nothing else here does, and nothing here builds or changes it |
+| parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living` | Its own site, outside the family and its standard. The portfolio's top row links it from a tile, in a new tab, and the portfolio's running head from its Professional menu; nothing here builds or changes it |
+| parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference` | The same: its own site, outside the family, on its own copy of the standard. A tile beside Parametric Living, and an entry in the Professional menu; nothing here builds or changes it |
 | The GitHub wiki | github.com/felipeharker/hark_web/wiki | A copy of `wiki/`, replaced by `.github/workflows/wiki.yml` on every push to `main` that changes it |
-| Fonts | Google Fonts, by a `<link>` on every page (the birding app's in its `layout.tsx`) | Inter and IBM Plex Mono |
+| Fonts | Google Fonts, by a `<link>` on every page (the birding app's in its `layout.tsx`) | Inter and IBM Plex Mono; Source Serif 4, loaded by `hark.js` for the serif design |
 | hark-dove-habitat.onrender.com | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link the portfolio alone |
 | dove-habitat.onrender.com | Render service `dove-habitat` (the old Dove Habitat site, from `dove_habitat_archive`) | Kept only to redirect to hark-dove-habitat.onrender.com |
 | Photos and map tiles | Macaulay Library CDN, Carto | Loaded by the birding report in the reader's browser |

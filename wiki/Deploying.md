@@ -23,12 +23,13 @@ same.
 
 `tools/build.mjs` copies each part's published folder to its path in
 `dist/`: the portfolio to `/`, the standards to `/standards/`. Last, it adds
-a fingerprint of each stylesheet's contents to every page's link to it
-(`/standards/hark.css?v=3e228ce5fe`). Render's CDN caches a page and its
-stylesheet separately for up to five minutes; with the fingerprint, a page
-from a new deploy never gets the stylesheet from the last one. The other
-sites link the stylesheet by its full address, without a fingerprint, so for
-those few minutes after a deploy they may still get the last one.
+a fingerprint of each stylesheet's and script's contents to every page's
+link to it (`/standards/hark.css?v=3e228ce5fe`, `/standards/hark.js?v=…`).
+Render's CDN caches a page and its stylesheet separately for up to five
+minutes; with the fingerprint, a page from a new deploy never gets the
+stylesheet or script from the last one. The other sites link both by their
+full addresses, without a fingerprint, so for those few minutes after a
+deploy they may still get the last ones.
 
 Nothing in the build needs the network: no packages, fonts or data are
 downloaded, so a push to `main` that passes `node tools/build.mjs` locally

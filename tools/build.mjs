@@ -9,13 +9,14 @@
  * birding report and the resume are their own sites, built from their own
  * repositories.
  *
- * One thing is changed on the way: every stylesheet a static page links gets
- * a fingerprint of its contents, `hark.css?v=1a2b3c4d5e`. A CDN caches a page
- * and its stylesheet separately, for minutes; without the fingerprint a
- * visitor just after a deploy can get the new page with the old stylesheet.
- * With it, a changed stylesheet has a new address, so the two always match.
- * (The other sites link the stylesheet by its full address, unfingerprinted;
- * the birding app's own stylesheets are fingerprinted by Next.)
+ * One thing is changed on the way: every stylesheet and script a static page
+ * links gets a fingerprint of its contents, `hark.css?v=1a2b3c4d5e`. A CDN
+ * caches a page and its stylesheet separately, for minutes; without the
+ * fingerprint a visitor just after a deploy can get the new page with the old
+ * stylesheet. With it, a changed file has a new address, so the two always
+ * match. (The other sites link the stylesheet and the script by their full
+ * addresses, unfingerprinted; the birding app's own stylesheets are
+ * fingerprinted by Next.)
  *
  * Plain Node, no dependencies, so Render needs nothing but Node to run it.
  */
@@ -42,7 +43,7 @@ for (const site of [...SITES].sort((a, b) => a.path.length - b.path.length)) {
   console.log(`${site.name.padEnd(10)} ${site.dir.padEnd(22)} -> dist${site.path}  (${readdirSync(from).length} entries)`);
 }
 
-// -- Fingerprint the stylesheets each static page links ------------------------
+// -- Fingerprint the stylesheets and scripts each static page links -------------
 
 const walk = (dir) => readdirSync(dir).flatMap((name) => {
   const p = join(dir, name);
@@ -55,15 +56,15 @@ for (const site of SITES.filter((s) => s.kind === 'static')) {
   for (const source of walk(join(ROOT, site.dir)).filter((f) => f.endsWith('.html'))) {
     const pageUrl = site.path + relative(join(ROOT, site.dir), source).split(sep).join('/');
     const page = join(DIST, pageUrl);
-    const html = readFileSync(page, 'utf8').replace(/href="([^":?#]+\.css)"/g, (link, href) => {
+    const html = readFileSync(page, 'utf8').replace(/(href|src)="([^":?#]+\.(?:css|js))"/g, (link, attr, href) => {
       const file = join(DIST, new URL(href, `http://x${pageUrl}`).pathname);
       if (!existsSync(file)) return link;
       stamped++;
-      return `href="${href}?v=${fingerprint(file)}"`;
+      return `${attr}="${href}?v=${fingerprint(file)}"`;
     });
     writeFileSync(page, html);
   }
 }
-console.log(`\nFingerprinted ${stamped} stylesheet links.`);
+console.log(`\nFingerprinted ${stamped} stylesheet and script links.`);
 
 console.log('\nBuilt dist/.');

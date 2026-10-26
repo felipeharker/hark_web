@@ -39,6 +39,9 @@ export const siteLinkHref = (site) => (site.url.startsWith(`${DOMAIN}/`) ? site.
 /** The one shared stylesheet, as every page here links it. */
 export const STYLESHEET = '/standards/hark.css';
 
+/** The one shared script, as every page here links it. */
+export const SCRIPT = '/standards/hark.js';
+
 /** Where each path is served from, longest path first so /standards/ wins over /. */
 export function mounts(root) {
   return [...SITES]

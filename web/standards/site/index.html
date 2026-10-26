@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="/standards/hark.css">
 <link rel="stylesheet" href="specimen/specimen.css">
+<script src="/standards/hark.js"></script>
 </head>
 <body>
 
@@ -32,6 +33,11 @@
      keeps one heading outline of its own. A specimen of something laid on
      the grid — a masthead, a work list, a plate — is .specimen--wide, so it
      has the whole width of the page to lay its columns on.
+
+     The page is set in the design the reader chose on the front page, sans
+     or serif, like every other page; hark.js sets it. The design switch
+     shown here is a specimen and does nothing: the front page's is the one
+     that chooses.
      ====================================================================== -->
 
 <!-- Running head ------------------------------------------------------- -->
@@ -113,7 +119,9 @@
 <section class="section" id="sec-type">
 <h2 class="section-heading">Type</h2>
 
-<p class="body-text">Inter for anything a person wrote; IBM Plex Mono for anything read off a record. One very large size for the page title, and small sizes for everything else. Each sample below is set at the size it names; the two titles follow the width of the window, and the others step down below 640px.</p>
+<p class="body-text">The body face for anything a person wrote; IBM Plex Mono for anything read off a record. One very large size for the page title, and small sizes for everything else. Each sample below is set at the size it names; the two titles follow the width of the window, and the others step down below 640px.</p>
+
+<p class="body-text">There are two designs, and this page is set in the one chosen on the <a href="/">front page</a>. The sans design sets the body in Inter, its title in capitals; the serif design sets it in Source Serif 4, its title in upper and lower case, each reading size a step larger. The sizes below are the sans design&rsquo;s.</p>
 
 <div class="table-scroll">
 <table class="table">
@@ -365,6 +373,15 @@
     <input id="spec-filter" class="input" placeholder="Filter by name…">
   </div>
 </div>
+
+<p class="label">.design-switch, .design-switch-label</p>
+<div class="specimen">
+  <div class="design-switch" role="group" aria-labelledby="spec-design-switch-label">
+    <span class="design-switch-label" id="spec-design-switch-label">Type</span>
+    <button type="button" value="sans" aria-pressed="true">Sans</button>
+    <button type="button" value="serif" aria-pressed="false">Serif</button>
+  </div>
+</div>
 </section>
 
 <!-- Work List ------------------------------------------------------------- -->
@@ -476,7 +493,7 @@
 <section class="section" id="sec-navigation">
 <h2 class="section-heading">Navigation</h2>
 
-<p class="body-text">Every page opens with the running head — the owner&rsquo;s name, then every site in the family, the current one bracketed — and ends with a colophon holding the same links. The top of this page is one, and the foot another. An interior page also opens with a back link to the page that lists it.</p>
+<p class="body-text">Every page opens with the running head — the owner&rsquo;s name, then every site in the family, the current one bracketed — and ends with a colophon holding the same links. The top of this page is one, and the foot another. An interior page also opens with a back link to the page that lists it. The front page&rsquo;s running head alone has menus: a heading of the work, opening onto the projects under it.</p>
 
 <p class="label">.runhead</p>
 <div class="specimen specimen--wide">
@@ -486,6 +503,24 @@
       <a href="#sec-navigation">Portfolio</a>
       <a href="#sec-navigation" aria-current="page">Academic</a>
       <a href="#sec-navigation">Birding</a>
+      <a href="#sec-navigation">Resume</a>
+    </div>
+  </div>
+</div>
+
+<p class="label">.runhead-menu, .runhead-menu-list</p>
+<div class="specimen specimen--wide">
+  <div class="runhead">
+    <a class="runhead-owner" href="#sec-navigation">Felipe E. Harker</a>
+    <div class="runhead-links">
+      <a href="#sec-navigation" aria-current="page">Portfolio</a>
+      <details class="runhead-menu" name="runhead-menu">
+        <summary>Birding</summary>
+        <ul class="runhead-menu-list">
+          <li><a href="#sec-navigation">Ornithology Report</a></li>
+          <li><a href="#sec-navigation">Dove Habitat</a></li>
+        </ul>
+      </details>
       <a href="#sec-navigation">Resume</a>
     </div>
   </div>

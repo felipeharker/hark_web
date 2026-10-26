@@ -18,6 +18,12 @@ rather than a sentence about one. There is no colour: black, two greys of
 text and white. Structure is whitespace and hairlines, never a box, a tint or
 a shadow, and nothing is rounded.
 
+That is the **sans** design, the default. The standard has a second, the
+**serif** design: the same page set in Source Serif 4 instead of Inter
+([below](#the-serif-design)). A reader chooses between them on
+felipeharker.org's front page, and the choice carries to every site in the
+family.
+
 ## The rules
 
 These hold on every page. A page that breaks one is wrong, however good it
@@ -36,8 +42,9 @@ looks.
   labels and every section heading are drawn in brackets — "[ About ]" — and
   so is the current site in the running head. Nothing else is
   bracketed. The brackets are drawn by the stylesheet, never typed.
-- **Two faces, two jobs.** Inter for anything a person wrote; IBM Plex Mono
-  for anything read off a record. A stack line, a dateline, a URL and a table
+- **Two faces, two jobs.** The body face — Inter, or Source Serif 4 in the
+  serif design — for anything a person wrote; IBM Plex Mono for anything
+  read off a record. A stack line, a dateline, a URL and a table
   of counts are mono. A heading, a summary and a back link are not.
 - **No bold.** 400 for reading, 500 for noticing — labels, titles, the page
   title itself. 600 is available and rarely wanted. Never 700.
@@ -83,12 +90,22 @@ tokens follow.
 
 ## Type
 
-**Families.** `--font-body` (Inter) and `--font-mono` (IBM Plex Mono). Every
-page loads both from Google Fonts with a `<link>` in its `<head>` — a static
-page with the one in [`templates/page.html`](../templates/page.html), the
-birding app with the same in its `layout.tsx`, plus the italics its
-scientific names need. The browser fetches the fonts; no build downloads
-them, so a deploy cannot fail on a font.
+**Families.**
+
+| Token | Value | Used for |
+|---|---|---|
+| `--font-body` | `--font-sans`; `--font-serif` in the serif design | Everything a person wrote. Every rule reads this one, never the two below. |
+| `--font-sans` | Inter | The sans design's face; the switch's "Sans". |
+| `--font-serif` | Source Serif 4 | The serif design's face; the switch's "Serif". |
+| `--font-mono` | IBM Plex Mono | Anything read off a record, in either design. |
+
+Every page loads Inter and IBM Plex Mono from Google Fonts with a `<link>`
+in its `<head>` — a static page with the one in
+[`templates/page.html`](../templates/page.html), the birding app with the
+same in its `layout.tsx`, plus the italics its scientific names need.
+Source Serif 4 is loaded by `hark.js`, from the same place, only for a
+reader who has chosen the serif design. The browser fetches the fonts; no
+build downloads them, so a deploy cannot fail on a font.
 
 **Weights.**
 
@@ -97,6 +114,14 @@ them, so a deploy cannot fail on a font.
 | `--weight-regular` | 400 | Everything read at length; a row in a long list. |
 | `--weight-medium` | 500 | Noticed: labels, table headers, a button, row titles — and the page title, which at its size needs no more. |
 | `--weight-strong` | 600 | Available, rarely wanted. The heaviest weight anywhere. |
+| `--weight-title` | `--weight-medium`; `--weight-regular` in the serif design | The page title. |
+
+**The page title.**
+
+| Token | Sans | Serif | Used for |
+|---|---|---|---|
+| `--case-title` | `uppercase` | `none` | The title's `text-transform`: capitals, or upper and lower case. |
+| `--leading-title` | 0.92 | 1 | The title's line height: capitals have no descenders, so their lines close up further. |
 
 **Scale.** The two titles follow the width of the window, between a floor
 for a phone and a ceiling at which the longest word of any title still fits
@@ -127,9 +152,47 @@ follow it more steeply. The rest are fixed, and a few step down below 640px.
 | `--track-body` | -0.006em | Running prose. |
 | `--track-label` | 0.06em | Uppercase labels — small capitals need opening up. |
 
-**Line height** is set per role rather than tokenised: 0.92 for the title,
-1–1.4 for labels and headings, 1.6 for the body, 1.65 for reading
-paragraphs.
+**Line height** is set per role rather than tokenised, but for the title's
+(`--leading-title`): 1–1.4 for labels and headings, 1.6 for the body, 1.65
+for reading paragraphs.
+
+## The serif design
+
+The second design is the first page set in another face. The grid, the
+colour, the rules, the space, the order of the sizes and the mono for
+recorded values are the same; only tokens change, on
+`<html data-design="serif">`, which `hark.js` sets. Labels stay in tracked
+capitals and the brackets stay where they are. The page title is set in
+upper and lower case, at the regular weight.
+
+| Token | Sans | Serif | Why |
+|---|---|---|---|
+| `--font-body` | Inter | Source Serif 4 | The design. Source Serif has optical sizes, so the title is drawn from its display cut and a label from its caption cut, by itself. |
+| `--weight-title` | 500 | 400 | A serif's contrast carries a large title at the regular weight. |
+| `--case-title` | `uppercase` | `none` | Upper and lower case: the serif's capitals and lower case are drawn to be read together. |
+| `--leading-title` | 0.92 | 1 | Room for the descenders. |
+| `--size-subtitle` | 21px (18) | 23px (20) | Source Serif's lower case is smaller than Inter's at one size, so each reading size goes up a step. Phone sizes in brackets. |
+| `--size-abstract` | 18px (17) | 20px (18) | |
+| `--size-subsection` | 17px (16) | 19px (17) | |
+| `--size-body` | 16px | 18px | |
+| `--size-table` | 15px | 17px | |
+| `--size-caption` | 13px | 14px | |
+| `--size-section` | 12px | 13px | |
+| `--size-label` | 11px | 12px | |
+| `--track-display` | -0.045em | -0.02em | Source Serif sets tight at display sizes on its own. |
+| `--track-tight` | -0.02em | -0.005em | |
+| `--track-body` | -0.006em | 0 | |
+| `--track-label` | 0.06em | 0.08em | Serif capitals need a little more room at small sizes. |
+
+The serif tokens are set on `:root:where([data-design='serif'])`, which
+weighs the same as `:root`, so a site's own stylesheet, loaded after
+`hark.css`, still redefines a token in either design.
+
+**Choosing.** The one place a reader chooses is the design switch at the
+foot of the masthead on felipeharker.org's front page
+([components](components.md#design-switch)). Every site in the family
+follows that choice; none offers a switch of its own. How the choice
+reaches the other sites is in [development](development.md#the-shared-script).
 
 ## Space
 

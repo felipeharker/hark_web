@@ -24,14 +24,14 @@ links and Elsewhere stay in the same tab.
 ## Adding a tile
 
 The Work section is three rows, each its own `<ul class="work-list">`:
-Parametric Living (one), the academic projects (three), then the bird
-projects (the birding report and Dove Habitat). Parametric Living is a site
-built elsewhere, from a private repository: the tile links its address and
-nothing more. Copy one `<li class="work">` block into its row. Every tile
+the parametric work (Parametric Living and Parametric Reference), the
+academic projects (three), then the bird projects (the birding report and
+Dove Habitat). The two parametric sites are built elsewhere, from private
+repositories: their tiles link their addresses and nothing more. Copy one `<li class="work">` block into its row. Every tile
 carries the same parts in the same order — cover, title, hairline, summary,
 stack, kind, link — and a tile without one of them omits the element.
 
-Each academic project has its own tile in the first row, linking its page,
+Each academic project has its own tile in the second row, linking its page,
 `https://hark-academic.onrender.com/projects/<slug>.html`; a new project gets
 one as part of adding it (`hark_academic`'s README, "Adding a project").
 
@@ -51,3 +51,21 @@ stand in a stock or invented image.
 
 `node tools/serve.mjs`, look at the page at full width and at 390 px, then
 `node tools/check.mjs`.
+
+## The running head's menus
+
+The portfolio's running head, alone of every page's, has menus: Academic,
+Professional and Birding each open onto the projects under them
+(`<details class="runhead-menu">`, in `web/standards/docs/components.md`).
+A new tile gets an entry in its menu too; a new heading of work is another
+`<details>`, with the same `name`. Academic's and Birding's first entries
+are their sites' front pages, which `tools/check.mjs` needs: the running
+head must still link every site in the family.
+
+## The design switch
+
+The last line of the masthead, "Type: Sans, Serif", is where a reader picks
+the design every site in the family is set in. It is the only one: no other
+page, here or on another site, has a switch. `hark.js` shows it and carries
+the choice (`web/standards/docs/development.md`, "The shared script");
+leave its `hidden` and `data-design-switch` as they are.
