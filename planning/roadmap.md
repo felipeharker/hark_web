@@ -5,7 +5,23 @@ sites beside it. Why
 things are the way they are is in [decisions.md](decisions.md). Tick an item
 when it is done, with the date.
 
-## Now: four repositories, four sites (2026-10-20)
+## Now: two designs, chosen on the front page (2026-10-26)
+
+- [x] The serif design in `hark.css`, the shared script `hark.js`, and the
+      design switch on the portfolio's front page (2026-10-26)
+- [x] Menus in the portfolio's running head; a Parametric Reference tile
+      (2026-10-26)
+- [x] Every page in `hark_academic`, `hark_resume`, `hark_dove_habitat` and
+      `hark_birding` links `hark.js`, on each repository's branch
+      `claude/sharp-hawking-9r3tsj` (2026-10-26)
+- [ ] **Yours:** merge `hark_web` first, so `/standards/hark.js` and the
+      serif rules are live; then the other four, in any order. Until
+      `hark_web` deploys, their link to the script finds nothing and the
+      pages stay sans, which is harmless. The birding report carries the
+      serif rules from its first build after `hark_web` deploys (its merge
+      is that build).
+
+## Before: four repositories, four sites (2026-10-20)
 
 - [x] Rename every archived `hark_*` repository to `<name>_archive`
       (2026-10-20)

@@ -41,6 +41,20 @@ ignored by git — never edit it. To try an undeployed change there, run
 `hark_birding/web`; to carry a deployed change to the live report, redeploy
 `hark-birding` (any push, or a manual deploy on Render).
 
+## The two designs
+
+The standard has two designs, sans (the default) and serif, and the serif
+is only a set of tokens on `:root:where([data-design='serif'])` at the end
+of section 1 of `hark.css` (and its phone sizes in section 19). A new token
+that should differ between them gets a value in each; a new rule reads
+tokens and never asks which design it is in. To see a page in the serif
+design, pick it on the local front page (http://localhost:8000/): the
+standards page follows.
+
+The shared script, `web/standards/site/hark.js`, sets the design on every
+page and carries it between the sites. A site added to `FAMILY` is added
+to `SITES` there too; `tools/check.mjs` fails until it is.
+
 ## One commit
 
 The standard and every page here it changed go in one commit, so the

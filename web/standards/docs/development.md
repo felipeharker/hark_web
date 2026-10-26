@@ -25,9 +25,10 @@ checks read it.
 
 ## Choosing a stack
 
-- **Static HTML and CSS by default.** No framework, no build step, no
-  JavaScript. A page is a file; what is in a `site/` folder is what the
-  browser gets.
+- **Static HTML and CSS by default.** No framework, no build step, and no
+  JavaScript but the standard's one shared script, `hark.js`
+  ([below](#the-shared-script)). A page is a file; what is in a `site/`
+  folder is what the browser gets.
 - **A framework only when the content is generated from data at build time.**
   The birding report is Next.js because every page is built from eBird CSV
   exports. Even then it exports static files — no server, no database.
@@ -92,6 +93,51 @@ the link is root-relative; on the other sites it is the full address:
 - **When a second site needs a site-only component**, move it into
   `hark.css` and document it in [`components.md`](components.md).
 
+## The shared script
+
+There is one shared script, `web/standards/site/hark.js` in `hark_web`,
+published at `https://felipeharker.org/standards/hark.js`. Every page links
+it in its `<head>`, straight after its stylesheets, and not deferred or
+async — it has to run before the page is drawn:
+
+```html
+<script src="/standards/hark.js"></script>                          <!-- felipeharker.org -->
+<script src="https://felipeharker.org/standards/hark.js"></script>  <!-- every other site -->
+```
+
+The birding app renders the same tag in its `layout.tsx`. Nothing on a page
+depends on the script: without it a page is the sans design, a running head
+menu still opens and closes, and the design switch stays hidden. It does
+four things:
+
+1. **The design.** It sets `<html data-design="sans|serif">` to the
+   reader's choice before the page is drawn, so a page never flashes the
+   other design, and loads Source Serif 4 from Google Fonts when the serif
+   is wanted ([design](design.md#the-serif-design)).
+2. **Carrying the choice.** The choice is made in one place, the switch on
+   felipeharker.org's front page, and kept in that site's `localStorage`
+   (`hark-design`). Each site is its own origin, and a browser keeps each
+   origin's storage to itself, so the choice travels in the address: as a
+   reader follows a link to another site in the family, the link gains
+   `?design=serif` (or `sans`); the site it lands on keeps the value in its
+   own storage and takes it out of the address, so every page there follows
+   it, and passes it on to the next site the same way. felipeharker.org
+   never takes a value in, and links to it never carry one, so the front page
+   alone decides. A reader who has never chosen carries nothing. The other
+   sites are listed in `SITES` in the script; `tools/check.mjs` fails if
+   one in `FAMILY` is missing. Dove Habitat, a project site that links the
+   script, is listed too.
+3. **The switch.** On felipeharker.org it finds the
+   `[data-design-switch]` ([components](components.md#design-switch)), shows
+   it and makes it work.
+4. **The running head's menus.** An open
+   [menu](components.md#menus-in-the-running-head) closes when the reader
+   clicks elsewhere or presses Escape.
+
+A site that follows the choice must link the script; Parametric Living and
+Parametric Reference, sites outside the family with their own copy of the
+standard, do not, and stay as they are.
+
 Every stylesheet opens the same way, so any of them can be read cold:
 
 ```css
@@ -125,7 +171,7 @@ comment says why a rule exists, not what CSS it contains.
 
 [`templates/page.html`](../templates/page.html) is a blank page in this
 shape, with the `<head>` every page needs: title, description, the two font
-families and the stylesheet.
+families, the stylesheet and the script.
 
 ## Links
 
@@ -203,10 +249,10 @@ node tools/check.mjs     # must pass before every commit
 ```
 
 1. Look at what you changed at desktop width and at 390px.
-2. `node tools/check.mjs` must pass: stylesheet links, the links to every
-   site in each running head and colophon, every internal link and image,
-   and what is published — and, in `hark_web`, the docs and the wiki's
-   links.
+2. `node tools/check.mjs` must pass: stylesheet and script links, the links
+   to every site in each running head and colophon, every internal link and
+   image, and what is published — and, in `hark_web`, the docs, the wiki's
+   links and the sites `hark.js` carries the design to.
 3. For the birding report, in `hark_birding/web`: `npm run build` and
    `npm run lint` must both pass, before its `tools/check.mjs` checks the
    build. `npm run dev` there serves the app at http://localhost:3000/.
@@ -240,10 +286,11 @@ push, each described in its own `render.yaml`:
 | `hark-birding` | `hark_birding` | `cd web && npm ci && npm run build` | `web/out` |
 | `hark-resume` | `hark_resume` | none | `site` |
 
-`hark-site`'s build fingerprints each page's stylesheet links
-(`hark.css?v=…`) so a CDN can never pair a new page with an old stylesheet;
-write links without the fingerprint, and the build adds it. The other sites
-link the stylesheet by its full address, unfingerprinted.
+`hark-site`'s build fingerprints each page's stylesheet and script links
+(`hark.css?v=…`, `hark.js?v=…`) so a CDN can never pair a new page with an
+old stylesheet or script; write links without the fingerprint, and the
+build adds it. The other sites link both by their full addresses,
+unfingerprinted.
 
 felipeharker.org is `hark-site`'s custom domain; the others keep their free
 `onrender.com` addresses. The old paths on felipeharker.org — `/academic/`,

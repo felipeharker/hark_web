@@ -3,7 +3,9 @@
 The front of felipeharker.org, served at `/`: one page. It introduces the
 work, links the other sites in the family — the academic projects, the
 birding report, the resume, each built in its own repository — and the
-project site Dove Habitat, and says how to get in touch.
+project sites Dove Habitat, Parametric Living and Parametric Reference, and
+says how to get in touch. It is also the one place a reader chooses the
+design every site in the family is set in, sans or serif.
 
 ## Layout
 
@@ -19,14 +21,16 @@ Each academic tile shows its project's cover from the academic site
 (`https://hark-academic.onrender.com/assets/covers/<slug>.jpg`), so there is
 one file per cover. The birding report's is one of its own photographs,
 linked from the Macaulay Library as the report links them. Parametric
-Living's and Dove Habitat's are drawings from their sites, cropped to 3:2,
-in `site/assets/covers/`.
+Living's, Parametric Reference's and Dove Habitat's are drawings from their
+sites, made 3:2, in `site/assets/covers/`.
 
 ## The page
 
 | Section | What it holds |
 |---|---|
-| Work | three rows of tiles, each opening its project in a new tab: Parametric Living (https://parametric-living.onrender.com/), alone; the academic projects, one tile each linking its page on https://hark-academic.onrender.com/; then the bird projects, the birding report (https://hark-birding.onrender.com/) and Dove Habitat (https://hark-dove-habitat.onrender.com/). Each with a cover from its project |
+| Running head | Portfolio; Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
+| Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" — the one place the design is chosen |
+| Work | three rows of tiles, each opening its project in a new tab: Parametric Living (https://parametric-living.onrender.com/) and Parametric Reference (https://parametric-reference.onrender.com/); the academic projects, one tile each linking its page on https://hark-academic.onrender.com/; then the bird projects, the birding report (https://hark-birding.onrender.com/) and Dove Habitat (https://hark-dove-habitat.onrender.com/). Each with a cover from its project |
 | About | the biography |
 | Elsewhere | the resume (https://hark-resume.onrender.com/), GitHub, LinkedIn, email |
 
@@ -41,8 +45,8 @@ Alexandria is left out for now, by decision — see `planning/decisions.md`.
 | An academic project's tile | its `<li class="work">` in `site/index.html`, kept in step with its tile on the academic site |
 | Anything shared — type, colour, the work list, the footer | the standard: `web/standards/` |
 
-There is no stylesheet of its own: everything on the page is the shared
-standard, `/standards/hark.css`.
+There is no stylesheet or script of its own: everything on the page is the
+shared standard, `/standards/hark.css` and `/standards/hark.js`.
 
 Run `node tools/serve.mjs` from the repository root to see it at
 http://localhost:8000/, and `node tools/check.mjs` before committing.

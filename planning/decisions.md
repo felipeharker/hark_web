@@ -4,6 +4,56 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-26 — Two designs, chosen on the front page
+
+**The standard has two designs, sans and serif, and the reader chooses.**
+Sans is the design as it was, and stays the default. Serif is the same page
+set in Source Serif 4 instead of Inter: the grid, the ink, the rules, the
+space and the mono for recorded values are unchanged; the reading sizes go
+up a step, the tracking relaxes, and the page title is in upper and lower
+case at the regular weight. Only tokens change, on
+`:root:where([data-design='serif'])` in `hark.css`. *Why:* the owner's
+call — to try the sites in another face, live, without giving up the
+first. *Replaces:* the one design.
+
+**The choice is made in one place, the front page, and reaches every site
+in the family.** A switch at the foot of the portfolio's masthead — "Type:
+Sans, Serif" — is the only one. A shared script, `hark.js`, beside
+`hark.css` and linked by every page on every site, sets the design before a
+page is drawn. Each site is its own origin and a browser keeps each
+origin's storage apart, so the choice travels in the address: a link to
+another site in the family gains `?design=…` as it is followed, and the
+site it lands on keeps it and takes it out of the address. felipeharker.org
+never takes a value in, so only its front page decides. A site the reader
+reaches without passing through the front page keeps the last choice that
+reached it, or is sans. *Why:* the owner's call — "the only place to make
+the decision is on the home page". A cookie cannot be shared between
+felipeharker.org and the `onrender.com` sites, and a frame on another
+origin gets storage of its own in today's browsers, so the address is the
+one way across. *Replaces:* "no JavaScript" on every page; the colophon now
+says "Static HTML; no framework." Parametric Living and Parametric
+Reference, outside the family and on their own copy of the standard, are
+not changed and do not follow the choice.
+
+## 2026-10-26 — Menus in the portfolio's running head; Parametric Reference has a tile
+
+**The portfolio's running head names the work: Portfolio, Academic,
+Professional, Birding, Resume.** Academic, Professional and Birding are
+menus (`<details class="runhead-menu">`): Academic opens onto the academic
+site's front page and its three projects; Professional onto Parametric
+Living and Parametric Reference; Birding onto the ornithology report and
+Dove Habitat. Their links open in the same tab, like the rest of the
+running head. Every other page keeps the plain running head. *Why:* the
+owner's call. *Replaces:* the portfolio's plain running head.
+
+**Parametric Reference has a tile,** beside Parametric Living in the first
+row, linking https://parametric-reference.onrender.com/ in a new tab. The
+site is built from the private `parametric_reference`, outside this family;
+only the site is linked. Its cover is its cut and fabrication sheet
+(`rh_fab.png` on that site), set on white at 3:2. *Why:* the owner's call,
+and its cover the owner left to choose. *Replaces:* nothing; it adds a
+tile.
+
 ## 2026-10-20 — A cover on every portfolio tile
 
 **Every tile on the front page shows a cover taken from its project.** The

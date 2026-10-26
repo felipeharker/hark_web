@@ -219,6 +219,31 @@ the accent).
 </div>
 ```
 
+## Design switch
+
+The one place a reader picks the design every site in the family is set
+in, sans or serif ([design](design.md#the-serif-design)). It is on
+felipeharker.org's front page alone, the last line of its masthead; no
+other page has one.
+
+```html
+<div class="design-switch" role="group" aria-labelledby="design-switch-label" data-design-switch hidden>
+  <span class="design-switch-label" id="design-switch-label">Type</span>
+  <button type="button" value="sans" aria-pressed="true">Sans</button>
+  <button type="button" value="serif" aria-pressed="false">Serif</button>
+</div>
+```
+
+| Class | What it is |
+|---|---|
+| `.design-switch` | A line of small capitals, like the running head: a label, then a button for each design. The one in force is bracketed, as the running head brackets the current site; each button is set in the face it chooses. |
+| `.design-switch-label` | "Type", in grey. |
+
+It ships `hidden`, and `hark.js` shows it, so without the script there is
+no control that does nothing. The script finds it by `data-design-switch`
+and only on felipeharker.org, keeps each button's `aria-pressed` true to the
+design in force, and remembers the choice.
+
 ## Work list
 
 One project or site per tile, the tiles side by side across the whole width
@@ -365,6 +390,34 @@ tab.
 `tools/check.mjs`, in every repository, fails if a page's running head misses
 a site.
 
+### Menus in the running head
+
+The portfolio's running head is the one with menus: Portfolio, then
+Academic, Professional and Birding, each a menu of the projects under it,
+then Resume. Academic's and Birding's first entries are their sites' front
+pages, so the running head still links every site in the family. Every
+other page has the plain running head above.
+
+```html
+<details class="runhead-menu" name="runhead-menu">
+  <summary>Academic</summary>
+  <ul class="runhead-menu-list">
+    <li><a href="https://hark-academic.onrender.com/">Academic Projects</a></li>
+    <li><a href="https://hark-academic.onrender.com/projects/living-outside-the-box.html">Living Outside the Box</a></li>
+    …
+  </ul>
+</details>
+```
+
+| Class | What it is |
+|---|---|
+| `.runhead-menu` | A `<details>` in `.runhead-links`: its `<summary>` is the heading, in the running head's capitals, with a drawn caret that turns when it opens. Every menu shares one `name`, so opening one closes the others. |
+| `.runhead-menu-list` | The entries, dropped below the heading over the white above the masthead, between an ink rule and a grey one, on a ground of white. Project names in the body face, not capitals. Below 640px it spans the running head. |
+
+It opens and closes with no script. `hark.js` also closes an open menu when
+the reader clicks elsewhere or presses Escape. Its links open in the same
+tab, like every link in the running head.
+
 ## Back link
 
 ```html
@@ -392,7 +445,7 @@ felipeharker.org, the standards link is absolute:
     <a href="https://hark-birding.onrender.com/">Birding</a>
     <a href="https://hark-resume.onrender.com/">Resume</a>
   </nav>
-  <p>Set in Inter and IBM Plex Mono. Static HTML; no framework and no JavaScript.
+  <p>Set in Inter or Source Serif 4, with IBM Plex Mono. Static HTML; no framework.
      Built to the <a href="/standards/">Hark web standards</a>.</p>
 </footer>
 ```

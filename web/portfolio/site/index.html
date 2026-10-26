@@ -4,28 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Felipe E. Harker — Portfolio</title>
-<meta name="description" content="Portfolio of Felipe E. Harker: computational design, architecture, and the tools built alongside them, with links to the academic projects, the ornithology report, Dove Habitat and the resume.">
+<meta name="description" content="Portfolio of Felipe E. Harker: computational design, architecture, and the tools built alongside them, with links to the academic projects, Parametric Living, Parametric Reference, the ornithology report, Dove Habitat and the resume.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/standards/hark.css">
+<script src="/standards/hark.js"></script>
 </head>
 <body>
 
 <!-- ==========================================================================
      FELIPE E. HARKER — PORTFOLIO
      --------------------------------------------------------------------------
-     A single static document. No build step, no framework, no JavaScript.
+     A single static document. No build step and no framework; the one
+     script is the standard's, /standards/hark.js.
      This is the front door to the other sites in felipeharker.org's family,
-     each built in its own repository. The work is two rows of tiles, each its
-     own <ul class="work-list">: first Parametric Living, a site of its own
-     (https://parametric-living.onrender.com/, built from a private
-     repository, so only the site is linked); then the academic projects, a
-     tile each linking its page on https://hark-academic.onrender.com/; then
-     the bird projects, the ornithology report and Dove Habitat, each a site
-     of its own. The resume is in Elsewhere.
+     each built in its own repository. The work is three rows of tiles, each
+     its own <ul class="work-list">: first the parametric work, Parametric
+     Living and Parametric Reference, each a site of its own
+     (https://parametric-living.onrender.com/ and
+     https://parametric-reference.onrender.com/, built from private
+     repositories, so only the sites are linked); then the academic projects,
+     a tile each linking its page on https://hark-academic.onrender.com/;
+     then the bird projects, the ornithology report and Dove Habitat, each a
+     site of its own. The resume is in Elsewhere.
+
+     The running head is this page's alone: besides the family's sites, its
+     Academic, Professional and Birding are menus of the projects under
+     them (<details class="runhead-menu">). Every other page's running head
+     is the plain one. A project added here gets an entry in its menu too.
+
+     The design switch at the foot of the masthead is the one place a reader
+     picks the design every site in the family is set in, sans or serif.
+     hark.js shows it, remembers the choice and carries it to the other
+     sites; without the script it stays hidden.
 
      All styling is /standards/hark.css, the shared stylesheet (its source is
      web/standards/site/hark.css in this repository, hark_web). Do not add inline
@@ -59,17 +73,43 @@
      so there is one file per cover and the two pages cannot drift apart. Its
      summary and stack match its tile on the academic site. The birding
      report's is one of its own photographs, from the Macaulay Library, as the
-     report itself shows them. Parametric Living's and Dove Habitat's are
-     drawings from their sites, made 3:2 and kept here in assets/covers/.
+     report itself shows them. Parametric Living's, Parametric Reference's
+     and Dove Habitat's are drawings from their sites, made 3:2 and kept here
+     in assets/covers/.
      ====================================================================== -->
 
-<!-- Running head ------------------------------------------------------- -->
+<!-- Running head -------------------------------------------------------
+     Portfolio and Resume are links; Academic, Professional and Birding are
+     menus of the projects under them, each opening the project in the same
+     tab. Academic's and Birding's first entries are their sites' front
+     pages. -->
 <header class="runhead">
   <a class="runhead-owner" href="/">Felipe E. Harker</a>
   <nav class="runhead-links" aria-label="Site">
     <a href="/" aria-current="page">Portfolio</a>
-    <a href="https://hark-academic.onrender.com/">Academic</a>
-    <a href="https://hark-birding.onrender.com/">Birding</a>
+    <details class="runhead-menu" name="runhead-menu">
+      <summary>Academic</summary>
+      <ul class="runhead-menu-list">
+        <li><a href="https://hark-academic.onrender.com/">Academic Projects</a></li>
+        <li><a href="https://hark-academic.onrender.com/projects/living-outside-the-box.html">Living Outside the Box</a></li>
+        <li><a href="https://hark-academic.onrender.com/projects/dead-mall-fall.html">Dead Mall Fall</a></li>
+        <li><a href="https://hark-academic.onrender.com/projects/collingsworth-marketplace.html">Collingsworth Marketplace</a></li>
+      </ul>
+    </details>
+    <details class="runhead-menu" name="runhead-menu">
+      <summary>Professional</summary>
+      <ul class="runhead-menu-list">
+        <li><a href="https://parametric-living.onrender.com/">Parametric Living</a></li>
+        <li><a href="https://parametric-reference.onrender.com/">Parametric Reference</a></li>
+      </ul>
+    </details>
+    <details class="runhead-menu" name="runhead-menu">
+      <summary>Birding</summary>
+      <ul class="runhead-menu-list">
+        <li><a href="https://hark-birding.onrender.com/">Ornithology Report</a></li>
+        <li><a href="https://hark-dove-habitat.onrender.com/">Dove Habitat</a></li>
+      </ul>
+    </details>
     <a href="https://hark-resume.onrender.com/">Resume</a>
   </nav>
 </header>
@@ -89,6 +129,13 @@
     <span class="sep" aria-hidden="true">|</span>
     <a href="mailto:fehark@gmail.com">fehark@gmail.com</a>
   </p>
+  <!-- The design switch: the one place the design of every site in the
+       family is chosen. Hidden until hark.js shows it and makes it work. -->
+  <div class="design-switch" role="group" aria-labelledby="design-switch-label" data-design-switch hidden>
+    <span class="design-switch-label" id="design-switch-label">Type</span>
+    <button type="button" value="sans" aria-pressed="true">Sans</button>
+    <button type="button" value="serif" aria-pressed="false">Serif</button>
+  </div>
 </header>
 
 <!-- Work ---------------------------------------------------------------- -->
@@ -116,6 +163,29 @@
       </p>
       <p class="work-kind">Personal</p>
       <a class="work-link" href="https://parametric-living.onrender.com/" target="_blank" rel="noopener noreferrer">Project Site</a>
+    </div>
+  </li>
+
+  <!-- Parametric Reference ---------------------------------------------- -->
+  <li class="work">
+    <a class="work-cover" href="https://parametric-reference.onrender.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+      <img src="assets/covers/parametric-reference.jpg" alt="">
+    </a>
+    <div class="work-facts">
+      <h3 class="work-title">
+        <a href="https://parametric-reference.onrender.com/" target="_blank" rel="noopener noreferrer">Parametric Reference</a>
+      </h3>
+      <hr class="rule-soft">
+      <p class="work-summary">The reference for a parametric workspace: every Grasshopper component and Rhino tool in its script library, the files that set up a Rhino model, and the standards they follow, generated from the repositories it presents so it cannot drift from them.</p>
+      <p class="work-stack">
+        <span>Rhino 8</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span>Grasshopper</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span>Python</span>
+      </p>
+      <p class="work-kind">Personal</p>
+      <a class="work-link" href="https://parametric-reference.onrender.com/" target="_blank" rel="noopener noreferrer">Project Site</a>
     </div>
   </li>
 
@@ -290,7 +360,7 @@
       <a href="https://hark-birding.onrender.com/">Birding</a>
       <a href="https://hark-resume.onrender.com/">Resume</a>
     </nav>
-  <p>Set in Inter and IBM Plex Mono. Static HTML; no framework and no JavaScript. Built to the <a href="/standards/">Hark web standards</a>.</p>
+  <p>Set in Inter or Source Serif 4, as the reader chooses at the head of this page, with IBM Plex Mono. Static HTML; no framework. Built to the <a href="/standards/">Hark web standards</a>.</p>
 </footer>
 
 </article>

@@ -32,12 +32,20 @@
    shadow, and nothing is rounded. Nothing the reader sees is numbered; the
    sections of this file are, so a rule can be found.
 
+   TWO DESIGNS
+   That is the sans design, the default. The serif design is the same page
+   set in Source Serif 4: only tokens change (the end of section 1). The
+   reader picks one on felipeharker.org's front page; hark.js, the
+   standard's one script, beside this file, marks <html data-design> on
+   every site the choice reaches.
+
    The reasoning behind each rule, and a table of every token and class, is in
    web/standards/docs/. Every component below is rendered on the specimen
    page, /standards/ (web/standards/site/index.html).
 
    HOW THIS FILE IS ORGANISED
-      1.  Design tokens ............ every colour, font, size and spacing value
+      1.  Design tokens ............ every colour, font, size and spacing value;
+                                     the serif design
       2.  Document skeleton ........ page frame, the grid, resets, base elements
       3.  Masthead ................. the title block at the top of a page
       4.  Abstract ................. a summary paragraph under the masthead
@@ -48,12 +56,12 @@
       9.  Tables ................... data tables
      10.  Definition grid .......... label / value pairs
      11.  Disclosure rows .......... a list of rows that open in place
-     12.  Controls ................. button, tag, text input, toolbar
+     12.  Controls ................. button, tag, text input, toolbar, design switch
      13.  Work list ................ a project per tile: cover, then its facts
      14.  Entries .................. a job, a school, a dated record
      15.  Plates ................... a full-width image and what is said about it
      16.  References ............... a list of links, each with a description
-     17.  Running head, back link .. the bar on top of every page; the way up
+     17.  Running head, back link .. the bar on top of every page, its menus; the way up
      18.  Colophon ................. the page footer and the links between sites
      19.  Responsive ............... narrow-screen overrides
    ========================================================================= */
@@ -105,9 +113,14 @@
   /* -- Type: families ------------------------------------------------------
      Every page, the birding app included, loads Inter and IBM Plex Mono
      from Google Fonts with a <link> in its <head>, so the families are
-     named here directly. */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+     named here directly. Source Serif 4 is the serif design's face (below);
+     hark.js loads it only for a reader who has chosen that design. Rules
+     read --font-body, never --font-sans or --font-serif: the design picks
+     which of the two it is. */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Helvetica, Arial, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-sans);
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* -- Type: weights -------------------------------------------------------
@@ -116,6 +129,13 @@
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-strong: 600;
+  --weight-title: var(--weight-medium);
+
+  /* -- Type: the page title ------------------------------------------------
+     Capitals, the lines nearly touching: with no descenders, 0.92 closes
+     the lines up without one touching the next. */
+  --case-title: uppercase;
+  --leading-title: 0.92;
 
   /* -- Type: scale ---------------------------------------------------------
      Two ends and little between them: a title as large as the column will
@@ -199,6 +219,46 @@
   /* -- Motion --------------------------------------------------------------
      One duration, one easing, everywhere. */
   --transition: 140ms ease;
+}
+
+/* -- The serif design -------------------------------------------------------
+   The standard has two designs, and everything above is the first: sans,
+   the default. The second, serif, is the same page — the grid, the ink, the
+   rules, the sizes' order, the mono for records — set in Source Serif 4
+   instead of Inter. A reader picks one on felipeharker.org's front page, and
+   hark.js marks <html data-design="serif"> on every site in the family that
+   the choice reaches; nothing else on a page knows which design it is in.
+
+   Only tokens change. Source Serif sets smaller on the body than Inter at
+   one size, so the reading sizes go up a step; it sets tight at display
+   sizes on its own, so the tracking relaxes; and its title is in upper and
+   lower case, at the regular weight, with room between its lines for the
+   descenders that capitals never had. Labels stay in tracked capitals. The
+   phone sizes are in section 19.
+
+   The selector weighs the same as :root, so the order of the rules decides:
+   a site's own stylesheet, loaded after this one, still redefines a token
+   in either design (the resume's print sheet resizes the type). */
+:root:where([data-design='serif']) {
+  --font-body: var(--font-serif);
+
+  --weight-title: var(--weight-regular);
+  --case-title: none;
+  --leading-title: 1;
+
+  --size-subtitle: 23px;
+  --size-abstract: 20px;
+  --size-subsection: 19px;
+  --size-body: 18px;
+  --size-table: 17px;
+  --size-caption: 14px;
+  --size-section: 13px;
+  --size-label: 12px;
+
+  --track-display: -0.02em;
+  --track-tight: -0.005em;
+  --track-body: 0;
+  --track-label: 0.08em;
 }
 
 
@@ -399,13 +459,14 @@ code {
 /* The one large thing on the page. Capitals, drawn in tight, the lines
    nearly touching: a block of type rather than a line of it. The size
    follows the window (--size-title), and a word too long for the column
-   breaks rather than running off the page. */
+   breaks rather than running off the page. The serif design sets it in
+   upper and lower case, its lines a little further apart (section 1). */
 .title {
   font-size: var(--size-title);
-  font-weight: var(--weight-medium);
-  line-height: 0.92;
+  font-weight: var(--weight-title);
+  line-height: var(--leading-title);
   letter-spacing: var(--track-display);
-  text-transform: uppercase;
+  text-transform: var(--case-title);
   text-wrap: balance;
   overflow-wrap: break-word;
   margin: 0;
@@ -986,6 +1047,69 @@ code {
 
 .toolbar .caption { margin-top: 0; }
 
+/* The design switch: the one place a reader picks the design every site in
+   the family is set in (section 1), on felipeharker.org's front page, at
+   the foot of its masthead.
+
+     <div class="design-switch" role="group" aria-labelledby="design-switch-label" data-design-switch hidden>
+       <span class="design-switch-label" id="design-switch-label">Type</span>
+       <button type="button" value="sans" aria-pressed="true">Sans</button>
+       <button type="button" value="serif" aria-pressed="false">Serif</button>
+     </div>
+
+   A line of small capitals like the running head, and like it, the one in
+   force is bracketed. Each choice is set in the face it chooses, so the
+   reader sees the difference before making it. It ships hidden: hark.js
+   shows it and makes it work, so without the script there is no control
+   that does nothing. */
+.design-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  margin: var(--space-5) 0 0;
+  font-size: var(--size-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.design-switch[hidden] { display: none; }
+
+.design-switch-label { color: var(--color-text-mute); }
+
+.design-switch button {
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--color-text-mute);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.design-switch button[value='sans'] { font-family: var(--font-sans); }
+.design-switch button[value='serif'] { font-family: var(--font-serif); }
+
+.design-switch button:hover,
+.design-switch button[aria-pressed='true'] { color: var(--color-text); }
+
+.design-switch button[aria-pressed='true']::before {
+  content: '[\00a0';
+  content: '[\00a0' / '';
+}
+
+.design-switch button[aria-pressed='true']::after {
+  content: '\00a0]';
+  content: '\00a0]' / '';
+}
+
+.design-switch button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
 
 /* ============================================================================
    13. WORK LIST
@@ -1374,6 +1498,77 @@ code {
   content: '\00a0]' / '';
 }
 
+/* A menu in the running head: on the portfolio's front page, a heading of
+   the work — Academic, Professional, Birding — names the projects under it.
+
+     <details class="runhead-menu" name="runhead-menu">
+       <summary>Academic</summary>
+       <ul class="runhead-menu-list">
+         <li><a href="https://hark-academic.onrender.com/">Academic Projects</a></li>
+         <li><a href="…">Living Outside the Box</a></li>
+       </ul>
+     </details>
+
+   A <details>, so it opens and closes with no script, and opening one closes
+   the others (name). hark.js also closes it when the reader clicks
+   elsewhere or presses Escape. The list drops over the white above the
+   masthead on a ground of white, between an ink rule, like a section's, and
+   a grey one, like a row's, so where it lies over the title it reads as a
+   band laid on the page rather than a hole cut in it. Its entries are
+   project names, so they are set as names, not as capitals. */
+.runhead-menu { position: relative; }
+
+.runhead-menu > summary {
+  cursor: pointer;
+  list-style: none;                 /* hide the default triangle … */
+  transition: color var(--transition);
+}
+.runhead-menu > summary::-webkit-details-marker { display: none; }  /* … in Safari */
+
+.runhead-menu > summary:hover { color: var(--color-accent-hover); }
+
+.runhead-menu > summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* A drawn caret says it opens, and turns when it has. */
+.runhead-menu > summary::after {
+  content: '\00a0\25BE';
+  content: '\00a0\25BE' / '';
+  color: var(--color-text-mute);
+}
+
+.runhead-menu[open] > summary::after {
+  content: '\00a0\25B4';
+  content: '\00a0\25B4' / '';
+}
+
+.runhead-menu-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  min-width: max-content;
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: var(--space-2) var(--space-5) var(--space-2) 0;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-rule-strong);
+  border-bottom: 1px solid var(--color-rule);
+  font-size: var(--size-table);
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+  letter-spacing: var(--track-body);
+  text-transform: none;
+}
+
+.runhead-menu-list a {
+  display: block;
+  padding: var(--space-1) 0;
+}
+
 .backlink {
   display: inline-block;
   font-size: var(--size-label);
@@ -1497,6 +1692,13 @@ code {
     --doc-pad-x: 20px;
   }
 
+  /* The serif design's reading sizes, a step above the sans's here too. */
+  :root:where([data-design='serif']) {
+    --size-subtitle: 20px;
+    --size-abstract: 18px;
+    --size-subsection: 17px;
+  }
+
   .masthead { margin-top: var(--space-7); }
 
   /* A dateline with several items stacks, one per line, and drops its
@@ -1517,4 +1719,10 @@ code {
      the more specific selector and still wins. */
   .table th { white-space: normal; }
   .table th, .table td { padding-right: var(--space-2); }
+
+  /* A running head menu drops across the whole of the running head rather
+     than from its own heading, which may sit by the window's right edge. */
+  .runhead-links { position: relative; }
+  .runhead-menu { position: static; }
+  .runhead-menu-list { right: 0; }
 }

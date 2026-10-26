@@ -2,14 +2,15 @@
 
 The web design and development standards for every page on felipeharker.org
 and the sites beside it — the academic projects, the birding report, the
-resume — served at `/standards/`: one shared stylesheet, the rules behind it, and a
-page that renders all of it.
+resume — served at `/standards/`: one shared stylesheet, one shared script,
+the rules behind them, and a page that renders all of it.
 
 ## What is here
 
 | Path | What it is |
 |---|---|
 | [`site/hark.css`](site/hark.css) | **The shared stylesheet**, published at `/standards/hark.css`. Tokens first, then every shared component, in numbered sections. Every page links it; nothing copies it. |
+| [`site/hark.js`](site/hark.js) | **The shared script**, published at `/standards/hark.js`. Sets every page in the design the reader chose on the front page, sans or serif, and carries the choice between the sites. Every page links it. |
 | [`site/index.html`](site/index.html) | **The specimen page**, `/standards/`: every token and component, rendered by `hark.css` itself. |
 | [`docs/design.md`](docs/design.md) | The design rules, and every token: colour, type, space, shape, breakpoints. |
 | [`docs/components.md`](docs/components.md) | Every shared class: what it is for and the markup it expects. |
@@ -27,7 +28,9 @@ of the page. The page title is very large, in capitals; almost everything
 else is small. Inter carries the words; IBM Plex Mono is reserved for
 recorded values. No colour — the accent is ink — no bold, no boxes, no
 shadows and nothing rounded: structure is whitespace and hairlines. Nothing
-the reader sees is numbered.
+the reader sees is numbered. That is the sans design; the serif design is
+the same page set in Source Serif 4, and the reader picks between them on
+the portfolio's front page.
 
 ## Changing the standard
 

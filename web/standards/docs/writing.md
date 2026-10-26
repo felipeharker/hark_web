@@ -100,8 +100,11 @@ included (`planning/decisions.md`).
 The last block on every page. It says, in one or two short sentences, what
 the page is set in and how it is built, and that it follows these standards:
 
-> Set in Inter and IBM Plex Mono. Static HTML; no framework and no
-> JavaScript. Built to the Hark web standards.
+> Set in Inter or Source Serif 4, with IBM Plex Mono. Static HTML; no
+> framework. Built to the Hark web standards.
+
+Inter or Source Serif 4, because the reader chooses between the two designs
+on the portfolio's front page; the front page's own colophon says so.
 
 A page with something specific to say about its own source (the birding
 report's data date) says it first.

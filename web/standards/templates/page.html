@@ -10,11 +10,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- The shared stylesheet, then this site's own if it has one.
-     /standards/hark.css is web/standards/site/hark.css in hark_web. On a
-     site other than felipeharker.org, link it by its full address:
-     https://felipeharker.org/standards/hark.css. -->
+<!-- The shared stylesheet, then this site's own if it has one, then the
+     shared script, which sets the design the reader chose before the page
+     is drawn, so it is not deferred. /standards/hark.css and
+     /standards/hark.js are web/standards/site/ in hark_web. On a site other
+     than felipeharker.org, link both by their full addresses:
+     https://felipeharker.org/standards/hark.css and
+     https://felipeharker.org/standards/hark.js. -->
 <link rel="stylesheet" href="/standards/hark.css">
+<script src="/standards/hark.js"></script>
 </head>
 <body>
 
@@ -77,7 +81,7 @@
     <a href="https://hark-birding.onrender.com/">Birding</a>
     <a href="https://hark-resume.onrender.com/">Resume</a>
   </nav>
-  <p>Set in Inter and IBM Plex Mono. Static HTML; no framework and no JavaScript. Built to the <a href="/standards/">Hark web standards</a>.</p>
+  <p>Set in Inter or Source Serif 4, with IBM Plex Mono. Static HTML; no framework. Built to the <a href="/standards/">Hark web standards</a>.</p>
 </footer>
 
 </article>
