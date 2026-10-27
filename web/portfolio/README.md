@@ -3,7 +3,7 @@
 The front of felipeharker.org, served at `/`: one page. It introduces the
 work, links the other sites in the family — the academic projects, the
 birding report, the resume, each built in its own repository — and the
-project sites Dove Habitat, Parametric Living and Parametric Reference, and
+project sites Dove Habitat and Alexandria Phoenix, and
 says how to get in touch. It is also the one place a reader chooses the
 design every site in the family is set in, sans or serif.
 
@@ -20,9 +20,9 @@ Every tile shows a cover taken from its project (`planning/decisions.md`).
 Each academic tile shows its project's cover from the academic site
 (`https://hark-academic.onrender.com/assets/covers/<slug>.jpg`), so there is
 one file per cover. The birding report's is one of its own photographs,
-linked from the Macaulay Library as the report links them. Parametric
-Living's, Parametric Reference's and Dove Habitat's are drawings from their
-sites, made 3:2, in `site/assets/covers/`.
+linked from the Macaulay Library as the report links them. Dove Habitat's
+is a drawing from its site and Alexandria Phoenix's its 33 component icons,
+drawn large; both are 3:2, in `site/assets/covers/`.
 
 ## The page
 
@@ -30,11 +30,12 @@ sites, made 3:2, in `site/assets/covers/`.
 |---|---|
 | Running head | Portfolio; Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
 | Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" — the one place the design is chosen |
-| Work | three rows of tiles, each opening its project in a new tab: Parametric Living (https://parametric-living.onrender.com/) and Parametric Reference (https://parametric-reference.onrender.com/); the academic projects, one tile each linking its page on https://hark-academic.onrender.com/; then the bird projects, the birding report (https://hark-birding.onrender.com/) and Dove Habitat (https://hark-dove-habitat.onrender.com/). Each with a cover from its project |
+| Work | three rows of tiles, each opening its project in a new tab: Alexandria Phoenix (https://alexandria-phoenix.onrender.com/); the academic projects, one tile each linking its page on https://hark-academic.onrender.com/; then the bird projects, the birding report (https://hark-birding.onrender.com/) and Dove Habitat (https://hark-dove-habitat.onrender.com/). Each with a cover from its project |
 | About | the biography |
 | Elsewhere | the resume (https://hark-resume.onrender.com/), GitHub, LinkedIn, email |
 
-Alexandria is left out for now, by decision — see `planning/decisions.md`.
+Parametric Living and Parametric Reference are no longer linked from the
+page, by decision; their sites stay up — see `planning/decisions.md`.
 
 ## Editing
 
