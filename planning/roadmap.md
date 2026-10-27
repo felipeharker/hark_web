@@ -5,7 +5,17 @@ sites beside it. Why
 things are the way they are is in [decisions.md](decisions.md). Tick an item
 when it is done, with the date.
 
-## Now: two designs, chosen on the front page (2026-10-26)
+## Now: Alexandria Phoenix on the portfolio (2026-10-27)
+
+- [x] An Alexandria Phoenix tile and Professional menu entry in place of
+      Parametric Living's and Parametric Reference's, whose sites stay up,
+      unlinked; `hark.js` carries the design to it (2026-10-27)
+- [x] The Alexandria Phoenix site rebuilt to this standard, in
+      `alexandria_phoenix` (2026-10-27)
+- [ ] Deployed: `alexandria_phoenix` first, so the tile opens the new site,
+      then this repository
+
+## Before: two designs, chosen on the front page (2026-10-26)
 
 - [x] The serif design in `hark.css`, the shared script `hark.js`, and the
       design switch on the portfolio's front page (2026-10-26)

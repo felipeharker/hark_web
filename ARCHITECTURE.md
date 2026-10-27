@@ -137,6 +137,7 @@ flowchart LR
   store -- "?design=serif" --> birds["hark-birding.onrender.com"]
   store -- "?design=serif" --> resume["hark-resume.onrender.com"]
   store -- "?design=serif" --> dove["hark-dove-habitat.onrender.com"]
+  store -- "?design=serif" --> alex["alexandria-phoenix.onrender.com"]
   acad -- "passes on what it holds" --> birds
   acad -. "never carried back" .-> store
   css["hark.css<br/>:root — sans<br/>:root:where([data-design='serif']) — serif"]
@@ -147,7 +148,7 @@ flowchart LR
 The front page alone decides: felipeharker.org never takes a value from
 an address, and links to it never carry one. Parametric Living and
 Parametric Reference are outside the family, on their own copy of the
-standard, and keep their one design.
+standard, and keep their one design; nothing here links them any more.
 
 ## From a commit to a live site
 
@@ -203,9 +204,9 @@ flowchart LR
 Every page on every site opens with a running head and ends with a colophon,
 each carrying the same site links, so any site is one click from any other. Links between the sites are absolute and stay in the
 same tab, except the portfolio's tiles, which open each project in a new
-tab; links to anyone else open a new one. Dove Habitat, a project site, is
-reached from its tile, and its running head and colophon lead home to the
-portfolio alone. The portfolio's own running head is the one with menus:
+tab; links to anyone else open a new one. Dove Habitat and Alexandria
+Phoenix, project sites, are reached from their tiles, and their running
+heads and colophons lead home to the portfolio alone. The portfolio's own running head is the one with menus:
 Academic, Professional and Birding open onto every project under them, in
 the same tab.
 
@@ -223,8 +224,10 @@ flowchart TB
   home -- "birding report tile" --> birds
   home -- "Dove Habitat tile" --> dove["hark-dove-habitat.onrender.com"]
   dove -- "running head and colophon" --> home
+  home -- "Alexandria Phoenix tile" --> alex["alexandria-phoenix.onrender.com"]
+  alex -- "running head and colophon" --> home
   home -- "Elsewhere" --> resume
-  home -- "running head menus" --> proj & birds & dove
+  home -- "running head menus" --> proj & birds & dove & alex
   acad --> proj
   proj -- "← Academic Projects" --> acad
   birds --> check
@@ -247,8 +250,9 @@ flowchart TB
 | `hark_portfolio_archive`, `hark_resume_archive`, `hark_birding_archive` | GitHub, archived | The three repositories the 2026-10-19 monorepo replaced; read-only, with their histories. None of the current repositories was made from them |
 | `hark_system_archive`, `hark_references_archive`, `hark_parametric_*_archive` | GitHub, archived | The old CODEBASE standards, an unused references repository, and the old parametric repositories |
 | `CODEBASE\parametric` | the private `parametric_*` repositories | The Rhino and Grasshopper work and its own standards; nothing here depends on it |
-| parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living` | Its own site, outside the family and its standard. The portfolio's top row links it from a tile, in a new tab, and the portfolio's running head from its Professional menu; nothing here builds or changes it |
-| parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference` | The same: its own site, outside the family, on its own copy of the standard. A tile beside Parametric Living, and an entry in the Professional menu; nothing here builds or changes it |
+| alexandria-phoenix.onrender.com | Render static site, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from a tile, in a new tab, and the running head from its Professional menu; its own running head and colophon lead home to the portfolio. Nothing here builds or changes it |
+| parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living` | Its own site, outside the family and its standard. Still live, but no longer linked from here (2026-10-27); nothing here builds or changes it |
+| parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference` | The same: still live, outside the family on its own copy of the standard, and no longer linked from here (2026-10-27) |
 | The GitHub wiki | github.com/felipeharker/hark_web/wiki | A copy of `wiki/`, replaced by `.github/workflows/wiki.yml` on every push to `main` that changes it |
 | Fonts | Google Fonts, by a `<link>` on every page (the birding app's in its `layout.tsx`) | Inter and IBM Plex Mono; Source Serif 4, loaded by `hark.js` for the serif design |
 | hark-dove-habitat.onrender.com | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link the portfolio alone |

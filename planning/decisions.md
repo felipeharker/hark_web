@@ -4,6 +4,25 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-27 — Alexandria Phoenix replaces the parametric tiles
+
+**Alexandria Phoenix has the first row of the portfolio, alone,** linking
+https://alexandria-phoenix.onrender.com/ in a new tab, and is the one entry
+in the running head's Professional menu. The site is built from the private
+`alexandria_phoenix` (its `site/`); only the site is linked. It is built to
+this standard, like Dove Habitat: it links `hark.css` and `hark.js` from
+here, so it follows the reader's design, and `hark.js` lists it to carry
+the choice. Its cover is its 33 component icons, drawn large from the
+plugin's icon script, in tab order on white at 3:2. *Why:* the owner's
+call. *Replaces:* "Alexandria stays out of the portfolio" (2026-10-19, below).
+
+**Parametric Living and Parametric Reference are no longer linked:** their
+tiles and menu entries are removed, and their covers deleted. Both sites stay
+up on Render, as they were. *Why:* the owner's call — Alexandria Phoenix
+replaces the reference, and Parametric Living stays live but unlinked.
+*Replaces:* "Parametric Living has a row of its own" (2026-10-20) and
+"Parametric Reference has a tile" (2026-10-26).
+
 ## 2026-10-26 — Two designs, chosen on the front page
 
 **The standard has two designs, sans and serif, and the reader chooses.**

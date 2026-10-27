@@ -30,8 +30,9 @@
       elsewhere or presses Escape.
 
    The other sites in the family are listed in SITES; tools/check.mjs fails
-   if one in FAMILY (tools/sites.mjs) is missing. A project site outside the
-   family that links this script — Dove Habitat — is listed too.
+   if one in FAMILY (tools/sites.mjs) is missing. The project sites outside
+   the family that link this script — Dove Habitat, Alexandria Phoenix — are
+   listed too.
    ========================================================================= */
 
 (() => {
@@ -48,6 +49,7 @@
     'https://hark-birding.onrender.com',
     'https://hark-resume.onrender.com',
     'https://hark-dove-habitat.onrender.com',
+    'https://alexandria-phoenix.onrender.com',
   ];
 
   const DESIGNS = ['sans', 'serif'];

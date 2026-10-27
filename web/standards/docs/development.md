@@ -125,8 +125,8 @@ four things:
    never takes a value in, and links to it never carry one, so the front page
    alone decides. A reader who has never chosen carries nothing. The other
    sites are listed in `SITES` in the script; `tools/check.mjs` fails if
-   one in `FAMILY` is missing. Dove Habitat, a project site that links the
-   script, is listed too.
+   one in `FAMILY` is missing. Dove Habitat and Alexandria Phoenix, project
+   sites that link the script, are listed too.
 3. **The switch.** On felipeharker.org it finds the
    `[data-design-switch]` ([components](components.md#design-switch)), shows
    it and makes it work.
@@ -134,9 +134,9 @@ four things:
    [menu](components.md#menus-in-the-running-head) closes when the reader
    clicks elsewhere or presses Escape.
 
-A site that follows the choice must link the script; Parametric Living and
+A site that follows the choice must link the script. Parametric Living and
 Parametric Reference, sites outside the family with their own copy of the
-standard, do not, and stay as they are.
+standard, do not; neither is linked from felipeharker.org any more.
 
 Every stylesheet opens the same way, so any of them can be read cold:
 
