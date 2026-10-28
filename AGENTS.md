@@ -60,7 +60,8 @@ log and the roadmap for all of them live here.
     `target="_blank" rel="noopener noreferrer"`.
 11. **Text.** Plain language; headings in Title Case, never numbered. Every
     page opens with the running head and ends with the colophon, each
-    linking every site in the family (`web/standards/docs/components.md`,
+    linking Portfolio and then the page's section — the same links on every
+    page of the section, and no back link (`web/standards/docs/components.md`,
     "Running head" and "Colophon").
 12. **Third-party material** — papers, field guides, vendor models — never
     goes in the repository. It stays on disk, out of git: in a part's

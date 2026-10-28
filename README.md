@@ -13,8 +13,8 @@ its tiles open, such as Dove Habitat:
 | Academic | https://academic.felipeharker.org/ | [`hark_academic`](https://github.com/felipeharker/hark_academic) | Architecture and urban design projects from the University of Houston, a page each. |
 | Birding | https://birds.felipeharker.org/ | [`hark_birding`](https://github.com/felipeharker/hark_birding) | The Harker Ornithology Report: eBird observations, checklists, media and field notes. Next.js. |
 | Resume | https://resume.felipeharker.org/ | [`hark_resume`](https://github.com/felipeharker/hark_resume) | The resume, as one printable page. |
-| Dove Habitat | https://dove.felipeharker.org/ | [`hark_dove_habitat`](https://github.com/felipeharker/hark_dove_habitat) | A project site: the design documentation for a modular cage accessory system. Not in the site links; its own lead home to the portfolio. |
-| Alexandria Phoenix | https://alexandria.felipeharker.org/ | `alexandria_phoenix` (private, so not linked) | A project site: the documentation for a Grasshopper plugin and Rhino toolbar, and its Parametric Studies (`/studies/`), built to the standard. Not in the site links; its own lead home to the portfolio. |
+| Dove Habitat | https://dove.felipeharker.org/ | [`hark_dove_habitat`](https://github.com/felipeharker/hark_dove_habitat) | A project site: the design documentation for a modular cage accessory system. In the Birding section with the report: its running head links Portfolio, the Ornithology Report and itself. |
+| Alexandria Phoenix | https://alexandria.felipeharker.org/ | `alexandria_phoenix` (private, so not linked) | A project site: the documentation for a Grasshopper plugin and Rhino toolbar, and its Parametric Studies (`/studies/`), built to the standard. The Professional section: its running head links Portfolio, the documentation and the studies. |
 
 Every page on every site links the one stylesheet and the one script served
 from here, `https://felipeharker.org/standards/hark.css` and `hark.js`

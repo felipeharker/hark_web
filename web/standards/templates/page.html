@@ -50,25 +50,26 @@
      ====================================================================== -->
 
 <!-- Running head -------------------------------------------------------
-     Every site in the family, in the order of FAMILY in tools/sites.mjs —
-     the same links as the colophon. Put aria-current="page" on the site this
-     page is in; on that site its own link is "/", and the others' are
-     absolute. On a site other than felipeharker.org, the owner's name, the
-     Portfolio link and the standards link are absolute too:
-     https://felipeharker.org/ and https://felipeharker.org/standards/. -->
+     Portfolio, then the pages of this page's section of the portfolio's
+     running head (Academic, Professional, Birding, Resume), in the order of
+     web/standards/docs/components.md, "Running head" — the same links as the
+     colophon, on every page of the site.
+     aria-current="page" brackets the one this page is, or is part of; a
+     site's link to its own front page is "/", the others' are absolute. On
+     a site other than felipeharker.org, the owner's name, the Portfolio link
+     and the standards link are absolute too: https://felipeharker.org/ and
+     https://felipeharker.org/standards/. No back link: the running head is
+     the way up. -->
 <header class="runhead">
   <a class="runhead-owner" href="/">Felipe E. Harker</a>
   <nav class="runhead-links" aria-label="Site">
     <a href="/">Portfolio</a>
-    <a href="https://academic.felipeharker.org/">Academic</a>
-    <a href="https://birds.felipeharker.org/">Birding</a>
-    <a href="https://resume.felipeharker.org/">Resume</a>
+    <a href="https://section.felipeharker.org/" aria-current="page">This Page's Site</a>
+    <a href="https://other.felipeharker.org/">Another in Its Section</a>
   </nav>
 </header>
 
 <article class="doc">
-
-<a class="backlink" href="../index.html">&larr; The Page That Lists This One</a>
 
 <!-- Masthead ------------------------------------------------------------- -->
 <header class="masthead">
@@ -95,9 +96,8 @@
   <nav class="site-links" aria-label="Felipe E. Harker">
     <span class="site-links-owner">Felipe E. Harker</span>
     <a href="/">Portfolio</a>
-    <a href="https://academic.felipeharker.org/">Academic</a>
-    <a href="https://birds.felipeharker.org/">Birding</a>
-    <a href="https://resume.felipeharker.org/">Resume</a>
+    <a href="https://section.felipeharker.org/" aria-current="page">This Page's Site</a>
+    <a href="https://other.felipeharker.org/">Another in Its Section</a>
   </nav>
   <p>Set in Inter or Source Serif 4, with IBM Plex Mono. Static HTML; no framework. Built to the <a href="/standards/">Hark web standards</a>.</p>
 </footer>

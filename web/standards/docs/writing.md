@@ -60,7 +60,8 @@ a copied line should come across clean.
   `externalLinkProps(href)` from `siteConfig.ts` instead of writing the
   attributes by hand.
 - **Every page opens with the running head and ends with the site links**
-  in its colophon, the same links in the same order
+  in its colophon: Portfolio, then its section's pages, the same links in
+  the same order on every page of the section, and no back link
   ([components.md](components.md), "Running head" and "Colophon").
 - An address that is the link's own text — an email, a URL — is written in
   full: `fehark@gmail.com`, not "email me".

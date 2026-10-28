@@ -1439,24 +1439,23 @@ code {
 /* ============================================================================
    17. RUNNING HEAD AND BACK LINK
    The running head is the line across the top of every page, outside its
-   <article>: the owner's name in the left column, and a link to every site
-   in the family from the middle — the same links as the colophon, so a
-   reader can move between the sites from either end of a page. The site the
-   reader is in is bracketed.
+   <article>: the owner's name in the left column, and from the middle
+   Portfolio, then the pages of the page's section of the portfolio — the
+   same links as the colophon, on every page of the section, so a reader can
+   move on from either end of a page. The one the reader is in is bracketed.
 
      <header class="runhead">
-       <a class="runhead-owner" href="/">Felipe E. Harker</a>
+       <a class="runhead-owner" href="https://felipeharker.org/">Felipe E. Harker</a>
        <nav class="runhead-links" aria-label="Site">
-         <a href="/" aria-current="page">Portfolio</a>
-         <a href="https://academic.felipeharker.org/">Academic</a>
-         <a href="https://birds.felipeharker.org/">Birding</a>
-         <a href="https://resume.felipeharker.org/">Resume</a>
+         <a href="https://felipeharker.org/">Portfolio</a>
+         <a href="https://birds.felipeharker.org/">Ornithology Report</a>
+         <a href="/" aria-current="page">Dove Habitat</a>
        </nav>
      </header>
 
-   The back link is the way up from an interior page to the page that lists
-   it, above the masthead. Navigation rather than a recorded value, so the
-   body face.
+   The back link is a way up to the page that lists this one, above the
+   masthead. The family's pages have none — their running head names their
+   section and is the way up — so it is kept for a page outside them.
    ========================================================================= */
 
 /* It sits in the same frame as .doc, so its columns are the page's. */
@@ -1583,18 +1582,16 @@ code {
 
 /* ============================================================================
    18. COLOPHON
-   The foot of every page: an ink rule, then the site links — every site in
-   the family, the current one marked with aria-current="page" — in the left
-   column, and a line on how the page was made in the right. A reader can
-   always get from one site to any other.
+   The foot of every page: an ink rule, then the site links — the running
+   head's links, the current one marked with aria-current="page" — in the
+   left column, and a line on how the page was made in the right.
 
      <footer class="colophon">
        <nav class="site-links" aria-label="Felipe E. Harker">
          <span class="site-links-owner">Felipe E. Harker</span>
-         <a href="/" aria-current="page">Portfolio</a>
-         <a href="https://academic.felipeharker.org/">Academic</a>
-         <a href="https://birds.felipeharker.org/">Birding</a>
-         <a href="https://resume.felipeharker.org/">Resume</a>
+         <a href="https://felipeharker.org/">Portfolio</a>
+         <a href="https://birds.felipeharker.org/">Ornithology Report</a>
+         <a href="/" aria-current="page">Dove Habitat</a>
        </nav>
        <p>…</p>
      </footer>

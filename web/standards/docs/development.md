@@ -162,9 +162,8 @@ comment says why a rule exists, not what CSS it contains.
 
 ```html
 <body>
-<header class="runhead">…owner, then every site in the family…</header>
+<header class="runhead">…owner, then Portfolio and the section's pages…</header>
 <article class="doc">
-  <a class="backlink" href="…">&larr; …</a>     <!-- interior pages only -->
   <header class="masthead">…</header>
   <section class="section" id="sec-…">…</section>
   <footer class="colophon">…site links, then one line…</footer>
@@ -198,9 +197,10 @@ it.
   `https://birds.felipeharker.org/`, `https://resume.felipeharker.org/`,
   `https://felipeharker.org/standards/` — and open in the same tab. The
   one exception is a portfolio tile: its links open the project in a new
-  tab, with `target="_blank" rel="noopener noreferrer"`. A project site
-  outside the family, like `https://dove.felipeharker.org/`, links
-  only the portfolio from its running head and colophon, in the same tab.
+  tab, with `target="_blank" rel="noopener noreferrer"`. A running head
+  and its colophon link Portfolio and the pages of their section, like
+  `https://dove.felipeharker.org/` and the birding report from each other
+  ([components.md](components.md), "Running head"), in the same tab.
 - **To anyone else's site**, links are absolute and open in a new tab, always
   with `target="_blank" rel="noopener noreferrer"`. In the birding app,
   spread `externalLinkProps(href)` from `siteConfig.ts`, which keeps the

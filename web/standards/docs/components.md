@@ -361,22 +361,30 @@ across. Every tile is the same size in all three.
 ## Running head
 
 The line across the top of every page, before its `<article>`: the owner's
-name in the left column, and a link to every site in felipeharker.org's
-family from the middle — the same links as the colophon, in the same order,
-so a reader can move between the sites from either end of a page. This is
-the portfolio's; on another site, its own link is `/` with
-`aria-current="page"`, and the owner's name and the Portfolio link are
-absolute, `https://felipeharker.org/`. Every link in it opens in the same
-tab.
+name in the left column, linking to the portfolio, and from the middle
+**Portfolio, then the pages of the section the page belongs to** — the
+section of the portfolio's running head that lists it, in the order below.
+The page the reader is on, or the part of a site it sits in, is
+bracketed. Every page in a section carries the same links, the colophon
+repeats them, and every link opens in the same tab.
+
+| Section | Every page's running head and site links |
+|---|---|
+| Academic | Portfolio · Academic |
+| Professional | Portfolio · Alexandria Phoenix · Parametric Studies |
+| Birding | Portfolio · Ornithology Report · Dove Habitat |
+| Resume | Portfolio · Resume |
+| The standards | Portfolio · Standards |
+
+A dove habitat page, say:
 
 ```html
 <header class="runhead">
-  <a class="runhead-owner" href="/">Felipe E. Harker</a>
+  <a class="runhead-owner" href="https://felipeharker.org/">Felipe E. Harker</a>
   <nav class="runhead-links" aria-label="Site">
-    <a href="/" aria-current="page">Portfolio</a>
-    <a href="https://academic.felipeharker.org/">Academic</a>
-    <a href="https://birds.felipeharker.org/">Birding</a>
-    <a href="https://resume.felipeharker.org/">Resume</a>
+    <a href="https://felipeharker.org/">Portfolio</a>
+    <a href="https://birds.felipeharker.org/">Ornithology Report</a>
+    <a href="/" aria-current="page">Dove Habitat</a>
   </nav>
 </header>
 ```
@@ -384,25 +392,28 @@ tab.
 | Class | What it is |
 |---|---|
 | `.runhead` | The `<header>` of the page, outside its `<article>`, in the same frame as `.doc` and laid on the grid. |
-| `.runhead-owner` | The owner's name, linking to the front page, in the left column. |
-| `.runhead-links` | The `<nav>` of every site in the family, in the right column. The link to the site the reader is in carries `aria-current="page"` and is bracketed. |
+| `.runhead-owner` | The owner's name, linking to the portfolio, in the left column. |
+| `.runhead-links` | The `<nav>` of Portfolio and the section's pages, in the right column. The one the reader is in carries `aria-current="page"` and is bracketed. |
 
-`tools/check.mjs`, in every repository, fails if a page's running head misses
-a site.
+A site's link to its own front page is `/`; the others are absolute. A page
+within a site — an academic project, a study, a checklist — keeps its site's
+links, with its site's link bracketed; it has no back link, because the
+running head is the way up. `tools/check.mjs`, in every repository, fails if
+a page's running head or site links are not its section's, in order.
 
 ### Menus in the running head
 
 The portfolio's running head is the one with menus: Portfolio, then
 Academic, Professional and Birding, each a menu of the projects under it,
-then Resume. Academic's and Birding's first entries are their sites' front
-pages, so the running head still links every site in the family. Every
-other page has the plain running head above.
+then Resume. A menu lists the projects alone — Academic's has no entry for
+the academic front page, which every academic page's running head links —
+and together the menus reach every site in the family. Every other page has
+the plain running head above.
 
 ```html
 <details class="runhead-menu" name="runhead-menu">
   <summary>Academic</summary>
   <ul class="runhead-menu-list">
-    <li><a href="https://academic.felipeharker.org/">Academic Projects</a></li>
     <li><a href="https://academic.felipeharker.org/projects/living-outside-the-box.html">Living Outside the Box</a></li>
     …
   </ul>
@@ -426,37 +437,38 @@ tab, like every link in the running head.
 
 | Class | What it is |
 |---|---|
-| `.backlink` | Above the masthead of an interior page, in small caps: the way up to the page that lists it. Its text names that page. |
+| `.backlink` | Above the masthead, in small caps: a way up to the page that lists this one. Not used on the family's pages, whose running head names their section and is the way up; kept for a page outside the sections. |
 
 ## Colophon
 
-The foot of every page: the site links — every site in the family, so a
-reader can always get from one to any other — then a line on how the page was
-made. It is the last thing inside `.doc`. On a site other than
-felipeharker.org, the standards link is absolute:
-`https://felipeharker.org/standards/`.
+The foot of every page: the site links — the same links as the running
+head, in the same order, so a reader can move on from either end of a page —
+then a line on how the page was made. It is the last thing inside `.doc`. On
+a site other than felipeharker.org, the standards link is absolute:
+`https://felipeharker.org/standards/`. The portfolio's own site links, having
+no section, are every site in the family, in the order of `FAMILY` in
+[`tools/sites.mjs`](../../../tools/sites.mjs).
 
 ```html
 <footer class="colophon">
   <nav class="site-links" aria-label="Felipe E. Harker">
     <span class="site-links-owner">Felipe E. Harker</span>
-    <a href="/" aria-current="page">Portfolio</a>
-    <a href="https://academic.felipeharker.org/">Academic</a>
-    <a href="https://birds.felipeharker.org/">Birding</a>
-    <a href="https://resume.felipeharker.org/">Resume</a>
+    <a href="https://felipeharker.org/">Portfolio</a>
+    <a href="https://birds.felipeharker.org/">Ornithology Report</a>
+    <a href="/" aria-current="page">Dove Habitat</a>
   </nav>
   <p>Set in Inter or Source Serif 4, with IBM Plex Mono. Static HTML; no framework.
-     Built to the <a href="/standards/">Hark web standards</a>.</p>
+     Built to the <a href="https://felipeharker.org/standards/">Hark web standards</a>.</p>
 </footer>
 ```
 
 | Class | What it is |
 |---|---|
 | `.colophon` | The footer block, laid on the grid: an ink rule, then the site links on the left and small grey lines on the right. |
-| `.site-links` | The row of links to every site in the family, in small caps, in the order of `FAMILY` in [`tools/sites.mjs`](../../../tools/sites.mjs). |
+| `.site-links` | The row of the running head's links, in small caps. |
 | `.site-links-owner` | The name that leads the row. |
 
-The link to the site the reader is in carries `aria-current="page"` and is
-set in ink; the rest are grey. `tools/check.mjs`, in every repository, fails
-if a page's site links miss a site, or if the page does not link the
+The link the reader is in carries `aria-current="page"` and is set in ink;
+the rest are grey. `tools/check.mjs`, in every repository, fails if a page's
+site links are not its running head's, or if the page does not link the
 standards.

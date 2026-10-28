@@ -7,13 +7,17 @@
  *   path       where it is served, always with a trailing slash
  *   dir        the folder published at that path, relative to the repository
  *   kind       'static' — the folder is the site, as it is
+ *   nav        the links its running head and site links carry, in order —
+ *              Portfolio, then its section's pages — `current` on its own.
+ *              The portfolio has none: its running head is its menus, and
+ *              its site links are FAMILY.
  *
- * FAMILY is every site in the site links at the foot of every page, in the
- * order they appear (see web/standards/docs/components.md, "Colophon"). The
- * portfolio is served from here; the others are their own sites, each built
- * from its own repository and linked by its absolute address. The same list
- * is in tools/site.mjs in hark_academic, hark_birding and hark_resume; change
- * it in all four at once.
+ * FAMILY is every site in the portfolio's site links, in the order they
+ * appear, and every site its running head's menus reach. The portfolio is
+ * served from here; the others are their own sites, each built from its own
+ * repository and linked by its absolute address. Every other page carries
+ * its own section's links instead (web/standards/docs/components.md,
+ * "Running head"), listed as NAV in that repository's tools/site.mjs.
  */
 
 import { existsSync, statSync } from 'node:fs';
@@ -23,7 +27,10 @@ export const DOMAIN = 'https://felipeharker.org';
 
 export const SITES = [
   { name: 'Portfolio', path: '/', dir: 'web/portfolio/site', kind: 'static' },
-  { name: 'Standards', path: '/standards/', dir: 'web/standards/site', kind: 'static' },
+  {
+    name: 'Standards', path: '/standards/', dir: 'web/standards/site', kind: 'static',
+    nav: [{ name: 'Portfolio', url: '/' }, { name: 'Standards', url: '/standards/', current: true }],
+  },
 ];
 
 export const FAMILY = [

@@ -198,12 +198,15 @@ flowchart LR
 
 ## How a reader moves around
 
-Every page on every site opens with a running head and ends with a colophon,
-each carrying the same site links, so any site is one click from any other. Links between the sites are absolute and stay in the
-same tab, except the portfolio's tiles, which open each project in a new
-tab; links to anyone else open a new one. Dove Habitat and Alexandria
-Phoenix, project sites, are reached from their tiles, and their running
-heads and colophons lead home to the portfolio alone. The portfolio's own running head is the one with menus:
+Every page opens with a running head and ends with a colophon, each
+carrying the same links: Portfolio, then the pages of the page's section of
+the portfolio — Portfolio · Academic; Portfolio · Alexandria Phoenix ·
+Parametric Studies; Portfolio · Ornithology Report · Dove Habitat;
+Portfolio · Resume; Portfolio · Standards — with the one the reader is in
+bracketed. A page within a site keeps its site's links and has no back
+link. Links between the sites are absolute and stay in the same tab, except
+the portfolio's tiles, which open each project in a new tab; links to anyone
+else open a new one. The portfolio's own running head is the one with menus:
 Academic, Professional and Birding open onto every project under them, in
 the same tab.
 
@@ -220,18 +223,17 @@ flowchart TB
   home -- "a tile per project" --> proj
   home -- "birding report tile" --> birds
   home -- "Dove Habitat tile" --> dove["dove.felipeharker.org"]
-  dove -- "running head and colophon" --> home
   home -- "Documentation and Parametric Studies tiles" --> alex["alexandria.felipeharker.org"]
-  alex -- "running head and colophon" --> home
   home -- "Elsewhere" --> resume
   home -- "running head menus" --> proj & birds & dove & alex
   acad --> proj
-  proj -- "← Academic Projects" --> acad
+  proj -- "running head" --> acad
   birds --> check
-  check -- "← location index" --> birds
+  check -- "running head" --> birds
+  birds <-- "running heads" --> dove
 
-  footer["running head and colophon of every page:<br/>Portfolio · Academic · Birding · Resume<br/>and the Hark web standards"]
-  footer -.-> home & acad & birds & resume & std
+  footer["running head and colophon of every page:<br/>Portfolio, then its section's pages<br/>and the Hark web standards"]
+  footer -.-> home & std
 ```
 
 ## Outside the repositories
@@ -244,10 +246,10 @@ flowchart TB
 | `hark_portfolio_archive`, `hark_resume_archive`, `hark_birding_archive` | GitHub, archived | The three repositories the 2026-10-19 monorepo replaced; read-only, with their histories. None of the current repositories was made from them |
 | `hark_system_archive`, `hark_references_archive`, `hark_parametric_*_archive` | GitHub, archived | The old CODEBASE standards, an unused references repository, and the old parametric repositories |
 | `CODEBASE\parametric` | the private `parametric_*` repositories | The Rhino and Grasshopper work and its own standards; nothing here depends on it |
-| alexandria.felipeharker.org | Render static site `alexandria-phoenix`, in the Render project Parametric, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from two tiles, Parametric Studies (`/studies/`) and the Alexandria Phoenix Documentation (`/`), each in a new tab, and the running head from its Professional menu; its own running head and colophon lead home to the portfolio. Nothing here builds or changes it |
+| alexandria.felipeharker.org | Render static site `alexandria-phoenix`, in the Render project Parametric, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from two tiles, Parametric Studies (`/studies/`) and the Alexandria Phoenix Documentation (`/`), each in a new tab, and the running head from its Professional menu; its own running head and colophon link Portfolio, the documentation and the studies. Nothing here builds or changes it |
 | parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living`, in the Render project Archive | Its own site, outside the family and its standard. Still live, but no longer linked from here (2026-10-27); nothing here builds or changes it |
 | parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference`, in the Render project Archive | The same: still live, outside the family on its own copy of the standard, and no longer linked from here (2026-10-27) |
 | The GitHub wiki | github.com/felipeharker/hark_web/wiki | A copy of `wiki/`, replaced by `.github/workflows/wiki.yml` on every push to `main` that changes it |
 | Fonts | Google Fonts, by a `<link>` on every page (the birding app's in its `layout.tsx`) | Inter and IBM Plex Mono; Source Serif 4, loaded by `hark.js` for the serif design |
-| dove.felipeharker.org | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link the portfolio alone |
+| dove.felipeharker.org | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link Portfolio, the Ornithology Report and itself |
 | Photos and map tiles | Macaulay Library CDN, Carto | Loaded by the birding report in the reader's browser |

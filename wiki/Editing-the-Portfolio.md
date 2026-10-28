@@ -59,9 +59,11 @@ The portfolio's running head, alone of every page's, has menus: Academic,
 Professional and Birding each open onto the projects under them
 (`<details class="runhead-menu">`, in `web/standards/docs/components.md`).
 A new tile gets an entry in its menu too; a new heading of work is another
-`<details>`, with the same `name`. Academic's and Birding's first entries
-are their sites' front pages, which `tools/check.mjs` needs: the running
-head must still link every site in the family.
+`<details>`, with the same `name`. A menu lists projects alone (Academic's
+has no entry for the academic front page), and `tools/check.mjs` needs the
+menus together to reach every site in the family. A new project's own
+pages get the running head of its section: Portfolio, then that menu's
+pages (`web/standards/docs/components.md`, "Running head").
 
 ## The design switch
 

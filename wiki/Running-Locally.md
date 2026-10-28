@@ -47,7 +47,7 @@ node tools/check.mjs
 ```
 
 It reports any page that does not link the shared stylesheet or script,
-or whose running head or colophon misses a site in the family, any internal
+or whose running head or colophon is not its section's links, any internal
 link or image that does not resolve, any file in a `site/` folder that should not be
 published, any token or class the standards docs do not cover, and any link
 in `wiki/` that leads nowhere. It changes nothing. Each of the other sites

@@ -6,8 +6,9 @@
  *   node tools/check.mjs
  *
  * 1. Pages      every page links the one shared stylesheet and the one
- *               shared script, carries links to every site in the family in
- *               its running head and its colophon, and links the standards.
+ *               shared script, carries its section's links in its running
+ *               head and its colophon (the portfolio: every site in the
+ *               family), and links the standards.
  * 2. Links      every internal link, image and stylesheet resolves to a file,
  *               and every same-page #anchor to an id.
  * 3. Published  a static site/ folder holds only web files — no PDFs, notes,
@@ -40,6 +41,12 @@ const CRAWLER_FILES = new Set(['robots.txt', 'sitemap.xml']);
 const problems = [];
 const problem = (where, what) => problems.push(`${where}: ${what}`);
 const rel = (p) => relative(ROOT, p).split(sep).join('/');
+
+// A nav's links as "Name href", the current one starred, to compare with a site's nav.
+const navLinks = (html) => [...html.matchAll(/<a\s([^>]*)>([^<]*)<\/a>/g)]
+  .map(([, attrs, text]) => `${text.trim()} ${attrs.match(/href="([^"]*)"/)?.[1]}${attrs.includes('aria-current') ? ' *' : ''}`)
+  .join(', ');
+const navText = (links) => links.map((l) => `${l.name} ${l.url}${l.current ? ' *' : ''}`).join(', ');
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -82,9 +89,16 @@ for (const site of SITES) {
     const head = html.match(/<nav class="runhead-links"[\s\S]*?<\/nav>/);
     if (!clientRendered) {
       if (!nav) problem(where, 'has no site links');
-      else for (const s of FAMILY) if (!nav[0].includes(`href="${siteLinkHref(s)}"`)) problem(where, `site links miss ${s.name} (${siteLinkHref(s)})`);
       if (!head) problem(where, 'has no running head');
-      else for (const s of FAMILY) if (!head[0].includes(`href="${siteLinkHref(s)}"`)) problem(where, `running head misses ${s.name} (${siteLinkHref(s)})`);
+      if (site.nav) {
+        const want = navText(site.nav);
+        if (nav && navLinks(nav[0]) !== want) problem(where, `site links are not ${want}`);
+        if (head && navLinks(head[0]) !== want) problem(where, `running head is not ${want}`);
+      } else {
+        if (nav) for (const s of FAMILY) if (!nav[0].includes(`href="${siteLinkHref(s)}"`)) problem(where, `site links miss ${s.name} (${siteLinkHref(s)})`);
+        // The menus reach every site, if not always its front page: Academic lists its projects alone.
+        if (head) for (const s of FAMILY) if (!head[0].includes(`href="${siteLinkHref(s)}`)) problem(where, `running head reaches nothing on ${s.name} (${siteLinkHref(s)})`);
+      }
       if (!html.includes('href="/standards/"') && site.path !== '/standards/') problem(where, 'does not link /standards/');
     }
 
