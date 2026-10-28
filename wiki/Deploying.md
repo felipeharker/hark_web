@@ -39,12 +39,12 @@ deploys.
 
 | Service | Repository | Build command | Publish directory | Address |
 |---|---|---|---|---|
-| `hark-academic` | `felipeharker/hark_academic` | none | `site` | https://hark-academic.onrender.com/ |
-| `hark-birding` | `felipeharker/hark_birding` | `cd web && npm ci && npm run build` (`NODE_VERSION=22`) | `web/out` | https://hark-birding.onrender.com/ |
-| `hark-resume` | `felipeharker/hark_resume` | none | `site` | https://hark-resume.onrender.com/ |
+| `hark-academic` | `felipeharker/hark_academic` | none | `site` | https://academic.felipeharker.org/ |
+| `hark-birding` | `felipeharker/hark_birding` | `cd web && npm ci && npm run build` (`NODE_VERSION=22`) | `web/out` | https://birds.felipeharker.org/ |
+| `hark-resume` | `felipeharker/hark_resume` | none | `site` | https://resume.felipeharker.org/ |
 
-All three are in the Render project **Hark**, with auto-deploy on and their
-free `onrender.com` addresses; each repository's `render.yaml` records its
+All three are in the Render project **Hark**, with auto-deploy on; each is
+served at its custom domain, and each repository's `render.yaml` records its
 settings. The birding build fetches the shared stylesheet from
 felipeharker.org, so a change to the standard reaches the report on its next
 deploy: push to `hark_birding`, or deploy it by hand on Render.
@@ -61,51 +61,44 @@ The second line shows exactly what will be published.
 ## Domains and the old addresses
 
 - **felipeharker.org** and **www** are the `hark-site` service's custom domains.
-  DNS is at Porkbun: the apex is an A record to Render's `216.24.57.1`, `www`
-  is a CNAME to `hark-site.onrender.com`, and `birds` a CNAME to
-  `hark-ornithology.onrender.com`, the birding redirect service. `www`
-  redirects to felipeharker.org.
+  DNS is at Porkbun: the apex is an A record to Render's `216.24.57.1`, and
+  `www` is a CNAME to `hark-site.onrender.com`. `www` redirects to
+  felipeharker.org.
+- **Every other site is a subdomain**, the custom domain of its own service:
+  academic.felipeharker.org (`hark-academic`), birds.felipeharker.org
+  (`hark-birding`), resume.felipeharker.org (`hark-resume`),
+  dove.felipeharker.org (`hark-dove-habitat`) and alexandria.felipeharker.org
+  (`alexandria-phoenix`). Each is a CNAME at Porkbun to the service's
+  `onrender.com` address, added in the service's settings under Custom
+  Domains, where Render issues its certificate. The `onrender.com` addresses
+  still answer, but nothing links them. The plan includes two custom
+  domains (felipeharker.org, with its www, and one more); each past that is
+  $0.25 a month.
 - **felipeharker.org/academic/, /birds/ and /resume/** held those sites until
   2026-10-20. `hark-site`'s Redirects/Rewrites rules send each of them, path
   and all, to the same path on the new site: `/birds/checklist/S123/` →
-  `https://hark-birding.onrender.com/checklist/S123/`. The rules without a
+  `https://birds.felipeharker.org/checklist/S123/`. The rules without a
   trailing slash catch `/academic`, `/birds` and `/resume` themselves.
-- **resume.felipeharker.org** and **academic.felipeharker.org** are Porkbun
-  URL forwarding, not Render: permanent (301) redirects, over HTTP and HTTPS,
-  to `https://hark-resume.onrender.com/` and
-  `https://hark-academic.onrender.com/`, with the path not carried over and
-  no wildcard. Porkbun keeps their DNS records (to `uixie.porkbun.com`) and
-  certificates. Change them under the domain's URL Forwarding in Porkbun;
-  adding a forward for a host that already has one replaces it. Porkbun asks
-  before deleting one with a browser dialog, which the Claude browser pane
-  dismisses, so a delete there has to be clicked by hand.
-- **birds.felipeharker.org** used to be the birding report's own site. The
-  `hark-birding-redirect` service keeps that domain only to redirect it: its
-  Redirects/Rewrites rule sends Source `/*` to Destination
-  `https://hark-birding.onrender.com/*`.
-- **resume-site-0rfl.onrender.com**, the resume's first address, still works
-  for old links: it redirects the same way to
-  `https://hark-resume.onrender.com/*` from the `hark-resume-redirect`
-  service.
-- Render serves a file that exists before it applies a redirect rule, and
-  refuses to publish an empty folder. So each old service's build command
-  writes one page, `empty/index.html`, that forwards its homepage to the old
-  path on felipeharker.org (which redirects on to the new site), and
-  publishes `empty`; every other path falls through to the
-  redirect rule.
-- The two redirect services were built from `hark_birding` and `hark_resume`,
-  now archived as `hark_birding_archive` and `hark_resume_archive`. They
-  never need to build again; the new `hark_birding` and `hark_resume` are
-  different repositories.
+- **Porkbun URL forwarding** sent resume.felipeharker.org and
+  academic.felipeharker.org to the sites until 2026-10-28; now that they are
+  the sites' own domains, no forward is left but an old one for the apex,
+  which its A record overrides. Porkbun asks before deleting a forward with a
+  browser dialog, which the Claude browser pane dismisses, so a delete there
+  has to be clicked by hand.
+- **The first addresses are gone.** hark-ornithology.onrender.com (the
+  birding report's first site), resume-site-0rfl.onrender.com (the resume's)
+  and dove-habitat.onrender.com (Dove Habitat's until 2026-10-20) were kept
+  by three redirect services, `hark-birding-redirect`,
+  `hark-resume-redirect` and `dove-habitat`, deleted on 2026-10-28; old
+  links to them no longer work.
 
-- **dove-habitat.onrender.com** was Dove Habitat's address until
-  2026-10-20. The `dove-habitat` service, from `dove_habitat_archive`, keeps
-  it only to redirect: Source `/*` to Destination
-  `https://hark-dove-habitat.onrender.com/*`, with the same `empty/` build.
-
-The Render project **Hark** holds `hark-site`, `hark-academic`,
-`hark-birding`, `hark-resume`, `hark-dove-habitat`, the three redirect
-services and `anna-grades`, a separate small site.
+The Render project **Hark** holds `hark-site`, `hark-site-staging` (this
+repository's `staging` branch), `hark-academic`, `hark-birding`,
+`hark-resume`, `hark-dove-habitat`, and two separate small sites,
+`anna-grades` and `ren-fest-planning`. **Parametric** holds
+`alexandria-phoenix`; **Archive** holds `parametric-living` and
+`parametric-reference`, live but unlinked; **Dev Lab** holds the `dev-*`
+game sites. No service is left ungrouped.
 
 The move to four sites is tracked in
 [`planning/roadmap.md`](../planning/roadmap.md).

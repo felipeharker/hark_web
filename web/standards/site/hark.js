@@ -45,11 +45,11 @@
     : 'https://felipeharker.org';
 
   const SITES = [
-    'https://hark-academic.onrender.com',
-    'https://hark-birding.onrender.com',
-    'https://hark-resume.onrender.com',
-    'https://hark-dove-habitat.onrender.com',
-    'https://alexandria-phoenix.onrender.com',
+    'https://academic.felipeharker.org',
+    'https://birds.felipeharker.org',
+    'https://resume.felipeharker.org',
+    'https://dove.felipeharker.org',
+    'https://alexandria.felipeharker.org',
   ];
 
   const DESIGNS = ['sans', 'serif'];

@@ -4,6 +4,41 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-28 — Every site on a subdomain of felipeharker.org
+
+**Each site the portfolio links is served at a subdomain of
+felipeharker.org, as its Render service's custom domain:**
+academic.felipeharker.org, birds.felipeharker.org, resume.felipeharker.org,
+dove.felipeharker.org and alexandria.felipeharker.org. Each is a Porkbun
+CNAME to the service's `onrender.com` address, which still answers but is
+linked from nowhere. Every link between the sites, `FAMILY`, `hark.js`'s
+list of sites and `hark-site`'s redirects for the old paths use them.
+birds.felipeharker.org moves from `hark-birding-redirect` to `hark-birding`
+itself, and Porkbun's URL forwards for academic and resume are gone. *Why:*
+the owner's call — every address on the site's own domain, done properly
+rather than by forwarding. *The cost:* the Hobby plan includes two custom
+domains; the four past them are $0.25 a month each, $1.00 a month.
+*Replaces:* "Links between the sites are absolute and open in the same tab"
+(2026-10-20) as to the addresses (they still open in the same tab), and the
+Porkbun forwarding in "The old addresses redirect, path and all"
+(2026-10-20).
+
+**Parametric Living and Parametric Reference move to a Render project of
+their own, Archive,** out of Parametric. Both stay live. *Why:* the owner's
+call — neither is on the site.
+
+**Every Render service is in a project:** `alexandria-phoenix` in
+Parametric, `hark-site-staging` in Hark. *Why:* the owner's call.
+
+**The three redirect services are deleted:** `hark-birding-redirect`
+(hark-ornithology.onrender.com), `hark-resume-redirect`
+(resume-site-0rfl.onrender.com) and `dove-habitat`
+(dove-habitat.onrender.com). Old links to those addresses no longer work;
+felipeharker.org/academic/, /birds/ and /resume/ still redirect, from
+`hark-site`. *Why:* the owner's call, to clear out services kept only for
+old links. *Replaces:* the redirect services in "The old addresses
+redirect, path and all" (2026-10-20).
+
 ## 2026-10-28 — Parametric Studies beside the Alexandria Phoenix Documentation
 
 **The professional row has two tiles: Parametric Studies, then the

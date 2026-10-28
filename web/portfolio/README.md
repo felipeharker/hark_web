@@ -18,7 +18,7 @@ web/portfolio/
 
 Every tile shows a cover taken from its project (`planning/decisions.md`).
 Each academic tile shows its project's cover from the academic site
-(`https://hark-academic.onrender.com/assets/covers/<slug>.jpg`), so there is
+(`https://academic.felipeharker.org/assets/covers/<slug>.jpg`), so there is
 one file per cover. The birding report's is one of its own photographs,
 linked from the Macaulay Library as the report links them. Dove Habitat's
 is a drawing from its site, Alexandria Phoenix's its 33 component icons,
@@ -31,9 +31,9 @@ drawn large, and Parametric Studies' the Voronoi study's own cover; all are
 |---|---|
 | Running head | Portfolio; Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
 | Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" — the one place the design is chosen |
-| Work | three rows of tiles, each opening its project in a new tab: Parametric Studies (https://alexandria-phoenix.onrender.com/studies/) and the Alexandria Phoenix Documentation (https://alexandria-phoenix.onrender.com/); the academic projects, one tile each linking its page on https://hark-academic.onrender.com/; then the bird projects, the birding report (https://hark-birding.onrender.com/) and Dove Habitat (https://hark-dove-habitat.onrender.com/). Each with a cover from its project |
+| Work | three rows of tiles, each opening its project in a new tab: Parametric Studies (https://alexandria.felipeharker.org/studies/) and the Alexandria Phoenix Documentation (https://alexandria.felipeharker.org/); the academic projects, one tile each linking its page on https://academic.felipeharker.org/; then the bird projects, the birding report (https://birds.felipeharker.org/) and Dove Habitat (https://dove.felipeharker.org/). Each with a cover from its project |
 | About | the biography |
-| Elsewhere | the resume (https://hark-resume.onrender.com/), GitHub, LinkedIn, email |
+| Elsewhere | the resume (https://resume.felipeharker.org/), GitHub, LinkedIn, email |
 
 Parametric Living and Parametric Reference are no longer linked from the
 page, by decision; their sites stay up — see `planning/decisions.md`.

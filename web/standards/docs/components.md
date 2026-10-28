@@ -374,9 +374,9 @@ tab.
   <a class="runhead-owner" href="/">Felipe E. Harker</a>
   <nav class="runhead-links" aria-label="Site">
     <a href="/" aria-current="page">Portfolio</a>
-    <a href="https://hark-academic.onrender.com/">Academic</a>
-    <a href="https://hark-birding.onrender.com/">Birding</a>
-    <a href="https://hark-resume.onrender.com/">Resume</a>
+    <a href="https://academic.felipeharker.org/">Academic</a>
+    <a href="https://birds.felipeharker.org/">Birding</a>
+    <a href="https://resume.felipeharker.org/">Resume</a>
   </nav>
 </header>
 ```
@@ -402,8 +402,8 @@ other page has the plain running head above.
 <details class="runhead-menu" name="runhead-menu">
   <summary>Academic</summary>
   <ul class="runhead-menu-list">
-    <li><a href="https://hark-academic.onrender.com/">Academic Projects</a></li>
-    <li><a href="https://hark-academic.onrender.com/projects/living-outside-the-box.html">Living Outside the Box</a></li>
+    <li><a href="https://academic.felipeharker.org/">Academic Projects</a></li>
+    <li><a href="https://academic.felipeharker.org/projects/living-outside-the-box.html">Living Outside the Box</a></li>
     …
   </ul>
 </details>
@@ -441,9 +441,9 @@ felipeharker.org, the standards link is absolute:
   <nav class="site-links" aria-label="Felipe E. Harker">
     <span class="site-links-owner">Felipe E. Harker</span>
     <a href="/" aria-current="page">Portfolio</a>
-    <a href="https://hark-academic.onrender.com/">Academic</a>
-    <a href="https://hark-birding.onrender.com/">Birding</a>
-    <a href="https://hark-resume.onrender.com/">Resume</a>
+    <a href="https://academic.felipeharker.org/">Academic</a>
+    <a href="https://birds.felipeharker.org/">Birding</a>
+    <a href="https://resume.felipeharker.org/">Resume</a>
   </nav>
   <p>Set in Inter or Source Serif 4, with IBM Plex Mono. Static HTML; no framework.
      Built to the <a href="/standards/">Hark web standards</a>.</p>
