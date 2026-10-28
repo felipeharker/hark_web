@@ -3,9 +3,10 @@
 # projects, the birding report and the resume are their own services, each
 # recorded in its own repository's render.yaml.
 #
-# It records the dashboard settings. Render reads this file only if it is
-# synced as a Blueprint; until then the dashboard rules, and the two must
-# match. See wiki/Deploying.md.
+# It is synced as a Render Blueprint (named after this repository): a push
+# that changes it changes the service, and a setting changed in the dashboard
+# and not here is overwritten at the next sync.
+# See wiki/Deploying.md.
 services:
   - type: web
     name: hark-site
@@ -23,7 +24,7 @@ services:
       - felipeharker.org
       - www.felipeharker.org
     # The paths that moved to their own sites in 2026-10, sent there with the
-    # rest of the path (Redirects/Rewrites in the dashboard, in this order).
+    # rest of the path, in this order.
     routes:
       - type: redirect
         source: /academic

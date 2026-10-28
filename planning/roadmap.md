@@ -16,8 +16,9 @@ when it is done, with the date.
 - [x] Share cards, canonical links, `robots.txt` and `sitemap.xml` on every
       site (2026-10-28)
 - [x] `hark-site-staging` deleted; the `staging` branch kept (2026-10-28)
-- [ ] Every `render.yaml` synced as a Blueprint, Auto-Deploy "After CI
-      Checks Pass"
+- [x] Every `render.yaml` synced as a Blueprint, named after its
+      repository, each service associated (not duplicated); Auto-Deploy
+      "After CI Checks Pass" (2026-10-28)
 - [ ] Porkbun: the old apex forward (felipeharker.org →
       portfolio.felipeharker.com) deleted by hand
 
