@@ -48,5 +48,7 @@ it on GitHub) and replaces every page on the wiki with these.
 - **Links** are relative paths, as anywhere in the repository.
   `node tools/check.mjs` fails on one that leads nowhere.
 - **The first time**, GitHub has no wiki to push to until its first page
-  exists: open Wiki on GitHub, create the first page, save it, then run the
-  Wiki workflow (Actions → Wiki → Run workflow). It replaces that page.
+  exists, and the workflow skips with a warning (it does not fail, so it
+  never holds back a deploy): open Wiki on GitHub, create the first page,
+  save it, then run the Wiki workflow (Actions → Wiki → Run workflow). It
+  replaces that page.
