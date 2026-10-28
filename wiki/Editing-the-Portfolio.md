@@ -24,10 +24,11 @@ links and Elsewhere stay in the same tab.
 ## Adding a tile
 
 The Work section is three rows, each its own `<ul class="work-list">`:
-the professional work (Alexandria Phoenix), the academic projects
-(three), then the bird projects (the birding report and Dove Habitat).
-Alexandria Phoenix is built elsewhere, from a private repository: its tile
-links its address and nothing more. Copy one `<li class="work">` block into its row. Every tile
+the professional work (Parametric Studies and the Alexandria Phoenix
+Documentation), the academic projects (three), then the bird projects (the
+birding report and Dove Habitat). Both professional tiles link pages on the
+Alexandria Phoenix site, which is built elsewhere, from a private
+repository: they link its addresses and nothing more. Copy one `<li class="work">` block into its row. Every tile
 carries the same parts in the same order — cover, title, hairline, summary,
 stack, kind, link — and a tile without one of them omits the element.
 

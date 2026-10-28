@@ -5,7 +5,17 @@ sites beside it. Why
 things are the way they are is in [decisions.md](decisions.md). Tick an item
 when it is done, with the date.
 
-## Now: Alexandria Phoenix on the portfolio (2026-10-27)
+## Now: Parametric Studies on the portfolio (2026-10-28)
+
+- [x] A Parametric Studies tile and Professional menu entry, left of and
+      above the Alexandria Phoenix tile, renamed Alexandria Phoenix
+      Documentation (2026-10-28)
+- [x] The studies page renamed from Testing and moved to `/studies/`, in
+      `alexandria_phoenix` (2026-10-28)
+- [ ] Deployed: `alexandria_phoenix` first, so the tile opens `/studies/`,
+      then this repository
+
+## Before: Alexandria Phoenix on the portfolio (2026-10-27)
 
 - [x] An Alexandria Phoenix tile and Professional menu entry in place of
       Parametric Living's and Parametric Reference's, whose sites stay up,

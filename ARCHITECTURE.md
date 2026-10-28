@@ -224,7 +224,7 @@ flowchart TB
   home -- "birding report tile" --> birds
   home -- "Dove Habitat tile" --> dove["hark-dove-habitat.onrender.com"]
   dove -- "running head and colophon" --> home
-  home -- "Alexandria Phoenix tile" --> alex["alexandria-phoenix.onrender.com"]
+  home -- "Documentation and Parametric Studies tiles" --> alex["alexandria-phoenix.onrender.com"]
   alex -- "running head and colophon" --> home
   home -- "Elsewhere" --> resume
   home -- "running head menus" --> proj & birds & dove & alex
@@ -250,7 +250,7 @@ flowchart TB
 | `hark_portfolio_archive`, `hark_resume_archive`, `hark_birding_archive` | GitHub, archived | The three repositories the 2026-10-19 monorepo replaced; read-only, with their histories. None of the current repositories was made from them |
 | `hark_system_archive`, `hark_references_archive`, `hark_parametric_*_archive` | GitHub, archived | The old CODEBASE standards, an unused references repository, and the old parametric repositories |
 | `CODEBASE\parametric` | the private `parametric_*` repositories | The Rhino and Grasshopper work and its own standards; nothing here depends on it |
-| alexandria-phoenix.onrender.com | Render static site, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from a tile, in a new tab, and the running head from its Professional menu; its own running head and colophon lead home to the portfolio. Nothing here builds or changes it |
+| alexandria-phoenix.onrender.com | Render static site, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from two tiles, Parametric Studies (`/studies/`) and the Alexandria Phoenix Documentation (`/`), each in a new tab, and the running head from its Professional menu; its own running head and colophon lead home to the portfolio. Nothing here builds or changes it |
 | parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living` | Its own site, outside the family and its standard. Still live, but no longer linked from here (2026-10-27); nothing here builds or changes it |
 | parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference` | The same: still live, outside the family on its own copy of the standard, and no longer linked from here (2026-10-27) |
 | The GitHub wiki | github.com/felipeharker/hark_web/wiki | A copy of `wiki/`, replaced by `.github/workflows/wiki.yml` on every push to `main` that changes it |

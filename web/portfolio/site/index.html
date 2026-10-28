@@ -22,10 +22,11 @@
      script is the standard's, /standards/hark.js.
      This is the front door to the other sites in felipeharker.org's family,
      each built in its own repository. The work is three rows of tiles, each
-     its own <ul class="work-list">: first the professional work, Alexandria
-     Phoenix, a site of its own (https://alexandria-phoenix.onrender.com/,
-     built from a private repository, so only the site is linked); then the
-     academic projects,
+     its own <ul class="work-list">: first the professional work, Parametric
+     Studies (https://alexandria-phoenix.onrender.com/studies/) and the
+     Alexandria Phoenix Documentation (https://alexandria-phoenix.onrender.com/),
+     both on one site of its own, built from a private repository, so only the
+     site is linked; then the academic projects,
      a tile each linking its page on https://hark-academic.onrender.com/;
      then the bird projects, the ornithology report and Dove Habitat, each a
      site of its own. The resume is in Elsewhere.
@@ -72,9 +73,10 @@
      so there is one file per cover and the two pages cannot drift apart. Its
      summary and stack match its tile on the academic site. The birding
      report's is one of its own photographs, from the Macaulay Library, as the
-     report itself shows them. Dove Habitat's is a drawing from its site and
-     Alexandria Phoenix's its component icons, drawn large; both are made 3:2
-     and kept here in assets/covers/.
+     report itself shows them. Dove Habitat's is a drawing from its site,
+     Alexandria Phoenix's its component icons, drawn large, and Parametric
+     Studies' the Voronoi study's own cover; all are made 3:2 and kept here
+     in assets/covers/.
      ====================================================================== -->
 
 <!-- Running head -------------------------------------------------------
@@ -98,7 +100,8 @@
     <details class="runhead-menu" name="runhead-menu">
       <summary>Professional</summary>
       <ul class="runhead-menu-list">
-        <li><a href="https://alexandria-phoenix.onrender.com/">Alexandria Phoenix</a></li>
+        <li><a href="https://alexandria-phoenix.onrender.com/studies/">Parametric Studies</a></li>
+        <li><a href="https://alexandria-phoenix.onrender.com/">Alexandria Phoenix Documentation</a></li>
       </ul>
     </details>
     <details class="runhead-menu" name="runhead-menu">
@@ -140,17 +143,40 @@
 <section class="section" id="sec-work">
 <h2 class="section-heading">Work</h2>
 
-<!-- Professional work: one row, above the academic projects. -->
+<!-- Professional work: one row of two, above the academic projects. -->
 <ul class="work-list">
 
-  <!-- Alexandria Phoenix ------------------------------------------------ -->
+  <!-- Parametric Studies ------------------------------------------------ -->
+  <li class="work">
+    <a class="work-cover" href="https://alexandria-phoenix.onrender.com/studies/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
+      <img src="assets/covers/parametric-studies.jpg" alt="">
+    </a>
+    <div class="work-facts">
+      <h3 class="work-title">
+        <a href="https://alexandria-phoenix.onrender.com/studies/" target="_blank" rel="noopener noreferrer">Parametric Studies</a>
+      </h3>
+      <hr class="rule-soft">
+      <p class="work-summary">Design studies run with the Alexandria Phoenix components — Voronoi grids, attractor modifiers — each putting a set of components through every variation worth comparing, in one Grasshopper definition.</p>
+      <p class="work-stack">
+        <span>Rhino 8</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span>Grasshopper</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span>Alexandria Phoenix</span>
+      </p>
+      <p class="work-kind">Professional</p>
+      <a class="work-link" href="https://alexandria-phoenix.onrender.com/studies/" target="_blank" rel="noopener noreferrer">Project Page</a>
+    </div>
+  </li>
+
+  <!-- Alexandria Phoenix Documentation ---------------------------------- -->
   <li class="work">
     <a class="work-cover" href="https://alexandria-phoenix.onrender.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1">
       <img src="assets/covers/alexandria-phoenix.jpg" alt="">
     </a>
     <div class="work-facts">
       <h3 class="work-title">
-        <a href="https://alexandria-phoenix.onrender.com/" target="_blank" rel="noopener noreferrer">Alexandria Phoenix</a>
+        <a href="https://alexandria-phoenix.onrender.com/" target="_blank" rel="noopener noreferrer">Alexandria Phoenix Documentation</a>
       </h3>
       <hr class="rule-soft">
       <p class="work-summary">Grasshopper components for the logic every project repeats — grids, attractor fields, transforms, culls and fabrication — and a Rhino toolbar that sets up, dimensions and renders a model to one standard, built from plain Python scripts.</p>
