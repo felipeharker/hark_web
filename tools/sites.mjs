@@ -28,9 +28,9 @@ export const SITES = [
 
 export const FAMILY = [
   { name: 'Portfolio', url: 'https://felipeharker.org/', repo: 'hark_web' },
-  { name: 'Academic', url: 'https://hark-academic.onrender.com/', repo: 'hark_academic' },
-  { name: 'Birding', url: 'https://hark-birding.onrender.com/', repo: 'hark_birding' },
-  { name: 'Resume', url: 'https://hark-resume.onrender.com/', repo: 'hark_resume' },
+  { name: 'Academic', url: 'https://academic.felipeharker.org/', repo: 'hark_academic' },
+  { name: 'Birding', url: 'https://birds.felipeharker.org/', repo: 'hark_birding' },
+  { name: 'Resume', url: 'https://resume.felipeharker.org/', repo: 'hark_resume' },
 ];
 
 /** The href a site link carries: root-relative on felipeharker.org, absolute to the others. */

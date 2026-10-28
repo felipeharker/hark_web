@@ -25,19 +25,19 @@ services:
     routes:
       - type: redirect
         source: /academic
-        destination: https://hark-academic.onrender.com/
+        destination: https://academic.felipeharker.org/
       - type: redirect
         source: /academic/*
-        destination: https://hark-academic.onrender.com/*
+        destination: https://academic.felipeharker.org/*
       - type: redirect
         source: /birds
-        destination: https://hark-birding.onrender.com/
+        destination: https://birds.felipeharker.org/
       - type: redirect
         source: /birds/*
-        destination: https://hark-birding.onrender.com/*
+        destination: https://birds.felipeharker.org/*
       - type: redirect
         source: /resume
-        destination: https://hark-resume.onrender.com/
+        destination: https://resume.felipeharker.org/
       - type: redirect
         source: /resume/*
-        destination: https://hark-resume.onrender.com/*
+        destination: https://resume.felipeharker.org/*

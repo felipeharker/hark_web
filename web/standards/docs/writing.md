@@ -51,7 +51,7 @@ a copied line should come across clean.
 - **Link the words that name the place.** "my <a>CV</a>", never "click
   here".
 - **Links between the sites in the family open in the same tab** —
-  `https://hark-academic.onrender.com/`, `https://hark-birding.onrender.com/`.
+  `https://academic.felipeharker.org/`, `https://birds.felipeharker.org/`.
   They are one body of work; moving around it is navigation. The
   portfolio's tiles are the exception: each opens its project in a new
   tab, so the front page stays where the reader left it.

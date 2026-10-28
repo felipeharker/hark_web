@@ -5,7 +5,22 @@ sites beside it. Why
 things are the way they are is in [decisions.md](decisions.md). Tick an item
 when it is done, with the date.
 
-## Now: Parametric Studies on the portfolio (2026-10-28)
+## Now: every site on a subdomain of felipeharker.org (2026-10-28)
+
+- [x] Render custom domains: academic, birds (moved from
+      `hark-birding-redirect`), resume, dove, alexandria (2026-10-28)
+- [x] Porkbun: CNAMEs for all five; academic's and resume's URL forwards
+      removed (2026-10-28)
+- [x] Every link, `FAMILY`, `hark.js` and the docs use the subdomains, in all
+      six repositories (2026-10-28)
+- [x] `hark-site`'s redirects point at the subdomains; the three old
+      redirect services are deleted (2026-10-28)
+- [x] Parametric Living and Parametric Reference in the Render project
+      Archive, still live; `alexandria-phoenix` in Parametric and
+      `hark-site-staging` in Hark, so nothing is ungrouped (2026-10-28)
+- [ ] Deployed, every repository
+
+## Before: Parametric Studies on the portfolio (2026-10-28)
 
 - [x] A Parametric Studies tile and Professional menu entry, left of and
       above the Alexandria Phoenix tile, renamed Alexandria Phoenix

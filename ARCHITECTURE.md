@@ -38,18 +38,18 @@ flowchart LR
   standards -. "fetched at build" .-> birds
 
   web --> s1["Render 'hark-site'<br/>felipeharker.org"]
-  academic --> s2["Render 'hark-academic'<br/>hark-academic.onrender.com"]
-  birds --> s3["Render 'hark-birding'<br/>hark-birding.onrender.com"]
-  resume --> s4["Render 'hark-resume'<br/>hark-resume.onrender.com"]
+  academic --> s2["Render 'hark-academic'<br/>academic.felipeharker.org"]
+  birds --> s3["Render 'hark-birding'<br/>birds.felipeharker.org"]
+  resume --> s4["Render 'hark-resume'<br/>resume.felipeharker.org"]
 ```
 
 | Address | Repository, folder published | What it is |
 |---|---|---|
 | https://felipeharker.org/ | `hark_web`, `web/portfolio/site/` | The front page: a tile for each academic project and one for the birding report, About, Elsewhere |
 | https://felipeharker.org/standards/ | `hark_web`, `web/standards/site/` | The specimen page, and `/standards/hark.css` itself |
-| https://hark-academic.onrender.com/ | `hark_academic`, `site/` | Living Outside the Box, Dead Mall Fall, Collingsworth Marketplace — a page each |
-| https://hark-birding.onrender.com/ | `hark_birding`, `web/out/` (built) | The Harker Ornithology Report: map, locations, media, field notes, one page per checklist |
-| https://hark-resume.onrender.com/ | `hark_resume`, `site/` | The resume, printable |
+| https://academic.felipeharker.org/ | `hark_academic`, `site/` | Living Outside the Box, Dead Mall Fall, Collingsworth Marketplace — a page each |
+| https://birds.felipeharker.org/ | `hark_birding`, `web/out/` (built) | The Harker Ornithology Report: map, locations, media, field notes, one page per checklist |
+| https://resume.felipeharker.org/ | `hark_resume`, `site/` | The resume, printable |
 
 ## This repository
 
@@ -133,11 +133,11 @@ flowchart LR
   switch["felipeharker.org front page<br/>the design switch"]
   store["felipeharker.org<br/>localStorage hark-design"]
   switch -- "click" --> store
-  store -- "link followed: ?design=serif" --> acad["hark-academic.onrender.com<br/>keeps it in its own storage,<br/>takes it out of the address"]
-  store -- "?design=serif" --> birds["hark-birding.onrender.com"]
-  store -- "?design=serif" --> resume["hark-resume.onrender.com"]
-  store -- "?design=serif" --> dove["hark-dove-habitat.onrender.com"]
-  store -- "?design=serif" --> alex["alexandria-phoenix.onrender.com"]
+  store -- "link followed: ?design=serif" --> acad["academic.felipeharker.org<br/>keeps it in its own storage,<br/>takes it out of the address"]
+  store -- "?design=serif" --> birds["birds.felipeharker.org"]
+  store -- "?design=serif" --> resume["resume.felipeharker.org"]
+  store -- "?design=serif" --> dove["dove.felipeharker.org"]
+  store -- "?design=serif" --> alex["alexandria.felipeharker.org"]
   acad -- "passes on what it holds" --> birds
   acad -. "never carried back" .-> store
   css["hark.css<br/>:root — sans<br/>:root:where([data-design='serif']) — serif"]
@@ -193,7 +193,7 @@ flowchart LR
   config --> home
   page --> home["HomeDocument<br/>map · locations · media · field notes"]
   parse --> cl["src/app/checklist/[id]/<br/>one page per checklist"]
-  home & cl --> out["web/out/ → hark-birding.onrender.com"]
+  home & cl --> out["web/out/ → birds.felipeharker.org"]
 
   out -. "photos, at view time" .-> ml["Macaulay Library CDN"]
   out -. "basemap, at view time" .-> carto["Carto basemap tiles"]
@@ -213,18 +213,18 @@ the same tab.
 ```mermaid
 flowchart TB
   home["felipeharker.org — Portfolio"]
-  acad["hark-academic.onrender.com"]
+  acad["academic.felipeharker.org"]
   proj["…/projects/…"]
-  birds["hark-birding.onrender.com"]
+  birds["birds.felipeharker.org"]
   check["…/checklist/…"]
-  resume["hark-resume.onrender.com"]
+  resume["resume.felipeharker.org"]
   std["felipeharker.org/standards/"]
 
   home -- "a tile per project" --> proj
   home -- "birding report tile" --> birds
-  home -- "Dove Habitat tile" --> dove["hark-dove-habitat.onrender.com"]
+  home -- "Dove Habitat tile" --> dove["dove.felipeharker.org"]
   dove -- "running head and colophon" --> home
-  home -- "Documentation and Parametric Studies tiles" --> alex["alexandria-phoenix.onrender.com"]
+  home -- "Documentation and Parametric Studies tiles" --> alex["alexandria.felipeharker.org"]
   alex -- "running head and colophon" --> home
   home -- "Elsewhere" --> resume
   home -- "running head menus" --> proj & birds & dove & alex
@@ -243,18 +243,14 @@ flowchart TB
 |---|---|---|
 | The live sites | Render static sites `hark-site`, `hark-academic`, `hark-birding`, `hark-resume` (project Hark, workspace Harker-Hub) | Each builds its repository's `main` on every push; `hark-site` serves felipeharker.org and www |
 | The old paths | `hark-site`'s Redirects/Rewrites | `/academic/*`, `/birds/*`, `/resume/*` → the same path on the new site |
-| DNS | Porkbun | `felipeharker.org` A record → Render; `www` CNAME → `hark-site.onrender.com`; `birds` CNAME → the birding redirect service; `resume` and `academic` → Porkbun's URL forwarding |
-| resume.felipeharker.org, academic.felipeharker.org | Porkbun URL forwarding | Permanent redirects to the resume's and the academic site's front pages; nothing on Render |
-| birds.felipeharker.org | Render service `hark-birding-redirect` (the old birding site) | Kept only to redirect to hark-birding.onrender.com |
-| resume-site-0rfl.onrender.com | Render service `hark-resume-redirect` (the old resume site) | Kept only to redirect to hark-resume.onrender.com |
+| DNS | Porkbun | `felipeharker.org` A record → Render; `www` CNAME → `hark-site.onrender.com`; `academic`, `birds`, `resume`, `dove` and `alexandria` CNAMEs → their services' `onrender.com` addresses, each the service's custom domain on Render ($0.25 a month each past the plan's two) |
 | `hark_portfolio_archive`, `hark_resume_archive`, `hark_birding_archive` | GitHub, archived | The three repositories the 2026-10-19 monorepo replaced; read-only, with their histories. None of the current repositories was made from them |
 | `hark_system_archive`, `hark_references_archive`, `hark_parametric_*_archive` | GitHub, archived | The old CODEBASE standards, an unused references repository, and the old parametric repositories |
 | `CODEBASE\parametric` | the private `parametric_*` repositories | The Rhino and Grasshopper work and its own standards; nothing here depends on it |
-| alexandria-phoenix.onrender.com | Render static site, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from two tiles, Parametric Studies (`/studies/`) and the Alexandria Phoenix Documentation (`/`), each in a new tab, and the running head from its Professional menu; its own running head and colophon lead home to the portfolio. Nothing here builds or changes it |
-| parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living` | Its own site, outside the family and its standard. Still live, but no longer linked from here (2026-10-27); nothing here builds or changes it |
-| parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference` | The same: still live, outside the family on its own copy of the standard, and no longer linked from here (2026-10-27) |
+| alexandria.felipeharker.org | Render static site `alexandria-phoenix`, in the Render project Parametric, from the private `alexandria_phoenix` (its `site/`) | A project site built to the standard: it links `hark.css` and `hark.js` from here, so it follows the reader's design. The portfolio's top row links it from two tiles, Parametric Studies (`/studies/`) and the Alexandria Phoenix Documentation (`/`), each in a new tab, and the running head from its Professional menu; its own running head and colophon lead home to the portfolio. Nothing here builds or changes it |
+| parametric-living.onrender.com | Render static site `parametric-living`, from the private `parametric_living`, in the Render project Archive | Its own site, outside the family and its standard. Still live, but no longer linked from here (2026-10-27); nothing here builds or changes it |
+| parametric-reference.onrender.com | Render static site `parametric-reference`, from the private `parametric_reference`, in the Render project Archive | The same: still live, outside the family on its own copy of the standard, and no longer linked from here (2026-10-27) |
 | The GitHub wiki | github.com/felipeharker/hark_web/wiki | A copy of `wiki/`, replaced by `.github/workflows/wiki.yml` on every push to `main` that changes it |
 | Fonts | Google Fonts, by a `<link>` on every page (the birding app's in its `layout.tsx`) | Inter and IBM Plex Mono; Source Serif 4, loaded by `hark.js` for the serif design |
-| hark-dove-habitat.onrender.com | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link the portfolio alone |
-| dove-habitat.onrender.com | Render service `dove-habitat` (the old Dove Habitat site, from `dove_habitat_archive`) | Kept only to redirect to hark-dove-habitat.onrender.com |
+| dove.felipeharker.org | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link the portfolio alone |
 | Photos and map tiles | Macaulay Library CDN, Carto | Loaded by the birding report in the reader's browser |

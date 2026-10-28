@@ -12,9 +12,9 @@ are built to this one standard.
 | Site | Address | Repository | Stack |
 |---|---|---|---|
 | Portfolio, and these standards | https://felipeharker.org/, `/standards/` | `hark_web` | Static HTML |
-| Academic | https://hark-academic.onrender.com/ | `hark_academic` | Static HTML |
-| Birding | https://hark-birding.onrender.com/ | `hark_birding` | Next.js, static export |
-| Resume | https://hark-resume.onrender.com/ | `hark_resume` | Static HTML |
+| Academic | https://academic.felipeharker.org/ | `hark_academic` | Static HTML |
+| Birding | https://birds.felipeharker.org/ | `hark_birding` | Next.js, static export |
+| Resume | https://resume.felipeharker.org/ | `hark_resume` | Static HTML |
 
 `hark_web` (`C:\Users\fharker\Documents\CODEBASE\hark_web`,
 `github.com/felipeharker/hark_web`) holds the portfolio, the standard and the
@@ -179,12 +179,12 @@ families, the stylesheet and the script.
   `../index.html`. A site's link to its own front page is `/`;
   felipeharker.org's link to its standards is `/standards/`.
 - **Between the sites in the family**, links are absolute —
-  `https://felipeharker.org/`, `https://hark-academic.onrender.com/`,
-  `https://hark-birding.onrender.com/`, `https://hark-resume.onrender.com/`,
+  `https://felipeharker.org/`, `https://academic.felipeharker.org/`,
+  `https://birds.felipeharker.org/`, `https://resume.felipeharker.org/`,
   `https://felipeharker.org/standards/` — and open in the same tab. The
   one exception is a portfolio tile: its links open the project in a new
   tab, with `target="_blank" rel="noopener noreferrer"`. A project site
-  outside the family, like `https://hark-dove-habitat.onrender.com/`, links
+  outside the family, like `https://dove.felipeharker.org/`, links
   only the portfolio from its running head and colophon, in the same tab.
 - **To anyone else's site**, links are absolute and open in a new tab, always
   with `target="_blank" rel="noopener noreferrer"`. In the birding app,
@@ -292,8 +292,12 @@ old stylesheet or script; write links without the fingerprint, and the
 build adds it. The other sites link both by their full addresses,
 unfingerprinted.
 
-felipeharker.org is `hark-site`'s custom domain; the others keep their free
-`onrender.com` addresses. The old paths on felipeharker.org — `/academic/`,
+Every site is served from felipeharker.org or a subdomain of it, each its
+Render service's custom domain: felipeharker.org is `hark-site`'s, and
+academic., birds. and resume.felipeharker.org (and the project sites'
+dove. and alexandria.) are Porkbun CNAMEs to their services'
+`onrender.com` addresses. Those still answer, but nothing links them. The
+old paths on felipeharker.org — `/academic/`,
 `/birds/`, `/resume/` — redirect to the new sites, path and all.
 
 ## Adding a site
@@ -301,7 +305,10 @@ felipeharker.org is `hark-site`'s custom domain; the others keep their free
 1. Make a repository `hark_<name>` in the shape above, starting from
    [`templates/page.html`](../templates/page.html) and from another site's
    `tools/`, `AGENTS.md` and `render.yaml`.
-2. Make its Render static site, `hark-<name>`, from `main`.
+2. Make its Render static site, `hark-<name>`, from `main`, and give it a
+   custom domain, `<name>.felipeharker.org`: add it in the service's
+   settings, then a CNAME at Porkbun to the service's `onrender.com`
+   address. Past the plan's two, a custom domain costs $0.25 a month.
 3. Add it to `FAMILY` in `tools/sites.mjs` here and in every other
    repository's `tools/site.mjs` (and to `SITE_FAMILY` in the birding app's
    `siteConfig.ts`, which feeds both), then to every page's running head and
