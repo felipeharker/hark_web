@@ -17,9 +17,10 @@ deployed from its own repository's `main` the same way.
 | Custom domains | `felipeharker.org`, `www.felipeharker.org` |
 | Redirects | `/academic`, `/academic/*`, `/birds`, `/birds/*`, `/resume`, `/resume/*` → the new sites (below) |
 
-The same settings are recorded in [`render.yaml`](../render.yaml). Until that
-file is synced as a Blueprint, the dashboard is what counts; keep them the
-same.
+The same settings are in [`render.yaml`](../render.yaml), synced as the
+Render Blueprint `hark_web`: change them there, not in the dashboard, which
+the next sync overwrites. Every other repository's `render.yaml` is its own
+Blueprint the same way, named after the repository.
 
 `tools/build.mjs` copies each part's published folder to its path in
 `dist/`: the portfolio to `/`, the standards to `/standards/`. Last, it adds
@@ -95,10 +96,10 @@ The second line shows exactly what will be published.
   links to them no longer work.
 
 The Render project **Hark** holds `hark-site`, `hark-academic`, `hark-birding`,
-`hark-resume`, `hark-dove-habitat`, and two separate small sites,
-`anna-grades` and `ren-fest-planning`. **Parametric** holds
-`alexandria-phoenix`; **Archive** holds `parametric-living` and
-`parametric-reference`, live but unlinked; **Dev Lab** holds the `dev-*`
+`hark-resume` and `hark-dove-habitat`. **Parametric** holds
+`alexandria-phoenix`; **Archive** holds `parametric-living`,
+`parametric-reference`, `anna-grades` and `ren-fest-planning`, live but
+unlinked; **Dev Lab** holds the `dev-*`
 game sites. No service is left ungrouped.
 
 The move to four sites is tracked in
