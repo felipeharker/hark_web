@@ -4,6 +4,18 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-28 — Parametric Studies beside the Alexandria Phoenix Documentation
+
+**The professional row has two tiles: Parametric Studies, then the
+Alexandria Phoenix Documentation.** The Alexandria Phoenix tile and menu
+entry are renamed "Alexandria Phoenix Documentation" and still link
+https://alexandria-phoenix.onrender.com/. Parametric Studies, to its left,
+links https://alexandria-phoenix.onrender.com/studies/, the site's studies
+page — until now its unlisted Testing page — and has an entry above it in
+the Professional menu. Its cover is the Voronoi study's own. *Why:* the
+owner's call. *Replaces:* "Alexandria Phoenix has the first row of the
+portfolio, alone" (2026-10-27, below).
+
 ## 2026-10-27 — Alexandria Phoenix replaces the parametric tiles
 
 **Alexandria Phoenix has the first row of the portfolio, alone,** linking
