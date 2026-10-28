@@ -84,8 +84,8 @@ The second line shows exactly what will be published.
   trailing slash catch `/academic`, `/birds` and `/resume` themselves.
 - **Porkbun URL forwarding** sent resume.felipeharker.org and
   academic.felipeharker.org to the sites until 2026-10-28; now that they are
-  the sites' own domains, no forward is left but an old one for the apex,
-  which its A record overrides. Porkbun asks before deleting a forward with a
+  the sites' own domains, and no forward is left (the last, an old one for
+  the apex to portfolio.felipeharker.com, went the same day). Porkbun asks before deleting a forward with a
   browser dialog, which the Claude browser pane dismisses, so a delete there
   has to be clicked by hand.
 - **The first addresses are gone.** hark-ornithology.onrender.com (the

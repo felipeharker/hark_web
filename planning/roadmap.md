@@ -19,8 +19,9 @@ when it is done, with the date.
 - [x] Every `render.yaml` synced as a Blueprint, named after its
       repository, each service associated (not duplicated); Auto-Deploy
       "After CI Checks Pass" (2026-10-28)
-- [ ] Porkbun: the old apex forward (felipeharker.org →
-      portfolio.felipeharker.com) deleted by hand
+- [x] Porkbun: the old apex forward (felipeharker.org →
+      portfolio.felipeharker.com) deleted by hand; URL forwarding not set
+      (2026-10-28)
 
 ## Before: every site on a subdomain of felipeharker.org (2026-10-28)
 
