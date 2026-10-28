@@ -48,8 +48,11 @@ Every static site has the same shape — a part of `hark_web` under
   site/                 what is published, and nothing else
     index.html          the site's front page
     projects/           further pages, one file each
+    robots.txt          allow all; names the sitemap
+    sitemap.xml         every page's absolute address
     assets/
       site.css          this site's own rules, if it has any
+      og.jpg            the share card, when a page has no image of its own
       covers/           work-list covers, 3:2
       projects/<slug>/  images for one page
   source/               working files: models, board PDFs (git-ignored)
@@ -58,7 +61,8 @@ Every static site has the same shape — a part of `hark_web` under
 
 - **Only `site/` is published, and everything in it is public.** No
   Markdown, notes, models, PDFs or drafts in `site/`. `tools/check.mjs`
-  fails on any file there that is not HTML, CSS or an image.
+  fails on any file there that is not HTML, CSS or an image, but for
+  `robots.txt` and `sitemap.xml` at its root.
 - **`source/` is for working files** — Rhino models, board-set PDFs, design
   sources. Git ignores everything in it but a README. The birding report's
   equivalent is its `notebook/`.
@@ -114,19 +118,18 @@ four things:
    reader's choice before the page is drawn, so a page never flashes the
    other design, and loads Source Serif 4 from Google Fonts when the serif
    is wanted ([design](design.md#the-serif-design)).
-2. **Carrying the choice.** The choice is made in one place, the switch on
-   felipeharker.org's front page, and kept in that site's `localStorage`
-   (`hark-design`). Each site is its own origin, and a browser keeps each
-   origin's storage to itself, so the choice travels in the address: as a
-   reader follows a link to another site in the family, the link gains
-   `?design=serif` (or `sans`); the site it lands on keeps the value in its
-   own storage and takes it out of the address, so every page there follows
-   it, and passes it on to the next site the same way. felipeharker.org
-   never takes a value in, and links to it never carry one, so the front page
-   alone decides. A reader who has never chosen carries nothing. The other
-   sites are listed in `SITES` in the script; `tools/check.mjs` fails if
-   one in `FAMILY` is missing. Dove Habitat and Alexandria Phoenix, project
-   sites that link the script, are listed too.
+2. **Sharing the choice.** The choice is made in one place, the switch on
+   felipeharker.org's front page, and kept in one cookie, `hark-design`, set
+   for `felipeharker.org` so the browser sends it to every subdomain too —
+   academic., birds., resume., dove. and alexandria.felipeharker.org. Every
+   site reads it; only the front page writes it, so the front page alone
+   decides, and a reader who arrives at any site directly still gets their
+   choice. A reader who has never chosen has no cookie and gets sans.
+   `tools/check.mjs` fails if a site in `FAMILY` is not a subdomain of
+   felipeharker.org, where the cookie would not reach it. On a local server
+   the cookie is that host's alone. (Until 2026-10-28 the choice travelled
+   in links as `?design=`; the script takes any such value out of the
+   address, unread.)
 3. **The switch.** On felipeharker.org it finds the
    `[data-design-switch]` ([components](components.md#design-switch)), shows
    it and makes it work.
@@ -170,8 +173,20 @@ comment says why a rule exists, not what CSS it contains.
 ```
 
 [`templates/page.html`](../templates/page.html) is a blank page in this
-shape, with the `<head>` every page needs: title, description, the two font
-families, the stylesheet and the script.
+shape, with the `<head>` every page needs: title, description, the canonical
+address and the share card, the two font families, the stylesheet and the
+script.
+
+Every page's `<head>` carries `<link rel="canonical">` and the share card:
+`og:type`, `og:site_name`, `og:title` and `og:description` (its `<title>` and
+description again), `og:url` (the canonical address), `og:image` with its
+width and height, and `twitter:card` `summary_large_image`, every address
+absolute on the site's own host. The image is the page's own cover or plate;
+otherwise the site's typographic card, `assets/og.jpg`, 1200 x 630: the
+masthead's kicker, title and subtitle on white in the standard's type, never
+a third party's photograph. Each site's root has a `robots.txt` (allow all,
+and `Sitemap:`) and a `sitemap.xml` of every page; a new page gets a line in
+it.
 
 ## Links
 
@@ -252,7 +267,7 @@ node tools/check.mjs     # must pass before every commit
 2. `node tools/check.mjs` must pass: stylesheet and script links, the links
    to every site in each running head and colophon, every internal link and
    image, and what is published — and, in `hark_web`, the docs, the wiki's
-   links and the sites `hark.js` carries the design to.
+   links and that every site is a subdomain the design cookie reaches.
 3. For the birding report, in `hark_birding/web`: `npm run build` and
    `npm run lint` must both pass, before its `tools/check.mjs` checks the
    build. `npm run dev` there serves the app at http://localhost:3000/.
@@ -296,7 +311,8 @@ Every site is served from felipeharker.org or a subdomain of it, each its
 Render service's custom domain: felipeharker.org is `hark-site`'s, and
 academic., birds. and resume.felipeharker.org (and the project sites'
 dove. and alexandria.) are Porkbun CNAMEs to their services'
-`onrender.com` addresses. Those still answer, but nothing links them. The
+`onrender.com` addresses. Those addresses are turned off, so each site has
+one address. The
 old paths on felipeharker.org — `/academic/`,
 `/birds/`, `/resume/` — redirect to the new sites, path and all.
 

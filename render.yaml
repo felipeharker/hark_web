@@ -12,6 +12,8 @@ services:
     runtime: static
     repo: https://github.com/felipeharker/hark_web
     branch: main
+    autoDeployTrigger: checksPass          # deploys a push once its Check workflow passes
+    renderSubdomainPolicy: disabled        # served only at its custom domain, not onrender.com
     buildCommand: node tools/build.mjs     # assembles dist/
     staticPublishPath: dist
     envVars:

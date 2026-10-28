@@ -124,29 +124,26 @@ The standard has two designs, sans (the default) and serif, and one shared
 script, `web/standards/site/hark.js`, served beside the stylesheet at
 `https://felipeharker.org/standards/hark.js`. Every page links it in its
 `<head>`; it sets `<html data-design>` before the page is drawn. The
-choice is made only on felipeharker.org's front page. Each site is its own
-origin with its own storage, so the choice crosses to another site in the
-address of the link the reader follows, and that site keeps it.
+choice is made only on felipeharker.org's front page and kept in one
+cookie set for felipeharker.org, which the browser sends to every
+subdomain, so every site reads the same choice.
 
 ```mermaid
 flowchart LR
   switch["felipeharker.org front page<br/>the design switch"]
-  store["felipeharker.org<br/>localStorage hark-design"]
-  switch -- "click" --> store
-  store -- "link followed: ?design=serif" --> acad["academic.felipeharker.org<br/>keeps it in its own storage,<br/>takes it out of the address"]
-  store -- "?design=serif" --> birds["birds.felipeharker.org"]
-  store -- "?design=serif" --> resume["resume.felipeharker.org"]
-  store -- "?design=serif" --> dove["dove.felipeharker.org"]
-  store -- "?design=serif" --> alex["alexandria.felipeharker.org"]
-  acad -- "passes on what it holds" --> birds
-  acad -. "never carried back" .-> store
+  store["cookie hark-design<br/>Domain=felipeharker.org"]
+  switch -- "writes" --> store
+  store -- "read by" --> acad["academic.felipeharker.org"]
+  store -- "read by" --> birds["birds.felipeharker.org"]
+  store -- "read by" --> resume["resume.felipeharker.org"]
+  store -- "read by" --> dove["dove.felipeharker.org"]
+  store -- "read by" --> alex["alexandria.felipeharker.org"]
   css["hark.css<br/>:root — sans<br/>:root:where([data-design='serif']) — serif"]
   script["hark.js<br/>sets data-design, loads Source Serif 4"]
   script -. "on every page" .-> css
 ```
 
-The front page alone decides: felipeharker.org never takes a value from
-an address, and links to it never carry one. Parametric Living and
+The front page alone decides: only its switch writes the cookie. Parametric Living and
 Parametric Reference are outside the family, on their own copy of the
 standard, and keep their one design; nothing here links them any more.
 

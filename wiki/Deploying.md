@@ -9,8 +9,8 @@ deployed from its own repository's `main` the same way.
 
 | Setting | Value |
 |---|---|
-| Service | `hark-site` — static site in the Render project **Hark** (workspace Harker-Hub), https://hark-site.onrender.com |
-| Repository / branch | `felipeharker/hark_web`, `main`, auto-deploy on |
+| Service | `hark-site` — static site in the Render project **Hark** (workspace Harker-Hub); its `onrender.com` address is turned off |
+| Repository / branch | `felipeharker/hark_web`, `main`, auto-deploy once the Check workflow passes |
 | Build command | `node tools/build.mjs` |
 | Publish directory | `dist` |
 | Environment | `NODE_VERSION=22` |
@@ -70,8 +70,10 @@ The second line shows exactly what will be published.
   dove.felipeharker.org (`hark-dove-habitat`) and alexandria.felipeharker.org
   (`alexandria-phoenix`). Each is a CNAME at Porkbun to the service's
   `onrender.com` address, added in the service's settings under Custom
-  Domains, where Render issues its certificate. The `onrender.com` addresses
-  still answer, but nothing links them. The plan includes two custom
+  Domains, where Render issues its certificate. Each service's `onrender.com`
+  address is turned off (Render Subdomain: Disabled), so every site has one
+  address; the CNAMEs still point at those names, which Render routes by
+  domain. The plan includes two custom
   domains (felipeharker.org, with its www, and one more); each past that is
   $0.25 a month.
 - **felipeharker.org/academic/, /birds/ and /resume/** held those sites until
@@ -92,8 +94,7 @@ The second line shows exactly what will be published.
   `hark-resume-redirect` and `dove-habitat`, deleted on 2026-10-28; old
   links to them no longer work.
 
-The Render project **Hark** holds `hark-site`, `hark-site-staging` (this
-repository's `staging` branch), `hark-academic`, `hark-birding`,
+The Render project **Hark** holds `hark-site`, `hark-academic`, `hark-birding`,
 `hark-resume`, `hark-dove-habitat`, and two separate small sites,
 `anna-grades` and `ren-fest-planning`. **Parametric** holds
 `alexandria-phoenix`; **Archive** holds `parametric-living` and
