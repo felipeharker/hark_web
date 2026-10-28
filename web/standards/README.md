@@ -10,8 +10,9 @@ the rules behind them, and a page that renders all of it.
 | Path | What it is |
 |---|---|
 | [`site/hark.css`](site/hark.css) | **The shared stylesheet**, published at `/standards/hark.css`. Tokens first, then every shared component, in numbered sections. Every page links it; nothing copies it. |
-| [`site/hark.js`](site/hark.js) | **The shared script**, published at `/standards/hark.js`. Sets every page in the design the reader chose on the front page, sans or serif, and carries the choice between the sites. Every page links it. |
+| [`site/hark.js`](site/hark.js) | **The shared script**, published at `/standards/hark.js`. Sets every page in the design the reader chose on the front page, sans or serif, which one cookie for felipeharker.org shares with every subdomain. Every page links it. |
 | [`site/index.html`](site/index.html) | **The specimen page**, `/standards/`: every token and component, rendered by `hark.css` itself. |
+| `site/assets/og.jpg` | The specimen page's share card: plain type, 1200 x 630. |
 | [`docs/design.md`](docs/design.md) | The design rules, and every token: colour, type, space, shape, breakpoints. |
 | [`docs/components.md`](docs/components.md) | Every shared class: what it is for and the markup it expects. |
 | [`docs/writing.md`](docs/writing.md) | Headings, prose, recorded values, captions, links, images, privacy. |

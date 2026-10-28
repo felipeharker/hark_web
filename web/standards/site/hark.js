@@ -17,22 +17,21 @@
       (hark.css, section 1). This marks <html data-design="…"> with the
       reader's choice before the page is drawn, so it never flashes the other
       one, and loads Source Serif 4 when the serif is wanted.
-   2. Carrying the choice. The choice is made in one place, the switch on
-      felipeharker.org's front page. Every site is its own origin, and a
-      browser keeps each origin's storage to itself, so the choice travels in
-      the address: a link to another site in the family gains ?design=serif
-      (or sans) as it is followed, and the site it lands on keeps the value
-      and takes it out of the address. felipeharker.org never takes a value
-      in, and links to it never carry one, so no other site can change the
-      choice.
+   2. Sharing the choice. The choice is made in one place, the switch on
+      felipeharker.org's front page, and kept in one cookie, hark-design, set
+      for felipeharker.org and so sent to every subdomain: academic., birds.,
+      resume., dove., alexandria. Every site reads it; only the front page
+      writes it, so no other site can change the choice. A reader who has
+      never chosen has no cookie and gets sans. Served from anywhere else (a
+      local server), the cookie is that host's alone.
    3. The switch, on the front page: it shows it and makes it work.
    4. The running head's menus: an open one closes when the reader clicks
       elsewhere or presses Escape.
 
-   The other sites in the family are listed in SITES; tools/check.mjs fails
-   if one in FAMILY (tools/sites.mjs) is missing. The project sites outside
-   the family that link this script — Dove Habitat, Alexandria Phoenix — are
-   listed too.
+   Until 2026-10-28 the choice travelled in the address (?design=serif) and
+   each site kept it in its own localStorage. An address that still carries
+   one has it taken out, unread; a choice still in the front page's
+   localStorage is moved into the cookie.
    ========================================================================= */
 
 (() => {
@@ -44,46 +43,48 @@
     ? new URL(document.currentScript.src).origin
     : 'https://felipeharker.org';
 
-  const SITES = [
-    'https://academic.felipeharker.org',
-    'https://birds.felipeharker.org',
-    'https://resume.felipeharker.org',
-    'https://dove.felipeharker.org',
-    'https://alexandria.felipeharker.org',
-  ];
+  // The domain the cookie is set for, so every subdomain is sent it.
+  const DOMAIN = 'felipeharker.org';
 
   const DESIGNS = ['sans', 'serif'];
   const KEY = 'hark-design';
-  const PARAM = 'design';
+  const OLD_PARAM = 'design';
   const SERIF_FONT =
     'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap';
 
   const root = document.documentElement;
   const atHome = location.origin === HOME;
+  const onDomain = location.hostname === DOMAIN || location.hostname.endsWith(`.${DOMAIN}`);
 
-  // Storage can be refused (a locked-down browser); then the choice holds
-  // for this page only.
+  // -- 2. The cookie ----------------------------------------------------------
   const read = () => {
-    try { return localStorage.getItem(KEY); } catch { return null; }
+    const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${KEY}=([^;]*)`));
+    return match ? match[1] : null;
   };
-  const keep = (design) => {
-    try { localStorage.setItem(KEY, design); } catch { /* this page only */ }
+  const keep = (value) => {
+    document.cookie = [
+      `${KEY}=${value}`,
+      'Path=/',
+      'Max-Age=31536000',
+      'SameSite=Lax',
+      onDomain ? `Domain=${DOMAIN}` : '',
+      location.protocol === 'https:' ? 'Secure' : '',
+    ].filter(Boolean).join('; ');
   };
 
   let design = read();
 
-  // -- 2a. Take in a choice carried from another site ------------------------
-  if (!atHome) {
+  // The old ways: a choice in the front page's localStorage moves into the
+  // cookie; a ?design= in the address is taken out, unread.
+  if (atHome && !DESIGNS.includes(design)) {
+    let old = null;
+    try { old = localStorage.getItem(KEY); localStorage.removeItem(KEY); } catch { /* none */ }
+    if (DESIGNS.includes(old)) { design = old; keep(old); }
+  }
+  if (new URL(location.href).searchParams.has(OLD_PARAM)) {
     const url = new URL(location.href);
-    if (url.searchParams.has(PARAM)) {
-      const carried = url.searchParams.get(PARAM);
-      if (DESIGNS.includes(carried)) {
-        design = carried;
-        keep(carried);
-      }
-      url.searchParams.delete(PARAM);
-      history.replaceState(history.state, '', url);
-    }
+    url.searchParams.delete(OLD_PARAM);
+    history.replaceState(history.state, '', url);
   }
 
   if (!DESIGNS.includes(design)) design = null;
@@ -103,24 +104,6 @@
   }
 
   apply();
-
-  // -- 2b. Carry the choice on a link to another site in the family -----------
-  // At the moment the link is followed, not when the page loads, so a link a
-  // page draws later (the birding app's) carries it too. A reader who has
-  // never chosen carries nothing.
-  function carry(event) {
-    const link = event.target instanceof Element && event.target.closest('a[href]');
-    if (!link || !design) return;
-    let url;
-    try { url = new URL(link.href); } catch { return; }
-    if (url.origin === location.origin || !SITES.includes(url.origin)) return;
-    url.searchParams.set(PARAM, design);
-    link.href = url.href;
-  }
-
-  for (const type of ['click', 'auxclick', 'contextmenu']) {
-    document.addEventListener(type, carry, true);
-  }
 
   // -- 3. The switch -----------------------------------------------------------
   function wireSwitch() {

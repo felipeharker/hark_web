@@ -4,6 +4,45 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-10-28 — One address per site, one cookie, checks before deploys
+
+**Each site has one address.** The Render Subdomain of every service with a
+custom domain is turned off, so hark-site.onrender.com and the others no
+longer answer; each site is only its felipeharker.org address. *Why:* the
+owner's call — no second copy of any page for a search engine to find.
+
+**The design choice is one cookie for felipeharker.org.** The front page's
+switch writes `hark-design` with `Domain=felipeharker.org`, so the browser
+sends it to every subdomain, and every site reads it; only the front page
+writes it. A reader who lands on any site directly now gets their choice.
+`hark.js` no longer adds `?design=` to links (and takes one out of an old
+address, unread), and a choice in the front page's old localStorage moves
+into the cookie once. `tools/check.mjs` now checks that every site in
+`FAMILY` is a subdomain of felipeharker.org. *Why:* every site being a
+subdomain made one shared cookie possible. *Replaces:* "carrying the
+choice" in the address (2026-10-26).
+
+**Every push is checked, and Render deploys only once the check passes.**
+Each repository has a `Check` GitHub Action — its `tools/check.mjs` (the
+birding report builds and lints first; Alexandria Phoenix runs
+`tools/check_site.py`) — and each service's Auto-Deploy is "After CI Checks
+Pass". Every `render.yaml` says so (`autoDeployTrigger: checksPass`) and
+records `renderSubdomainPolicy: disabled`; Alexandria Phoenix has one now.
+*Why:* a broken link or page never reaches the live site.
+
+**Every page has a share card, and every site a sitemap.** Open Graph and
+Twitter meta and a canonical link in every `<head>`, absolute on the site's
+subdomain; `robots.txt` (allow all) and `sitemap.xml` at each site's root.
+The image is the page's own cover where it has one, otherwise a typographic
+card in the standard's type, `assets/og.jpg` — never a Macaulay Library
+photograph. *Why:* links pasted into LinkedIn, messages and Slack showed no
+card.
+
+**`hark-site-staging` is deleted;** its `staging` branch, two commits ahead
+of main (an accent, pointer brackets, a favicon, a little drawn motion), is
+kept. **The Alexandria Phoenix docs link Parametric Studies** from their
+running head and masthead. *Why:* the owner's call.
+
 ## 2026-10-28 — Every site on a subdomain of felipeharker.org
 
 **Each site the portfolio links is served at a subdomain of

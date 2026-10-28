@@ -5,7 +5,23 @@ sites beside it. Why
 things are the way they are is in [decisions.md](decisions.md). Tick an item
 when it is done, with the date.
 
-## Now: every site on a subdomain of felipeharker.org (2026-10-28)
+## Now: one address, one cookie, checks before deploys (2026-10-28)
+
+- [x] Render Subdomain off on every service with a custom domain (2026-10-28)
+- [x] `hark.js` shares the design in one cookie for felipeharker.org
+      (2026-10-28)
+- [x] A `Check` workflow in every repository; `autoDeployTrigger:
+      checksPass` and `renderSubdomainPolicy: disabled` in every `render.yaml`
+      (2026-10-28)
+- [x] Share cards, canonical links, `robots.txt` and `sitemap.xml` on every
+      site (2026-10-28)
+- [x] `hark-site-staging` deleted; the `staging` branch kept (2026-10-28)
+- [ ] Every `render.yaml` synced as a Blueprint, Auto-Deploy "After CI
+      Checks Pass"
+- [ ] Porkbun: the old apex forward (felipeharker.org →
+      portfolio.felipeharker.com) deleted by hand
+
+## Before: every site on a subdomain of felipeharker.org (2026-10-28)
 
 - [x] Render custom domains: academic, birds (moved from
       `hark-birding-redirect`), resume, dove, alexandria (2026-10-28)

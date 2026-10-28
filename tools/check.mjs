@@ -11,13 +11,15 @@
  * 2. Links      every internal link, image and stylesheet resolves to a file,
  *               and every same-page #anchor to an id.
  * 3. Published  a static site/ folder holds only web files — no PDFs, notes,
- *               models or Markdown — and no stray copy of the stylesheet
+ *               models or Markdown; robots.txt and sitemap.xml at the root of
+ *               the site at / too — and no stray copy of the stylesheet
  *               exists anywhere.
  * 4. Docs       every token and class in the stylesheet is in
  *               web/standards/docs/, no documented token has gone, and
  *               every link in wiki/ resolves (tools/wiki.mjs).
- * 5. Script     the shared script carries the design to every other site in
- *               the family.
+ * 5. Script     every other site in the family is a subdomain of
+ *               felipeharker.org, so the shared script's cookie, and with it
+ *               the reader's design, reaches it.
  *
  * The other sites in the family — academic, birding, resume — are checked by
  * the same kind of tool in their own repositories.
@@ -33,6 +35,8 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const STANDARDS = join(ROOT, 'web', 'standards');
 const SKIP = new Set(['.git', 'node_modules', '.next', 'dist']);
 const WEB_FILES = new Set(['.html', '.css', '.js', '.svg', '.jpg', '.jpeg', '.png', '.webp', '.ico']);
+// What search engines read, at the root of the site served at /: robots.txt names the sitemap.
+const CRAWLER_FILES = new Set(['robots.txt', 'sitemap.xml']);
 const problems = [];
 const problem = (where, what) => problems.push(`${where}: ${what}`);
 const rel = (p) => relative(ROOT, p).split(sep).join('/');
@@ -106,7 +110,8 @@ console.log('\nPublished folders\n');
 
 for (const site of SITES.filter((s) => s.kind === 'static')) {
   const files = walk(join(ROOT, site.dir));
-  const odd = files.filter((f) => !WEB_FILES.has(extname(f).toLowerCase()));
+  const odd = files.filter((f) => !WEB_FILES.has(extname(f).toLowerCase())
+    && !(site.path === '/' && CRAWLER_FILES.has(relative(join(ROOT, site.dir), f))));
   for (const f of odd) problem(rel(f), 'is not a web file, and everything in site/ is published');
   console.log(`  ${site.name.padEnd(10)} ${String(files.length).padStart(4)} files, ${odd.length} that should not be published`);
 }
@@ -157,11 +162,11 @@ console.log(`  ${wiki.length} wiki pages, ${wikiBroken.length} broken links`);
 
 console.log('\nScript\n');
 
-const script = readFileSync(join(STANDARDS, 'site', 'hark.js'), 'utf8');
-const carried = FAMILY.filter((s) => !s.url.startsWith(`${DOMAIN}/`));
-const uncarried = carried.filter((s) => !script.includes(`'${new URL(s.url).origin}'`));
-for (const s of uncarried) problem('web/standards/site/hark.js', `does not carry the design to ${s.name} (${new URL(s.url).origin}); add it to SITES`);
-console.log(`  carries the design to ${carried.length - uncarried.length} of ${carried.length} other sites in the family`);
+const host = new URL(DOMAIN).hostname;
+const others = FAMILY.filter((s) => !s.url.startsWith(`${DOMAIN}/`));
+const unreached = others.filter((s) => !new URL(s.url).hostname.endsWith(`.${host}`));
+for (const s of unreached) problem('tools/sites.mjs', `${s.name} (${new URL(s.url).hostname}) is not a subdomain of ${host}, so the design cookie does not reach it`);
+console.log(`  the design reaches ${others.length - unreached.length} of ${others.length} other sites in the family`);
 
 // -- Result --------------------------------------------------------------------
 
