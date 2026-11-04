@@ -68,12 +68,15 @@ The second line shows exactly what will be published.
 - **Every other site is a subdomain**, the custom domain of its own service:
   academic.felipeharker.org (`hark-academic`), birds.felipeharker.org
   (`hark-birding`), resume.felipeharker.org (`hark-resume`),
-  dove.felipeharker.org (`hark-dove-habitat`) and alexandria.felipeharker.org
-  (`alexandria-phoenix`). Each is a CNAME at Porkbun to the service's
+  dove.felipeharker.org (`hark-dove-habitat`), alexandria.felipeharker.org
+  (`alexandria-phoenix`) and urbanism.felipeharker.org (`hark-urbanism`, the
+  game). Each is a CNAME at Porkbun to the service's
   `onrender.com` address, added in the service's settings under Custom
   Domains, where Render issues its certificate. Each service's `onrender.com`
   address is turned off (Render Subdomain: Disabled), so every site has one
-  address; the CNAMEs still point at those names, which Render routes by
+  address — except the game's: hark-urbanism.onrender.com stays on, and the
+  game itself forwards each visit there to urbanism.felipeharker.org,
+  carrying a guest's saved city along (`hark_urbanism`'s README); the CNAMEs still point at those names, which Render routes by
   domain. The plan includes two custom
   domains (felipeharker.org, with its www, and one more); each past that is
   $0.25 a month.

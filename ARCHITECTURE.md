@@ -207,7 +207,7 @@ bracketed. A page within a site keeps its site's links and has no back
 link. Links between the sites are absolute and stay in the same tab, except
 the portfolio's tiles, which open each project in a new tab; links to anyone
 else open a new one. The portfolio's own running head is the one with menus:
-Academic, Professional and Birding open onto every project under them, in
+Games, Academic, Professional and Birding open onto every project under them, in
 the same tab.
 
 ```mermaid
@@ -222,10 +222,11 @@ flowchart TB
 
   home -- "a tile per project" --> proj
   home -- "birding report tile" --> birds
+  home -- "Hark Urbanism tile" --> urb["urbanism.felipeharker.org"]
   home -- "Dove Habitat tile" --> dove["dove.felipeharker.org"]
   home -- "Documentation and Parametric Studies tiles" --> alex["alexandria.felipeharker.org"]
   home -- "Elsewhere" --> resume
-  home -- "running head menus" --> proj & birds & dove & alex
+  home -- "running head menus" --> urb & proj & birds & dove & alex
   acad --> proj
   proj -- "running head" --> acad
   birds --> check
@@ -242,7 +243,7 @@ flowchart TB
 |---|---|---|
 | The live sites | Render static sites `hark-site`, `hark-academic`, `hark-birding`, `hark-resume` (project Hark, workspace Harker-Hub) | Each builds its repository's `main` on every push; `hark-site` serves felipeharker.org and www |
 | The old paths | `hark-site`'s Redirects/Rewrites | `/academic/*`, `/birds/*`, `/resume/*` → the same path on the new site |
-| DNS | Porkbun | `felipeharker.org` A record → Render; `www` CNAME → `hark-site.onrender.com`; `academic`, `birds`, `resume`, `dove` and `alexandria` CNAMEs → their services' `onrender.com` addresses, each the service's custom domain on Render ($0.25 a month each past the plan's two) |
+| DNS | Porkbun | `felipeharker.org` A record → Render; `www` CNAME → `hark-site.onrender.com`; `academic`, `birds`, `resume`, `dove`, `alexandria` and `urbanism` CNAMEs → their services' `onrender.com` addresses, each the service's custom domain on Render ($0.25 a month each past the plan's two) |
 | `hark_portfolio_archive`, `hark_resume_archive`, `hark_birding_archive` | GitHub, archived | The three repositories the 2026-10-19 monorepo replaced; read-only, with their histories. None of the current repositories was made from them |
 | `hark_system_archive`, `hark_references_archive`, `hark_parametric_*_archive` | GitHub, archived | The old CODEBASE standards, an unused references repository, and the old parametric repositories |
 | `CODEBASE\parametric` | the private `parametric_*` repositories | The Rhino and Grasshopper work and its own standards; nothing here depends on it |
@@ -252,4 +253,5 @@ flowchart TB
 | The GitHub wiki | github.com/felipeharker/hark_web/wiki | A copy of `wiki/`, replaced by `.github/workflows/wiki.yml` on every push to `main` that changes it |
 | Fonts | Google Fonts, by a `<link>` on every page (the birding app's in its `layout.tsx`) | Inter and IBM Plex Mono; Source Serif 4, loaded by `hark.js` for the serif design |
 | dove.felipeharker.org | Render static site `hark-dove-habitat`, from the public `hark_dove_habitat` | A project site, opened from its portfolio tile and from the birding report's Reference section; its running head and colophon link Portfolio, the Ornithology Report and itself |
+| urbanism.felipeharker.org | Render static site `hark-urbanism`, from the private `hark_urbanism`, with its accounts API `hark-urbanism-api` | A project site, the game, outside the standard. The portfolio's top row and its Games menu open it. Its first address, hark-urbanism.onrender.com, stays on and forwards every visit to the new one, carrying a guest's city along. Nothing here builds or changes it |
 | Photos and map tiles | Macaulay Library CDN, Carto | Loaded by the birding report in the reader's browser |

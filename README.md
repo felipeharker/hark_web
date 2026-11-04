@@ -8,12 +8,13 @@ its tiles open, such as Dove Habitat:
 
 | Site | Address | Repository | What it holds |
 |---|---|---|---|
-| Portfolio | https://felipeharker.org/ | `hark_web`, this one ([`web/portfolio/`](web/portfolio/)) | The front page: rows of tiles — Parametric Studies and the Alexandria Phoenix Documentation, the academic projects, the bird projects (the birding report and Dove Habitat) — About, contact; menus of the projects in its running head; and the switch between the two designs. |
+| Portfolio | https://felipeharker.org/ | `hark_web`, this one ([`web/portfolio/`](web/portfolio/)) | The front page: rows of tiles — Hark Urbanism, Parametric Studies and the Alexandria Phoenix Documentation, the academic projects, the bird projects (the birding report and Dove Habitat) — About, contact; menus of the projects in its running head; and the switch between the two designs. |
 | Standards | https://felipeharker.org/standards/ | `hark_web`, this one ([`web/standards/`](web/standards/)) | The web design and development standards, the one shared stylesheet and script, and a page that renders them. |
 | Academic | https://academic.felipeharker.org/ | [`hark_academic`](https://github.com/felipeharker/hark_academic) | Architecture and urban design projects from the University of Houston, a page each. |
 | Birding | https://birds.felipeharker.org/ | [`hark_birding`](https://github.com/felipeharker/hark_birding) | The Harker Ornithology Report: eBird observations, checklists, media and field notes. Next.js. |
 | Resume | https://resume.felipeharker.org/ | [`hark_resume`](https://github.com/felipeharker/hark_resume) | The resume, as one printable page. |
 | Dove Habitat | https://dove.felipeharker.org/ | [`hark_dove_habitat`](https://github.com/felipeharker/hark_dove_habitat) | A project site: the design documentation for a modular cage accessory system. In the Birding section with the report: its running head links Portfolio, the Ornithology Report and itself. |
+| Hark Urbanism | https://urbanism.felipeharker.org/ | `hark_urbanism` (private, so not linked) | A project site: a city-building game about urban planning, with its own design rather than the standard's. The top row's tile and the running head's Games menu open it. |
 | Alexandria Phoenix | https://alexandria.felipeharker.org/ | `alexandria_phoenix` (private, so not linked) | A project site: the documentation for a Grasshopper plugin and Rhino toolbar, and its Parametric Studies (`/studies/`), built to the standard. The Professional section: its running head links Portfolio, the documentation and the studies. |
 
 Every page on every site links the one stylesheet and the one script served

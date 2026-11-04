@@ -4,6 +4,23 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-11-04 — Hark Urbanism has a tile, in a row of its own at the top
+
+**The game Hark Urbanism has a tile in a new first row of the Work section,
+and the running head a Games menu, first after Portfolio, that lists it.**
+Both open https://urbanism.felipeharker.org/, the custom domain of the Render
+static site `hark-urbanism`, built from the private `hark_urbanism`, so only
+the game is linked. The game keeps its own design, outside the standard. Its
+cover is the game's sample city, captured from the game at 3:2. *Why:* the
+owner's call, the row and its place included.
+
+**The game's first address stays on.** Unlike every other site's,
+hark-urbanism.onrender.com still answers, and the game forwards each visit
+there to urbanism.felipeharker.org, path and all, carrying a guest's saved
+city with it (browsers keep a guest's city per address). *Why:* the owner's
+call — old links keep working. *Replaces:* nothing; it is the one exception
+to "one address per site" (2026-10-28).
+
 ## 2026-10-28 — One address per site, one cookie, checks before deploys
 
 **Each site has one address.** The Render Subdomain of every service with a

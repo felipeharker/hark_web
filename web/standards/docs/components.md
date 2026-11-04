@@ -404,7 +404,7 @@ a page's running head or site links are not its section's, in order.
 ### Menus in the running head
 
 The portfolio's running head is the one with menus: Portfolio, then
-Academic, Professional and Birding, each a menu of the projects under it,
+Games, Academic, Professional and Birding, each a menu of the projects under it,
 then Resume. A menu lists the projects alone — Academic's has no entry for
 the academic front page, which every academic page's running head links —
 and together the menus reach every site in the family. Every other page has
