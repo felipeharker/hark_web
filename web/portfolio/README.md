@@ -32,9 +32,9 @@ drawn large, and Parametric Studies' the Voronoi study's own cover; all are
 
 | Section | What it holds |
 |---|---|
-| Running head | Portfolio; Games, Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
+| Running head | Portfolio; Games, Academic, Professional and Personal, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
 | Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" — the one place the design is chosen |
-| Work | four rows of tiles, each opening its project in a new tab: Hark Urbanism (https://urbanism.felipeharker.org/), a row of its own at the top; Parametric Studies (https://alexandria.felipeharker.org/studies/) and the Alexandria Phoenix Documentation (https://alexandria.felipeharker.org/); the academic projects, one tile each linking its page on https://academic.felipeharker.org/; then the bird projects, the birding report (https://birds.felipeharker.org/) and Dove Habitat (https://dove.felipeharker.org/). Each with a cover from its project |
+| Work | four rows of tiles, each opening its project in a new tab: Hark Urbanism (https://urbanism.felipeharker.org/), a row of its own at the top; Parametric Studies (https://alexandria.felipeharker.org/studies/) and the Alexandria Phoenix Documentation (https://alexandria.felipeharker.org/); the academic projects, one tile each linking its page on https://academic.felipeharker.org/; then the personal projects, the birding report (https://birds.felipeharker.org/), Dove Habitat (https://dove.felipeharker.org/) and Charmera (https://charmera.felipeharker.org/). Each with a cover from its project |
 | About | the biography |
 | Elsewhere | the resume (https://resume.felipeharker.org/), GitHub, LinkedIn, email |
 

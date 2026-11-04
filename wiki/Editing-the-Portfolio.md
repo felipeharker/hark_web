@@ -15,8 +15,9 @@ Its README is [`web/portfolio/README.md`](../web/portfolio/README.md).
 The pages the rows link to are their own sites, each in its own repository:
 the academic projects (`hark_academic`, https://academic.felipeharker.org/),
 the birding report (`hark_birding`, https://birds.felipeharker.org/) and
-the resume (`hark_resume`, https://resume.felipeharker.org/), and Dove
-Habitat (`hark_dove_habitat`, https://dove.felipeharker.org/). Links
+the resume (`hark_resume`, https://resume.felipeharker.org/), Dove
+Habitat (`hark_dove_habitat`, https://dove.felipeharker.org/) and Charmera
+(`hark_charmera`, https://charmera.felipeharker.org/). Links
 to them are absolute. A tile's links open its project in a new tab
 (`target="_blank" rel="noopener noreferrer"`); the running head, the site
 links and Elsewhere stay in the same tab.
@@ -25,8 +26,8 @@ links and Elsewhere stay in the same tab.
 
 The Work section is four rows, each its own `<ul class="work-list">`:
 Hark Urbanism, a game, alone at the top; the professional work (Parametric Studies and the Alexandria Phoenix
-Documentation), the academic projects (three), then the bird projects (the
-birding report and Dove Habitat). Both professional tiles link pages on the
+Documentation), the academic projects (three), then the personal projects (the
+birding report, Dove Habitat and Charmera). Both professional tiles link pages on the
 Alexandria Phoenix site, which is built elsewhere, from a private
 repository: they link its addresses and nothing more. Copy one `<li class="work">` block into its row. Every tile
 carries the same parts in the same order — cover, title, hairline, summary,

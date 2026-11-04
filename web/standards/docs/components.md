@@ -294,9 +294,10 @@ own. The `<hr class="rule-soft">` in it is drawn as a short ink dash.
 
 To give each kind of work a row of its own, put one `.work-list` after
 another in the section: each starts a new row, as far below the last as two
-rows within one list. The portfolio has three — Parametric Studies and the Alexandria
-Phoenix Documentation, two across, then the academic projects, three across, then the bird projects, two
-across. Every tile is the same size in all three.
+rows within one list. The portfolio has four — Hark Urbanism, alone, then
+Parametric Studies and the Alexandria Phoenix Documentation, two across, then
+the academic projects, three across, then the personal projects, three
+across. Every tile is the same size in all four.
 
 ## Entries
 
@@ -372,7 +373,7 @@ repeats them, and every link opens in the same tab.
 |---|---|
 | Academic | Portfolio · Academic |
 | Professional | Portfolio · Alexandria Phoenix · Parametric Studies |
-| Birding | Portfolio · Ornithology Report · Dove Habitat |
+| Personal | Portfolio · Ornithology Report · Dove Habitat · Charmera |
 | Resume | Portfolio · Resume |
 | The standards | Portfolio · Standards |
 
@@ -385,6 +386,7 @@ A dove habitat page, say:
     <a href="https://felipeharker.org/">Portfolio</a>
     <a href="https://birds.felipeharker.org/">Ornithology Report</a>
     <a href="/" aria-current="page">Dove Habitat</a>
+    <a href="https://charmera.felipeharker.org/">Charmera</a>
   </nav>
 </header>
 ```
@@ -404,7 +406,7 @@ a page's running head or site links are not its section's, in order.
 ### Menus in the running head
 
 The portfolio's running head is the one with menus: Portfolio, then
-Games, Academic, Professional and Birding, each a menu of the projects under it,
+Games, Academic, Professional and Personal, each a menu of the projects under it,
 then Resume. A menu lists the projects alone — Academic's has no entry for
 the academic front page, which every academic page's running head links —
 and together the menus reach every site in the family. Every other page has

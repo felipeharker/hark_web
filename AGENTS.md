@@ -4,8 +4,9 @@ felipeharker.org: the portfolio and the web standards. Read
 [`README.md`](README.md) first: the family of sites, the layout, and how to
 run, check and deploy it. The academic projects, the birding report and the
 resume are their own sites, in `hark_academic`, `hark_birding` and
-`hark_resume` beside this folder, each with its own `AGENTS.md`; so is Dove
-Habitat, a project site, in `hark_dove_habitat`. The standard, the decision
+`hark_resume` beside this folder, each with its own `AGENTS.md`; so are Dove
+Habitat and Charmera, project sites, in `hark_dove_habitat` and
+`hark_charmera`. The standard, the decision
 log and the roadmap for all of them live here.
 
 ## Rules
@@ -25,8 +26,8 @@ log and the roadmap for all of them live here.
    hide or filter anything in them.
 4. **No links to private `github.com/felipeharker/…` repositories.** A
    visitor gets GitHub's 404. The public ones — `hark_web`,
-   `hark_academic`, `hark_birding`, `hark_resume`, `hark_dove_habitat` — may
-   be linked.
+   `hark_academic`, `hark_birding`, `hark_resume`, `hark_dove_habitat`,
+   `hark_charmera` — may be linked.
 5. **One stylesheet.** `web/standards/site/hark.css`, served at
    `/standards/hark.css`, is the only shared stylesheet; every page on every
    site links it (`https://felipeharker.org/standards/hark.css` from the other

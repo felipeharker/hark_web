@@ -4,6 +4,30 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-11-04 — Charmera; the Birding section becomes Personal
+
+**Charmera is a project site, https://charmera.felipeharker.org/, from the
+public `hark_charmera`.** Custom effects for the Kodak Charmera keychain
+camera, patched into its stock firmware, documented on one static page built
+to the standard (Render static site `hark-charmera`, a Render Blueprint, its
+address a Porkbun CNAME, like Dove Habitat). It has a tile in the row with the
+birding report and Dove Habitat, now a row of three, and an entry in that
+row's menu. Its cover is its own viewfinder screenshots, rendered by the
+patched firmware in an emulator. *Why:* the owner's call, the row included.
+
+**No firmware in the repository.** The camera's firmware, original or
+patched, and anything extracted from it, is third-party material, so it stays
+on disk (`hark_charmera/.gitignore`); the build patches a public dump on the
+reader's own computer. *Why:* rule 12 of `AGENTS.md`.
+
+**The Birding section is renamed Personal, and Charmera joins it.** The row's
+menu in the portfolio's running head is Personal, and every page of the
+section — the birding report, Dove Habitat and Charmera — carries Portfolio ·
+Ornithology Report · Dove Habitat · Charmera in its running head and
+colophon. *Why:* the owner's call; the row's tiles were already all
+"Personal", and a camera does not belong under Birding. *Replaces:* the
+Birding section (Portfolio · Ornithology Report · Dove Habitat).
+
 ## 2026-11-04 — Hark Urbanism has a tile, in a row of its own at the top
 
 **The game Hark Urbanism has a tile in a new first row of the Work section,
