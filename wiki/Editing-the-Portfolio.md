@@ -23,8 +23,8 @@ links and Elsewhere stay in the same tab.
 
 ## Adding a tile
 
-The Work section is three rows, each its own `<ul class="work-list">`:
-the professional work (Parametric Studies and the Alexandria Phoenix
+The Work section is four rows, each its own `<ul class="work-list">`:
+Hark Urbanism, a game, alone at the top; the professional work (Parametric Studies and the Alexandria Phoenix
 Documentation), the academic projects (three), then the bird projects (the
 birding report and Dove Habitat). Both professional tiles link pages on the
 Alexandria Phoenix site, which is built elsewhere, from a private
@@ -55,7 +55,7 @@ stand in a stock or invented image.
 
 ## The running head's menus
 
-The portfolio's running head, alone of every page's, has menus: Academic,
+The portfolio's running head, alone of every page's, has menus: Games, Academic,
 Professional and Birding each open onto the projects under them
 (`<details class="runhead-menu">`, in `web/standards/docs/components.md`).
 A new tile gets an entry in its menu too; a new heading of work is another

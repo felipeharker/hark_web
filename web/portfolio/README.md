@@ -3,7 +3,7 @@
 The front of felipeharker.org, served at `/`: one page. It introduces the
 work, links the other sites in the family — the academic projects, the
 birding report, the resume, each built in its own repository — and the
-project sites Dove Habitat and Alexandria Phoenix, and
+project sites Hark Urbanism, Dove Habitat and Alexandria Phoenix, and
 says how to get in touch. It is also the one place a reader chooses the
 design every site in the family is set in, sans or serif.
 
@@ -23,8 +23,8 @@ Every tile shows a cover taken from its project (`planning/decisions.md`).
 Each academic tile shows its project's cover from the academic site
 (`https://academic.felipeharker.org/assets/covers/<slug>.jpg`), so there is
 one file per cover. The birding report's is one of its own photographs,
-linked from the Macaulay Library as the report links them. Dove Habitat's
-is a drawing from its site, Alexandria Phoenix's its 33 component icons,
+linked from the Macaulay Library as the report links them. Hark Urbanism's
+is the game's sample city, captured from the game; Dove Habitat's a drawing from its site, Alexandria Phoenix's its 33 component icons,
 drawn large, and Parametric Studies' the Voronoi study's own cover; all are
 3:2, in `site/assets/covers/`.
 
@@ -32,9 +32,9 @@ drawn large, and Parametric Studies' the Voronoi study's own cover; all are
 
 | Section | What it holds |
 |---|---|
-| Running head | Portfolio; Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
+| Running head | Portfolio; Games, Academic, Professional and Birding, each a menu of the projects under it; Resume. Every other page's running head is the plain one |
 | Masthead | the name, the line under it, and the design switch — "Type: Sans, Serif" — the one place the design is chosen |
-| Work | three rows of tiles, each opening its project in a new tab: Parametric Studies (https://alexandria.felipeharker.org/studies/) and the Alexandria Phoenix Documentation (https://alexandria.felipeharker.org/); the academic projects, one tile each linking its page on https://academic.felipeharker.org/; then the bird projects, the birding report (https://birds.felipeharker.org/) and Dove Habitat (https://dove.felipeharker.org/). Each with a cover from its project |
+| Work | four rows of tiles, each opening its project in a new tab: Hark Urbanism (https://urbanism.felipeharker.org/), a row of its own at the top; Parametric Studies (https://alexandria.felipeharker.org/studies/) and the Alexandria Phoenix Documentation (https://alexandria.felipeharker.org/); the academic projects, one tile each linking its page on https://academic.felipeharker.org/; then the bird projects, the birding report (https://birds.felipeharker.org/) and Dove Habitat (https://dove.felipeharker.org/). Each with a cover from its project |
 | About | the biography |
 | Elsewhere | the resume (https://resume.felipeharker.org/), GitHub, LinkedIn, email |
 
