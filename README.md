@@ -8,12 +8,13 @@ its tiles open, such as Dove Habitat:
 
 | Site | Address | Repository | What it holds |
 |---|---|---|---|
-| Portfolio | https://felipeharker.org/ | `hark_web`, this one ([`web/portfolio/`](web/portfolio/)) | The front page: rows of tiles — Hark Urbanism, Parametric Studies and the Alexandria Phoenix Documentation, the academic projects, the bird projects (the birding report and Dove Habitat) — About, contact; menus of the projects in its running head; and the switch between the two designs. |
+| Portfolio | https://felipeharker.org/ | `hark_web`, this one ([`web/portfolio/`](web/portfolio/)) | The front page: rows of tiles — Hark Urbanism, Parametric Studies and the Alexandria Phoenix Documentation, the academic projects, the personal projects (the birding report, Dove Habitat and Charmera) — About, contact; menus of the projects in its running head; and the switch between the two designs. |
 | Standards | https://felipeharker.org/standards/ | `hark_web`, this one ([`web/standards/`](web/standards/)) | The web design and development standards, the one shared stylesheet and script, and a page that renders them. |
 | Academic | https://academic.felipeharker.org/ | [`hark_academic`](https://github.com/felipeharker/hark_academic) | Architecture and urban design projects from the University of Houston, a page each. |
 | Birding | https://birds.felipeharker.org/ | [`hark_birding`](https://github.com/felipeharker/hark_birding) | The Harker Ornithology Report: eBird observations, checklists, media and field notes. Next.js. |
 | Resume | https://resume.felipeharker.org/ | [`hark_resume`](https://github.com/felipeharker/hark_resume) | The resume, as one printable page. |
-| Dove Habitat | https://dove.felipeharker.org/ | [`hark_dove_habitat`](https://github.com/felipeharker/hark_dove_habitat) | A project site: the design documentation for a modular cage accessory system. In the Birding section with the report: its running head links Portfolio, the Ornithology Report and itself. |
+| Dove Habitat | https://dove.felipeharker.org/ | [`hark_dove_habitat`](https://github.com/felipeharker/hark_dove_habitat) | A project site: the design documentation for a modular cage accessory system. In the Personal section with the report and Charmera: its running head links Portfolio, the Ornithology Report, itself and Charmera. |
+| Charmera | https://charmera.felipeharker.org/ | [`hark_charmera`](https://github.com/felipeharker/hark_charmera) | A project site: four new effects for the Kodak Charmera keychain camera, patched into its stock firmware, with the patcher, the C source and the emulator tests. In the Personal section: its running head links Portfolio, the Ornithology Report, Dove Habitat and itself. |
 | Hark Urbanism | https://urbanism.felipeharker.org/ | `hark_urbanism` (private, so not linked) | A project site: a city-building game about urban planning, with its own design rather than the standard's. The top row's tile and the running head's Games menu open it. |
 | Alexandria Phoenix | https://alexandria.felipeharker.org/ | `alexandria_phoenix` (private, so not linked) | A project site: the documentation for a Grasshopper plugin and Rhino toolbar, and its Parametric Studies (`/studies/`), built to the standard. The Professional section: its running head links Portfolio, the documentation and the studies. |
 
@@ -95,8 +96,8 @@ sites. See [wiki/Deploying.md](wiki/Deploying.md).
 
 ## Elsewhere in CODEBASE
 
-`hark_academic`, `hark_birding`, `hark_resume` and `hark_dove_habitat`
-sit beside this folder in `CODEBASE`. The Rhino and Grasshopper work, with its own standards, lives in
+`hark_academic`, `hark_birding`, `hark_resume`, `hark_dove_habitat` and
+`hark_charmera` sit beside this folder in `CODEBASE`. The Rhino and Grasshopper work, with its own standards, lives in
 a separate workspace, `CODEBASE\parametric` (the private `parametric_*`
 repositories); nothing here depends on it. The earlier `hark_*` repositories
 are archived under `<name>_archive`.
