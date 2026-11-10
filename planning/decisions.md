@@ -4,6 +4,27 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-11-10 — The academic projects have Rhino models, built to one standard
+
+**Each academic project has a Rhino model, and all three follow one model
+standard, hark-model 1.0, described in `hark_academic`'s `MODELS.md` and
+set down by the scripts in its `tools/rhino/`.** Inches, north +Y, a
+meaningful origin and the site's latitude and longitude; seven top-level
+layers in a fixed order, elements named by what they are, everything by
+layer; one physically based material palette, with a six-colour diagram
+palette; one block library (trees, lights, furniture, figures, vehicles);
+the same named views and layer states in every model; metadata as Document
+User Text and the Notes; a check that every model passes before it is
+saved. Dead Mall Fall and Collingsworth Marketplace are new; Living Outside
+the Box's model (v0.5.0) is brought to the standard with its geometry
+untouched, and v0.5.0 is kept beside it. The models are working files in
+`source/`, out of the repository and unlinked, like the board sets. *Why:*
+the owner's call — the projects are to be documented with drawings,
+diagrams, maps and renders that read as one family, at the portfolio's
+level of detail: enough to show the idea, not construction documents.
+*Replaces:* nothing; v0.5.0's own layer scheme becomes the standard's
+element layers.
+
 ## 2026-11-04 — Charmera; the Birding section becomes Personal
 
 **Charmera is a project site, https://charmera.felipeharker.org/, from the
