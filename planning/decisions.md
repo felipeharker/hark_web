@@ -4,6 +4,26 @@ Why felipeharker.org is built the way it is. Newest first. Each entry says
 what was decided, why, and what it replaced; reverse one by adding a new
 entry, not by editing an old one.
 
+## 2026-11-11 — Five diagram plates per academic project, drawn from the models
+
+**Each academic project has the same five diagram plates, drawn from its
+Rhino model to one standard: site plan, axonometric from the south-east,
+the project's organisation in the diagram palette, movement, and a
+section.** One 3:2 plate in the site's type (Inter, IBM Plex Mono): a
+bracketed project kicker, a Title Case title and a one-sentence subtitle,
+place and projection at the right; north arrow, graphic scale or "not to
+scale", and a legend of only what the plate shows; two to six callouts,
+each a dot, a leader and a short label. One display mode and capture size
+for every drawing, so line weights match; fills at their own colour from
+any angle; emphasis in the standard's six diagram colours, everything else
+ghosted; sections cut in one poché with a slice beyond. What each plate
+shows is plain data in `hark_academic`'s `tools/rhino/diagram_specs.py`;
+the standard is in its `MODELS.md`. The plates are working files in
+`source/`, unpublished: whether and where the project pages show them is
+still open. *Why:* the owner's call — the projects' graphics should read as
+one family, in what they show and how they show it. *Replaces:* nothing;
+the board images on the project pages stay as they are.
+
 ## 2026-11-10 — The academic projects have Rhino models, built to one standard
 
 **Each academic project has a Rhino model, and all three follow one model
